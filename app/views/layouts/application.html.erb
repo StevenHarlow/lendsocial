@@ -7,16 +7,59 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-        <div id="nav">
-              <% if current_user %>
-              <%= link_to "Edit Profile", edit_user_path(current_user.id)%>
-              <%= link_to "Logout", :logout%>
-              <% else %>
-              <%= link_to "Register", new_user_path%> | 
-              <%= link_to "Login", :login %>
-              <% end %>
-          </div>
     
-        <%= yield %>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">LendSocial</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          
+            <% if current_user %>
+                <ul class="nav">
+                    <li><%= link_to "Edit Profile", edit_user_path(current_user.id)%></li>
+                    <li><%= link_to "Logout", :logout%></li>
+                </ul>
+                <% else %>
+                    <%= link_to "Register", new_user_path%> | 
+                    <form action="login" class="pull-right" method="POST">
+                        <input class="input-small" type="text" name="username" placeholder="Username">
+                        <input class="input-small" type="password" name="password" placeholder="Password">
+                        <button class="btn" type="submit">Sign in</button>
+                    </form>
+            <% end %>
+        
+            
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h1>Page name <small>Supporting text or tagline</small></h1>
+        </div>
+        <div class="row">
+          <div class="span10">
+             <%= yield %>
+          </div>
+          <div class="span4">
+            <h3>Secondary content</h3>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Company 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+      
+    
+       
 </body>
 </html>

@@ -10,20 +10,15 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Crypted password:</b>
-  <%= @user.crypted_password %>
-</p>
+<% if !@user.profiles.blank? %>
+  <% for profile in @user.profiles %>
+    
+    <p><%= link_to "Show Profile", :controller => "profiles", :action => "show", :id => profile.id %></p>
+  <% end %>
+<% else %>
+  
+<% end %>
 
-<p>
-  <b>Password salt:</b>
-  <%= @user.password_salt %>
-</p>
-
-<p>
-  <b>Persistence token:</b>
-  <%= @user.persistence_token %>
-</p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

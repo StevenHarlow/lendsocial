@@ -15,6 +15,16 @@
   <%= @profile.public %>
 </p>
 
+<ul>
+<% if !@profile.profile_activities.blank? %>
+  <% for activity in @profile.profile_activities %>
+    <li>activity.name</li>
+  <% end %>
+<% else %>
+ <li>No activities</li>
+<% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

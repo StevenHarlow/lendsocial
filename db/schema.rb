@@ -11,12 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016135405) do
+ActiveRecord::Schema.define(:version => 20111113233341) do
 
   create_table "followings", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "follower_id"
     t.boolean  "blocked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profile_activities", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "actor_id"
+    t.string   "name"
+    t.string   "detail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

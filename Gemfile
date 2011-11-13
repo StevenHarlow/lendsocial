@@ -21,6 +21,7 @@ end
 # end
 
 gem 'jquery-rails'
+gem 'twitter_bootstrap_form_for'
 gem "authlogic"
 
 # To use ActiveModel has_secure_password

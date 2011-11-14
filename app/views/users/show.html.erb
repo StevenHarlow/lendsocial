@@ -13,7 +13,7 @@
 <% if !@user.profiles.blank? %>
   <% for profile in @user.profiles %>
     
-    <p><%= link_to "Show Profile", :controller => "profiles", :action => "show", :id => profile.id %></p>
+    <p><%= link_to "Show Profile (" + profile.name + ")", :controller => "profiles", :action => "show", :id => profile.id %></p>
   <% end %>
 <% else %>
   

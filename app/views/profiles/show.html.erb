@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <b>Name:</b>
   <%= @profile.name %>
@@ -25,6 +26,13 @@
 <% end %>
 </ul>
 
+
+<div id="follow_container">
+    <%= form_for @profile, :html => { :id => 'follow_form' } do |f| -%>
+       <%= f.hidden_field :id %>
+     <% end -%>
+    <a href='#' id="follow">Follow</a>
+</div>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

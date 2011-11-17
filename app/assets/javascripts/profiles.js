@@ -2,11 +2,39 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
     
-    $("#follow").bind( "click", function() {
+    $("#follow").live( "click", function() {
        
        $.post( 'follow', $("#follow_form").serialize(), function( data ){ 
           $("#follow_container").html( data );
         });
         
+    });
+    
+    $("#following").live( "click", function() {
+        
+        $.ajax({
+            url: 'unfollow',
+            data:  $("#follow_form").serialize(),
+            type: 'DELETE',
+            success: function(data) {
+               $("#follow_container").html( data );
+            }
+        });
+    });
+    
+    $("#following").live( "mouseover", function() {
+        
+        $(this).html( "Unfollow" );
+        $(this).removeClass( "success" );
+        $(this).addClass( "danger" );
+    
+    });
+    
+    $("#following").live( "mouseout", function() {
+
+          $(this).html( "Following" );
+          $(this).removeClass( "danger" );
+          $(this).addClass( "success" );
+
     });
 });

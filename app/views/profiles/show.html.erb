@@ -26,13 +26,10 @@
 <% end %>
 </ul>
 
-
-<div id="follow_container">
-    <%= form_for @profile, :html => { :id => 'follow_form' } do |f| -%>
-       <%= f.hidden_field :id %>
-     <% end -%>
-    <a href='#' id="follow">Follow</a>
-</div>
-
+<% if @profile.follow?( current_user )%>
+    <%= render :partial => "followings/following", :locals => { :profile => @profile }%>
+<% else %>
+    <%= render :partial => "followings/not_following", :locals => { :profile => @profile }%>
+<% end %>
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

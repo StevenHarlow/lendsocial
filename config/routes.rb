@@ -1,11 +1,12 @@
 LendSocial::Application.routes.draw do
     
     match 'profiles/follow' => 'followings#create', :as => :follow
-  resources :profiles
+    match 'profiles/unfollow' => 'followings#destroy', :as => :unfollow
+    resources :profiles
 
-  resources :users,  :user_sessions
-  match 'login' => 'user_sessions#new', :as => :login
-  match 'logout' => 'user_sessions#destroy', :as => :logout
+    resources :users,  :user_sessions
+    match 'login' => 'user_sessions#new', :as => :login
+    match 'logout' => 'user_sessions#destroy', :as => :logout
   
 
   # The priority is based upon order of creation:

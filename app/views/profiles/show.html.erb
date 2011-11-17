@@ -19,7 +19,7 @@
 <ul>
 <% if !@profile.profile_activities.blank? %>
   <% for activity in @profile.profile_activities %>
-    <li>activity.name</li>
+    <li><%= activity.created_at.to_s( :short )%>: <%= activity.actor.username %> is now <%= activity.name %></li>
   <% end %>
 <% else %>
  <li>No activities</li>

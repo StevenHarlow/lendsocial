@@ -17,8 +17,11 @@ class FollowingsController < ApplicationController
       @following = Followings.new
       @following.profile_id = params[:profile][:id]
       @following.follower_id = current_user.id
+      @activity = ProfileActivity.new( { :profile_id => @following.profile_id, :actor_id => current_user.id, :name => 'follow'} )
+      
       respond_to do |format|
         if @following.save
+          @activity.save
           format.html { render :partial => "following", :locals => { :profile => @following.profile } }
           format.json { render json: @following, status: :created, location: @following }
         else
@@ -31,6 +34,8 @@ class FollowingsController < ApplicationController
     def destroy
        @following = Followings.where( :follower_id => current_user.id, :profile_id => params[:profile][:id] ).first
        @following.destroy
+       @activity = ProfileActivity.new( { :profile_id => @following.profile_id, :actor_id => current_user.id, :name => 'unfollow'} )
+       @activity.save
       
        @profile = Profile.find( params[:profile][:id] )
 

@@ -4,7 +4,7 @@ $(document).ready(function() {
     
     $("#follow").live( "click", function() {
        
-       $.post( 'follow', $("#follow_form").serialize(), function( data ){ 
+       $.post( '/profiles/follow', $("#follow_form").serialize(), function( data ){ 
           $("#follow_container").html( data );
         });
         
@@ -13,7 +13,7 @@ $(document).ready(function() {
     $("#following").live( "click", function() {
         
         $.ajax({
-            url: 'unfollow',
+            url: '/profiles/unfollow',
             data:  $("#follow_form").serialize(),
             type: 'DELETE',
             success: function(data) {

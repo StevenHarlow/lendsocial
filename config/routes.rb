@@ -4,7 +4,7 @@ LendSocial::Application.routes.draw do
     match 'profiles/unfollow' => 'followings#destroy', :as => :unfollow
     resources :profiles
 
-    resources :users,  :user_sessions
+    resources :users,  :user_sessions, :followings
     match 'login' => 'user_sessions#new', :as => :login
     match 'logout' => 'user_sessions#destroy', :as => :logout
   

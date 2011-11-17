@@ -1,0 +1,14 @@
+<h1>Currently following</h1>
+
+<% if !@following.blank? %>
+  <ul>
+      <% for item in @following %>
+        <li>
+            Following <strong><%= item.profile.name %></strong>
+            <%= render :partial => "followings/following", :locals => { :profile => item.profile } %>
+        </li>
+      <% end %>
+  </ul>
+<% else %>
+  You're not following anybody!
+<% end %>

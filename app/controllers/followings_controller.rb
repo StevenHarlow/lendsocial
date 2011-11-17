@@ -1,5 +1,16 @@
 class FollowingsController < ApplicationController
     
+    
+    def index
+       @following =  Followings.where( :follower_id => current_user.id )
+    
+       respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @following }
+        end
+        
+    end
+    
     # POST /followings
     # POST /followings.json
     def create

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105043820) do
+ActiveRecord::Schema.define(:version => 20120105044254) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,27 @@ ActiveRecord::Schema.define(:version => 20120105043820) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "loans", :force => true do |t|
+    t.integer  "business_id"
+    t.integer  "user_id"
+    t.datetime "requestDate"
+    t.decimal  "amountRequested"
+    t.datetime "fundingDeadline"
+    t.integer  "loan_purpose_id"
+    t.datetime "fundedDate"
+    t.decimal  "totalCommitted"
+    t.string   "description"
+    t.string   "benefits"
+    t.string   "thankYouMessage"
+    t.datetime "publishedDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "loans", ["business_id"], :name => "index_loans_on_business_id"
+  add_index "loans", ["loan_purpose_id"], :name => "index_loans_on_loan_purpose_id"
+  add_index "loans", ["user_id"], :name => "index_loans_on_user_id"
 
   create_table "profile_activities", :force => true do |t|
     t.integer  "profile_id"

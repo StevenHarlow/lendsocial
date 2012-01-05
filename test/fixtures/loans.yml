@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  business: 
+  user: 
+  requestDate: 2012-01-04 20:42:54
+  amountRequested: 9.99
+  fundingDeadline: 2012-01-04 20:42:54
+  loan_purpose: 
+  fundedDate: 2012-01-04 20:42:54
+  totalCommitted: 9.99
+  description: MyString
+  benefits: MyString
+  thankYouMessage: MyString
+  publishedDate: 2012-01-04 20:42:54
+
+two:
+  business: 
+  user: 
+  requestDate: 2012-01-04 20:42:54
+  amountRequested: 9.99
+  fundingDeadline: 2012-01-04 20:42:54
+  loan_purpose: 
+  fundedDate: 2012-01-04 20:42:54
+  totalCommitted: 9.99
+  description: MyString
+  benefits: MyString
+  thankYouMessage: MyString
+  publishedDate: 2012-01-04 20:42:54

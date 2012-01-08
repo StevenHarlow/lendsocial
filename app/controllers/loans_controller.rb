@@ -1,26 +1,4 @@
 class LoansController < ApplicationController
-  # GET /loans
-  # GET /loans.json
-  def index
-    @loans = Loan.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @loans }
-    end
-  end
-
-  # GET /loans/1
-  # GET /loans/1.json
-  def show
-    @loan = Loan.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @loan }
-    end
-  end
-
   # GET /loans/new
   # GET /loans/new.json
   def new
@@ -66,18 +44,6 @@ class LoansController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /loans/1
-  # DELETE /loans/1.json
-  def destroy
-    @loan = Loan.find(params[:id])
-    @loan.destroy
-
-    respond_to do |format|
-      format.html { redirect_to loans_url }
-      format.json { head :ok }
     end
   end
 end

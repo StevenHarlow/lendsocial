@@ -1,5 +1,31 @@
-<h1>New loan</h1>
+<h1>The loan process, simplified.</h1>
 
-<%= render 'form' %>
+<%= form_for(@loan) do |f| %>
+  <% if @loan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
 
-<%= link_to 'Back', loans_path %>
+      <ul>
+      <% @loan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amountRequested, "Loan Request Amount:" %><br />
+    <%= f.text_field :amountRequested %>
+  </div>
+  <div class="field">
+    <%= f.label :loan_purpose, "Purpose of Loan:" %><br />
+    <%= f.text_field :loan_purpose %>
+  </div>
+  <div class="field">
+    <%= f.label :fundingDeadline, "Funding Deadline:" %><br />
+    <%= f.datetime_select :fundingDeadline %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit Loan Request"%>
+  </div>
+<% end %>

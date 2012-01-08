@@ -1,7 +1,5 @@
 LendSocial::Application.routes.draw do
     
-  resources :loans
-
     root :to => 'user_sessions#new'
     
     match 'profiles/follow' => 'followings#create', :as => :follow
@@ -11,7 +9,11 @@ LendSocial::Application.routes.draw do
     resources :users,  :user_sessions, :followings
     match 'login' => 'user_sessions#new', :as => :login
     match 'logout' => 'user_sessions#destroy', :as => :logout
-  
+
+    match 'loans/apply' => 'loans#new', :as => :apply
+    match 'loans/publish' => 'loans#update', :as => :publish
+    resources :loans
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

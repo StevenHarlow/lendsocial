@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Business:</b>
+  <%= @loan.business %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @loan.user %>
+</p>
+
+<p>
+  <b>Requestdate:</b>
+  <%= @loan.requestDate %>
+</p>
+
+<p>
+  <b>Amountrequested:</b>
+  <%= @loan.amountRequested %>
+</p>
+
+<p>
+  <b>Fundingdeadline:</b>
+  <%= @loan.fundingDeadline %>
+</p>
+
+<p>
+  <b>Loan purpose:</b>
+  <%= @loan.loan_purpose %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @loan.description %>
+</p>
+
+<p>
+  <b>Benefits:</b>
+  <%= @loan.benefits %>
+</p>
+
+<p>
+  <b>Thankyoumessage:</b>
+  <%= @loan.thankYouMessage %>
+</p>
+
+
+<%= link_to 'Edit', edit_loan_path(@loan) %> |
+<%= link_to 'Back', loans_path %>

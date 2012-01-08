@@ -1,0 +1,53 @@
+<%= form_for(@loan) do |f| %>
+  <% if @loan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+
+      <ul>
+      <% @loan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :business %><br />
+    <%= f.text_field :business %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :requestDate %><br />
+    <%= f.datetime_select :requestDate %>
+  </div>
+  <div class="field">
+    <%= f.label :amountRequested %><br />
+    <%= f.text_field :amountRequested %>
+  </div>
+  <div class="field">
+    <%= f.label :fundingDeadline %><br />
+    <%= f.datetime_select :fundingDeadline %>
+  </div>
+  <div class="field">
+    <%= f.label :loan_purpose %><br />
+    <%= f.text_field :loan_purpose %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :benefits %><br />
+    <%= f.text_field :benefits %>
+  </div>
+  <div class="field">
+    <%= f.label :thankYouMessage %><br />
+    <%= f.text_field :thankYouMessage %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

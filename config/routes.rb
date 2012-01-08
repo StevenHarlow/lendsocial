@@ -1,5 +1,7 @@
 LendSocial::Application.routes.draw do
     
+  resources :loans
+
     root :to => 'user_sessions#new'
     
     match 'profiles/follow' => 'followings#create', :as => :follow

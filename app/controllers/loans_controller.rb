@@ -2,7 +2,7 @@ class LoansController < ApplicationController
 
 
   def index
-  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today )
+  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today } )
   		
   	respond_to do |format|
       format.html # index.html.erb

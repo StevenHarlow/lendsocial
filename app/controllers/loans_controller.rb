@@ -1,4 +1,31 @@
 class LoansController < ApplicationController
+
+
+  def index
+  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today )
+  		
+  	respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @loans }
+    end 
+  end
+  
+  def publish
+  
+  	@loan = Loan.find( params[:id] )
+  	@loan.publishedDate = Date.today
+  	
+  	respond_to do |format|
+      if @loan.save
+        format.html { redirect_to @loan, notice: 'Loan was successfully published.' }
+        format.json { render json: @loan, status: :published, location: @loan }
+      else
+        format.html { render action: "published" }
+        format.json { render json: @loan.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   # GET /loans/new
   # GET /loans/new.json
   def new

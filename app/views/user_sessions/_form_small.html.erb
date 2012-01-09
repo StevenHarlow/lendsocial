@@ -1,0 +1,22 @@
+ <% if @user_session.nil? %>
+	 <% @user_session = UserSession.new %>
+ <% end %>
+
+<%= form_for @user_session, :html => { :class => "pull-right" } do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2>Sorry, we couldn't log you on.</h2>
+
+      <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.text_field :username, :class => "input-small", :placeholder => "Username" %>
+    <%= f.password_field :password, :class => "input-small", :placeholder => "Password" %>
+    <%= f.submit 'Sign in', :class => "btn" %>
+<% end %>
+

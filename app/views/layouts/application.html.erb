@@ -24,12 +24,8 @@
                     <li><%= link_to "Logout", :logout%></li>
                 </ul>
                 <% else %>
-                    <%= link_to "Register", new_user_path%> | 
-                    <form action="login" class="pull-right" method="POST">
-                        <input class="input-small" type="text" name="username" placeholder="Username">
-                        <input class="input-small" type="password" name="password" placeholder="Password">
-                        <button class="btn" type="submit">Sign in</button>
-                    </form>
+                    <ul class="nav"><%= link_to "Register", new_user_path %></ul>
+             		<%= render 'user_sessions/form_small' %>
             <% end %>
         
             

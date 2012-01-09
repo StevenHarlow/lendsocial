@@ -10,6 +10,7 @@ class UserSessionsController < ApplicationController
       format.xml  { render :xml => @user_session }
     end
   end
+  
 
   # POST /user_sessions
   # POST /user_sessions.xml
@@ -34,7 +35,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to(:users, :notice => 'Goodbye!') }
+      format.html { redirect_to(:login, :notice => 'Goodbye!') }
       format.xml  { head :ok }
     end
   end

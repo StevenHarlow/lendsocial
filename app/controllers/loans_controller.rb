@@ -13,12 +13,15 @@ class LoansController < ApplicationController
   # GET /loans/1/edit
   def edit
     @loan = Loan.find(params[:id])
+    @loan[:loan_purpose_description] = @loan.loan_purpose.description
   end
 
   # POST /loans
   # POST /loans.json
   def create
-    @loan = Loan.new(params[:loan])
+  
+  	params[:loan][:loan_purpose] = LoanPurpose.new( {:description => params[:loan][:loan_purpose_description]} )
+    @loan = Loan.new( params[:loan] )
 
     respond_to do |format|
       if @loan.save
@@ -37,7 +40,7 @@ class LoansController < ApplicationController
     @loan = Loan.find(params[:id])
 
     respond_to do |format|
-      if @loan.update_attributes(params[:loan])
+      if @loan.update_attributes(params[:loan]) && @loan.loan_purpose.update_attributes( {:description => params[:loan][:loan_purpose_description]} )
         format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
         format.json { head :ok }
       else

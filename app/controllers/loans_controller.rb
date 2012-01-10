@@ -2,7 +2,7 @@ class LoansController < ApplicationController
 
 
   def index
-  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today } )
+  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today+1 } )
   		
   	respond_to do |format|
       format.html # index.html.erb
@@ -12,17 +12,43 @@ class LoansController < ApplicationController
   
   def publish
   
-  	@loan = Loan.find( params[:id] )
+  	@loan = Loan.find( params[:loan][:id] )
   	@loan.publishedDate = Date.today
   	
   	respond_to do |format|
       if @loan.save
-        format.html { redirect_to @loan, notice: 'Loan was successfully published.' }
+        format.html { render :partial => "published", :locals => { :loan => @loan } }
         format.json { render json: @loan, status: :published, location: @loan }
       else
         format.html { render action: "published" }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+   def unpublish
+  
+  	@loan = Loan.find( params[:loan][:id] )
+  	@loan.publishedDate = nil
+  	
+  	respond_to do |format|
+      if @loan.save
+        format.html { render :partial => "not_published", :locals => { :loan => @loan } }
+        format.json { render json: @loan, status: :published, location: @loan }
+      else
+        format.html { render action: "published" }
+        format.json { render json: @loan.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  
+  def show
+    @loan = Loan.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @profile }
     end
   end
   

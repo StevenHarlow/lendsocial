@@ -18,8 +18,8 @@
     <%= f.text_field :amountRequested %>
   </div>
   <div class="field">
-    <%= f.label :loan_purpose_description, "Purpose of Loan:" %><br />
-    <%= f.text_field :loan_purpose_description %>
+    <%= f.label :loan_purpose_id, "Purpose of Loan:" %><br />
+    <%= select("loan", "loan_purpose_id", LoanPurpose.all.collect {|lp| [ lp.description, lp.id ] } ) %>
   </div>
   <div class="field">
     <%= f.label :fundingDeadline, "Funding Deadline:" %><br />

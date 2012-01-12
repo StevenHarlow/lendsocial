@@ -10,7 +10,7 @@ LendSocial::Application.routes.draw do
     match 'login' => 'user_sessions#new', :as => :login
     match 'logout' => 'user_sessions#destroy', :as => :logout
 
-    match 'loans/apply' => 'loans#new', :as => :apply
+    match 'loans/apply' => 'loans#apply', :as => :apply
     match 'loans/publish' => 'loans#publish', :as => :publish
   	match 'loans/unpublish' => 'loans#unpublish', :as => :unpublish
 

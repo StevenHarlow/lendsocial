@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+LoanPurpose.create([
+  { description: 'Expanding Business' },
+  { description: 'Purchasing Inventory/Equipment' },
+  { description: 'Real Estate Purchase' },
+  { description: 'Acquisitions' },
+  { description: 'General Expenses' },
+  { description: 'Other' }
+])
+
+

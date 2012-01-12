@@ -52,9 +52,9 @@ class LoansController < ApplicationController
     end
   end
   
-  # GET /loans/new
-  # GET /loans/new.json
-  def new
+  # GET /loans/apply
+  # GET /loans/apply.json
+  def apply
     @loan = Loan.new
 
     respond_to do |format|
@@ -72,9 +72,8 @@ class LoansController < ApplicationController
   # POST /loans
   # POST /loans.json
   def create
-  
-  	params[:loan][:loan_purpose] = LoanPurpose.new( {:description => params[:loan][:loan_purpose_description]} )
-    @loan = Loan.new( params[:loan] )
+    @loan = Loan.new(params[:loan])
+    @loan.user_id = current_user.id
 
     respond_to do |format|
       if @loan.save

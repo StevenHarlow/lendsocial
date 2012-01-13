@@ -13,6 +13,12 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <%= f.label :business_id, "Business:" %><br />
+    <%= select("loan", "business_id", current_user.businesses.collect {|b| [ b.name, b.id ] } ) %>
+  </div>
+
   <div class="field">
     <%= f.label :amountRequested, "Loan Request Amount:" %><br />
     <%= f.text_field :amountRequested %>

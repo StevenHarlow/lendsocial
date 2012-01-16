@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    
+    $( "#datepicker" ).datepicker({dateFormat: 'mm/dd/yy'});
+    	
     $("#publish").live( "click", function() {
        
        $.post( '/loans/publish', $("#loan_form").serialize(), function( data ){ 

@@ -5,6 +5,9 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'rack', '1.3.3'
+gem 'haml-rails'
+
 group :production do
   gem 'pg'
 end

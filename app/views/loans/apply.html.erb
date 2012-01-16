@@ -1,5 +1,10 @@
 <h1>The loan process, simplified.</h1>
-
+<ul class="loan_process">
+  <li class="loan_process_step_1"></li>
+  <li class="loan_process_step_2"></li>
+  <li class="loan_process_step_3"></li>
+  <li class="loan_process_step_4"></li>
+</ul>
 <%= form_for(@loan) do |f| %>
   <% if @loan.errors.any? %>
     <div id="error_explanation">
@@ -29,7 +34,7 @@
   </div>
   <div class="field">
     <%= f.label :fundingDeadline, "Funding Deadline:" %><br />
-    <%= f.datetime_select :fundingDeadline %>
+    <%= f.text_field :fundingDeadline, {:id => 'datepicker'}%>
   </div>
   <div class="actions">
     <%= f.submit "Submit Loan Request"%>

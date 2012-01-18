@@ -58,15 +58,9 @@ class LoansController < ApplicationController
     @loan = Loan.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # apply.html.erb
       format.json { render json: @loan }
     end
-  end
-
-  # GET /loans/1/edit
-  def edit
-    @loan = Loan.find(params[:id])
-    @loan[:loan_purpose_description] = @loan.loan_purpose.description
   end
 
   # POST /loans
@@ -74,6 +68,7 @@ class LoansController < ApplicationController
   def create
     @loan = Loan.new(params[:loan])
     @loan.user_id = current_user.id
+    @loan[:fundingDeadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
 
     respond_to do |format|
       if @loan.save
@@ -84,6 +79,12 @@ class LoansController < ApplicationController
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /loans/1/edit
+  def edit
+    @loan = Loan.find(params[:id])
+    @loan[:loan_purpose_description] = @loan.loan_purpose.description
   end
 
   # PUT /loans/1

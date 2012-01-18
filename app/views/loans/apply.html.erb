@@ -33,8 +33,8 @@
     <%= select("loan", "loan_purpose_id", LoanPurpose.all.collect {|lp| [ lp.description, lp.id ] } ) %>
   </div>
   <div class="field">
-    <%= f.label :fundingDeadline, "Funding Deadline:" %><br />
-    <%= f.text_field :fundingDeadline, {:id => 'datepicker'}%>
+    <%= label_tag "datepicker", "Funding Deadline:" %><br />
+    <%= text_field_tag "datepicker" %>
   </div>
   <div class="actions">
     <%= f.submit "Submit Loan Request"%>

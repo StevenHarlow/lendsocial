@@ -86,7 +86,6 @@ class LoansController < ApplicationController
 
   # GET /loans/1/edit
   def edit
-    @loan = Loan.find(params[:id])
     @loan[:loan_purpose_description] = @loan.loan_purpose.description
     @loan[:funding_deadline] = @loan[:funding_deadline].to_date
   end
@@ -94,7 +93,6 @@ class LoansController < ApplicationController
   # PUT /loans/1
   # PUT /loans/1.json
   def update
-    @loan = Loan.find(params[:id])
 	@loan.published_date = DateTime.current
 	@loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
 

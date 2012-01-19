@@ -10,6 +10,7 @@ class LoansController < ApplicationController
     end 
   end
   
+  
   def publish
   
   	@loan = Loan.find( params[:loan][:id] )
@@ -25,6 +26,7 @@ class LoansController < ApplicationController
       end
     end
   end
+
   
    def unpublish
   
@@ -48,7 +50,7 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @profile }
+      format.json { render json: @loan }
     end
   end
   
@@ -91,7 +93,9 @@ class LoansController < ApplicationController
   # PUT /loans/1.json
   def update
     @loan = Loan.find(params[:id])
+	@loan.published_date = Date.today
 
+	
     respond_to do |format|
       if @loan.update_attributes(params[:loan]) && @loan.loan_purpose.update_attributes( {:description => params[:loan][:loan_purpose_description]} )
         format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }

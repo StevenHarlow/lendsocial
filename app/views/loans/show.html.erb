@@ -1,5 +1,5 @@
 <% if @loan.published_date.blank? %>
-  <%= render :partial => "not_published", :locals => { :loan => @loan } %>     
+  <p>Unpublished</p>  
 <% else %>
-  <%= render :partial => "published", :locals => { :loan => @loan } %>
+  <p>Published</p>
 <% end %>

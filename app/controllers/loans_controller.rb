@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-
+  before_filter :authorize, :only => [:edit, :update]
 
   def index
   	@loans = Loan.find( :all, :conditions => { :published_date => Date.today-1..Date.today+1 } )
@@ -109,4 +109,12 @@ class LoansController < ApplicationController
       end
     end
   end
+ 	
+  protected 
+	  def authorize
+		 @loan = Loan.find(params[:id])
+		 if @loan.user.id != current_user.id
+		 	redirect_to @loan, notice: 'Permission denied'
+		 end
+	  end
 end

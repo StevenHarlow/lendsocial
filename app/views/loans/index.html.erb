@@ -10,7 +10,7 @@
 <% @loans.each do |loan| %>
   <tr>
     <td><%= loan.try(:business).try(:name) %></td>
-    <td><%= loan.publishedDate %></td>
+    <td><%= loan.published_date %></td>
     <td><%= loan.loan_purpose.description %></td>
   </tr>
 <% end %>

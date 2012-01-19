@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109034301) do
+ActiveRecord::Schema.define(:version => 20120119023132) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(:version => 20120109034301) do
   create_table "loans", :force => true do |t|
     t.integer  "business_id"
     t.integer  "user_id"
-    t.datetime "requestDate"
-    t.decimal  "amountRequested"
-    t.datetime "fundingDeadline"
+    t.datetime "request_date"
+    t.decimal  "amount_requested"
+    t.datetime "funding_deadline"
     t.integer  "loan_purpose_id"
-    t.datetime "fundedDate"
-    t.decimal  "totalCommitted"
+    t.datetime "funded_date"
+    t.decimal  "total_committed"
     t.string   "description"
     t.string   "benefits"
-    t.string   "thankYouMessage"
-    t.datetime "publishedDate"
+    t.string   "thank_you_message"
+    t.datetime "published_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

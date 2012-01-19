@@ -2,7 +2,7 @@ class LoansController < ApplicationController
 
 
   def index
-  	@loans = Loan.find( :all, :conditions => { :publishedDate => Date.today-1..Date.today+1 } )
+  	@loans = Loan.find( :all, :conditions => { :published_date => Date.today-1..Date.today+1 } )
   		
   	respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class LoansController < ApplicationController
   def publish
   
   	@loan = Loan.find( params[:loan][:id] )
-  	@loan.publishedDate = Date.today
+  	@loan.published_date = Date.today
   	
   	respond_to do |format|
       if @loan.save
@@ -29,7 +29,7 @@ class LoansController < ApplicationController
    def unpublish
   
   	@loan = Loan.find( params[:loan][:id] )
-  	@loan.publishedDate = nil
+  	@loan.published_date = nil
   	
   	respond_to do |format|
       if @loan.save
@@ -68,7 +68,7 @@ class LoansController < ApplicationController
   def create
     @loan = Loan.new(params[:loan])
     @loan.user_id = current_user.id
-    @loan[:fundingDeadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
+    @loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
 
     respond_to do |format|
       if @loan.save

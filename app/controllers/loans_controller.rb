@@ -100,7 +100,7 @@ class LoansController < ApplicationController
 
 	
     respond_to do |format|
-      if @loan.update_attributes(params[:loan]) && @loan.loan_purpose.update_attributes( {:description => params[:loan][:loan_purpose_description]} )
+      if @loan.update_attributes(params[:loan])
         format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
         format.json { head :ok }
       else

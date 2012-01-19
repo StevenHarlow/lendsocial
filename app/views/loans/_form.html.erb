@@ -28,8 +28,9 @@
     <%= text_field_tag "datepicker", @loan.funding_deadline.to_formatted_s(:js_month_day_year) %>
   </div>
   <div class="field">
-    <%= f.label :loan_purpose_description %><br />
-    <%= f.text_field :loan_purpose_description %>
+    <%= f.label :loan_purpose_id, "Loan Purpose:" %><br />
+    <%= select("loan", "loan_purpose_id", current_user.businesses.collect {|b| [ b.name, b.id ] } ) %>
+    <!-- TODO: update these values -->
   </div>
   <div class="field">
     <%= f.label :description %><br />

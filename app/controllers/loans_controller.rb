@@ -71,6 +71,7 @@ class LoansController < ApplicationController
     @loan = Loan.new(params[:loan])
     @loan.user_id = current_user.id
     @loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
+    @loan[:request_date] = DateTime.current
 
     respond_to do |format|
       if @loan.save
@@ -87,13 +88,15 @@ class LoansController < ApplicationController
   def edit
     @loan = Loan.find(params[:id])
     @loan[:loan_purpose_description] = @loan.loan_purpose.description
+    @loan[:funding_deadline] = @loan[:funding_deadline].to_date
   end
 
   # PUT /loans/1
   # PUT /loans/1.json
   def update
     @loan = Loan.find(params[:id])
-	@loan.published_date = Date.today
+	@loan.published_date = DateTime.current
+	@loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
 
 	
     respond_to do |format|

@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :business %><br />
-    <%= f.text_field :business %>
+  	<%= f.label :business_id, "Business:" %><br />
+    <%= select("loan", "business_id", current_user.businesses.collect {|b| [ b.name, b.id ] } ) %>
   </div>
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :request_date %><br />
-    <%= f.datetime_select :request_date %>
+    <%= f.label :request_date %><br/>
+    <%= @loan.request_date.to_date.to_formatted_s( :js_month_day_year ) %>
   </div>
   <div class="field">
     <%= f.label :amount_requested %><br />
@@ -29,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :funding_deadline %><br />
-    <%= f.datetime_select :funding_deadline %>
+    <%= text_field_tag "datepicker", @loan.funding_deadline.to_formatted_s(:js_month_day_year) %>
   </div>
   <div class="field">
     <%= f.label :loan_purpose_description %><br />

@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:js_month_day_year] = "%m/%d/%Y"

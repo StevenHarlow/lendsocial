@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :loan_purpose_id, "Loan Purpose:" %><br />
-    <%= select("loan", "loan_purpose_id", current_user.businesses.collect {|b| [ b.name, b.id ] } ) %>
+    <%= select("loan", "loan_purpose_id", LoanPurpose.all.collect {|b| [ b.description, b.id ] } ) %>
     <!-- TODO: update these values -->
   </div>
   <div class="field">

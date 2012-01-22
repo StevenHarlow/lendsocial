@@ -19,6 +19,7 @@ ul.loan_process
     label 
       font-size: 20px
       line-height: 39px
+      border-bottom: 1px solid #e0e0e0
     
     .field
       display: block
@@ -95,12 +96,17 @@ ul.loan_process
       background: #515151
       margin: 0 7px 18px 7px
       
+      &.active
+        background-color: #22c1c8
+      
       &.step_1
         background-image: url("/assets/loan-apply/pencil.png")
         background-repeat: no-repeat
         background-position: 35px 31px
-        background-color: #22c1c8
         margin-left: 0
+
+        &.active
+          background-image: url("/assets/loan-apply/pencil_active.png")
       
       &.step_2
         background-image: url("/assets/loan-apply/mobile.png")
@@ -109,7 +115,10 @@ ul.loan_process
     
         .blue
           background-image: url("/assets/loan-apply/encircled_arrow_blue.png")
-    
+        
+        &.active
+          background-image: url("/assets/loan-apply/mobile_active.png")
+          
       &.step_3
         background-image: url("/assets/loan-apply/check.png")
         background-repeat: no-repeat

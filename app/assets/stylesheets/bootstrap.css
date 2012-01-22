@@ -14,6 +14,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 h1,
 h2,
@@ -181,7 +182,7 @@ textarea {
  * Basic and global styles for generating a grid system, structural layout, and page templates
  * ------------------------------------------------------------------------------------------- */
 body {
-  background-color: #ffffff;
+  background-color: #f3f3f3;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -190,7 +191,8 @@ body {
   color: #404040;
 }
 .container {
-  width: 940px;
+  width: 1060px;
+  min-height: 100%;
   margin-left: auto;
   margin-right: auto;
   zoom: 1;

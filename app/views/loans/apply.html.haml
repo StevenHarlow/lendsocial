@@ -1,0 +1,66 @@
+%h2 The loan process, simplified.
+
+= form_for(@loan, :html => {:class => 'form-stacked'}) do |f|
+
+  - if @loan.errors.any?
+    #error_explanation
+      %h2 #{pluralize(@loan.errors.count, "error")} prohibited this loan from being saved:
+      %ul
+      - @loan.errors.full_messages.each do |msg|
+        %li #{msg}
+  .hide
+    = f.label :business_id, "Business"
+    = select("loan", "business_id", current_user.businesses.collect {|b| [ b.name, b.id ] } )
+  
+  %ul.loan_process
+    %li.first
+  
+      %span.loan_process.step_1
+        %p
+          Complete our quick and
+          easy loan request form.
+        %span.num 01
+          
+      = f.label :amount_requested, "Loan Request Amount"
+      
+      %span.field.input-prepend
+        %spanclass.add-on $
+        = f.text_field :amount_requested, :class => 'prependedInput'
+    %li
+  
+      %span.loan_process.step_2
+        %p
+          A representive will call or 
+          email you for more info.
+        %span.encircled_arrow.blue
+        %span.num 02
+      = f.label :loan_purpose_id, "Purpose of Loan" 
+      
+      %span.field.input-append
+        = select("loan", "loan_purpose_id", LoanPurpose.all.collect {|lp| [ lp.description, lp.id ] }, {:prompt => 'Please Select One'} )
+      
+    %li
+  
+      %span.loan_process.step_3
+        %p
+          Once approved, accept and
+          publish your loan on LS.
+        %span.encircled_arrow.orange
+        %span.num 03
+          
+      = label_tag "datepicker", "Funding Deadline" 
+      %span.field
+        = text_field_tag "datepicker"
+    %li
+  
+      %span.loan_process.step_4
+        %p
+          Start receiving microloans 
+          from your community!
+        %span.encircled_arrow.green
+        %span.num 04
+      %span.field_last
+        = f.submit "", :class => 'submit'  
+
+
+

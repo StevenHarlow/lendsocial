@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title LendSocial
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #layout
+      = render :partial => 'layouts/header'
+      = yield
+      #layout_footer
+    = render :partial => 'layouts/footer'

@@ -1,0 +1,29 @@
+#header
+  #logo
+    = link_to image_tag('logo.png', :width => 250, :height => 50, :alt => 'LendSocial - Building Community', :title => 'LendSocial - Building Community'), root_path
+  #top_menu
+    %ul
+      %li
+        = link_to 'Lend', '#', :class => 'menu_lend'
+      %li
+        = link_to 'Borrow', '#', :class => 'menu_borrow'
+      %li
+        = link_to 'My Investments', '#', :class => 'menu_investments'
+      %li
+        = link_to 'Community', '#', :class => 'menu_community'
+  .clear
+#my_menu
+  .my_menu_left
+    %ul
+      %li.first
+        Hello,
+        %strong Steven Harlow
+      %li
+        = link_to 'My Panel', '#'
+      %li
+        = link_to 'My Profile', '#'
+      %li
+        = link_to 'My Companies', '#'
+  .my_menu_right
+    city options
+  .clear

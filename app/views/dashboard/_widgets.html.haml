@@ -1,0 +1,39 @@
+.white_box
+  .widget#recent_loan_requests
+    %h4 Recent Loan Requests
+    %ul
+      %li.odd.first
+        .loan_header
+          = link_to 'Fairchild Wedding Photography, LLC', '#'
+          %span $1500
+          .clear
+        .loan_body
+          %p is looking to upgrade their equipment and hire a few employees to expand their business
+          = link_to 'More Info >>', '#', :class => 'loan_more_info', :remote => true
+          .clear
+        .loan_footer Posted 2 Hours Ago
+      %li.even
+        .loan_header
+          = link_to 'LendSocial', '#'
+          %span $1500
+          .clear
+        .loan_body
+          %p is looking to purchase a few watercoolers for the office.
+          = link_to 'More Info >>', '#', :class => 'loan_more_info', :remote => true
+          .clear
+        .loan_footer Posted 9 Hours Ago
+      %li.odd.last
+        .loan_header
+          = link_to 'Gary’s Thrift Store', '#'
+          %span $1500
+          .clear
+        .loan_body
+          %p is looking to upgrade their store buy purchase new or used clothing racks and bins.  Their current clothing racks and bins are over 20 years old and are falling apart.
+          = link_to 'More Info >>', '#', :class => 'loan_more_info', :remote => true
+          .clear
+        .loan_footer Posted 2 Hours Ago
+    = link_to 'See more loan requests', '#', :class => 'loan_see_more'
+    .clear
+  .widget#my_groups
+    %h4 My Groups
+    %p Some groups info

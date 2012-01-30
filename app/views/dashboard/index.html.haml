@@ -1,0 +1,83 @@
+#sidebar
+  = render :partial => 'dashboard/account'
+  = render :partial => 'dashboard/widgets'
+#content
+  .white_box
+    #content_menu
+      %ul
+        %li.first
+          = link_to 'Inbox (5)', '#', :remote => true
+        %li
+          = link_to 'Update Status', '#', :remote => true, :class => 'active'
+        %li.last
+          = link_to 'Archived Status', '#', :remote => true
+    #content_wrapper
+      #update_status
+        .update_status_box
+          = image_tag 'dummy_status_picture.png', :class => 'status_avatar'
+          = text_area :user, :status, :placeholder => 'Type your message...'
+          = button_tag :status do
+            = content_tag :span, :class => 'button_inner' do
+              = content_tag :span, 'Submit'
+          .clear
+      #statuses
+        %ul
+          %li
+            .status_picture
+              = link_to image_tag('dummy_status_picture_big.png'), '#'
+            .status_content
+              .status_name
+                = link_to 'David Harlow', '#'
+              .status_body
+                %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel placerat leo. Pellentesque iaculis, risus quis tincidunt ultricies dui erat molestie felis, non fringilla risus urna eu neque. Donec vehicula, risus eu tincidunt posuere, arcu metus dignissim arcu, et malesuada nisl magna sed odio. Proin eu odio felis, eu elementum metus. Pellentesque quis orci eget mi aliquam viverra sit amet quis augue. Nam diam metus, venenatis vitae varius vitae, faucibus sed leo.
+            .clear
+            .status_meta
+              .status_star
+                = link_to 'Not saved', '#'
+              .status_date Posted an hour ago
+              .clear
+          %li.saved
+            .status_picture
+              = link_to image_tag('dummy_status_picture_big.png'), '#'
+            .status_content
+              .status_name
+                = link_to 'David Harlow', '#'
+              .status_body
+                %p Vestibulum molestie suscipit imperdiet. Phasellus adipiscing felis vitae nunc dignissim at malesuada purus tincidunt. Phasellus tincidunt felis magna, et vulputate nunc. Phasellus tortor magna, ultrices in dignissim in, laoreet sed elit. In hac habitasse platea dictumst. Morbi dolor lectus, vestibulum hendrerit dictum id, fringilla a purus. Mauris gravida semper orci, nec vulputate dolor blandit vel. Phasellus leo tellus, sodales eget feugiat sed, cursus ut sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vehicula rutrum ipsum porttitor feugiat. Praesent sit amet purus vel odio consectetur sollicitudin. Etiam commodo, libero a pharetra posuere, diam magna sagittis diam, sit amet mattis erat dui eu quam. Nullam rhoncus laoreet justo a aliquet. Ut elementum lectus in ligula congue lacinia.
+            .clear
+            .status_meta
+              .status_star
+                = link_to 'Saved', '#'
+                %span Saved
+              .status_date Posted an hour ago
+              .clear
+          %li
+            .status_picture
+              = link_to image_tag('dummy_status_picture_big.png'), '#'
+            .status_content
+              .status_name
+                = link_to 'David Harlow', '#'
+              .status_body
+                %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel placerat leo. Pellentesque iaculis, risus quis tincidunt ultricies dui erat molestie felis, non fringilla risus urna eu neque. Donec vehicula, risus eu tincidunt posuere, arcu metus dignissim arcu, et malesuada nisl magna sed odio. Proin eu odio felis, eu elementum metus. Pellentesque quis orci eget mi aliquam viverra sit amet quis augue. Nam diam metus, venenatis vitae varius vitae, faucibus sed leo.
+            .clear
+            .status_meta
+              .status_star
+                = link_to 'Not saved', '#'
+              .status_date Posted an hour ago
+              .clear
+          %li.saved
+            .status_picture
+              = link_to image_tag('dummy_status_picture_big.png'), '#'
+            .status_content
+              .status_name
+                = link_to 'David Harlow', '#'
+              .status_body
+                %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel placerat leo. Pellentesque iaculis, risus quis tincidunt ultricies dui erat molestie felis, non fringilla risus urna eu neque. Donec vehicula, risus eu tincidunt posuere, arcu metus dignissim arcu, et malesuada nisl magna sed odio. Proin eu odio felis, eu elementum metus. Pellentesque quis orci eget mi aliquam viverra sit amet quis augue. Nam diam metus, venenatis vitae varius vitae, faucibus sed leo.
+            .clear
+            .status_meta
+              .status_star
+                = link_to 'Saved', '#'
+                %span Saved
+              .status_date Posted an hour ago
+              .clear
+.clear

@@ -1,0 +1,330 @@
+//= require_self
+//= require_tree .
+
+@import "base"
+
++sticky-footer(62px, "#layout", "#layout_footer", "#footer")
+
+body
+  background: image-url("header_bg.png") repeat-x #f3f3f3
+  font-family: $font-family !important
+  
+#layout
+  width: $base-width
+  margin-left: auto
+  margin-right: auto
+  .white_box
+    background: #fff
+    padding: 10px
+    margin: 0 0 15px
+  #header
+    height: 95px
+    padding: 0 0 11px
+    background: image-url("delimiter.png") 100% 8px no-repeat
+    #logo
+      height: 95px
+      width: 260px
+      +float-left
+      background: image-url("delimiter.png") 0 8px no-repeat
+      margin: 0 10px 0 0
+      img
+        margin: 22px 0 0 10px
+    #top_menu
+      +float-left
+      ul
+        +inline-block-list-container
+        > li
+          +inline-block-list-item
+          background: image-url("delimiter.png") 0 8px no-repeat
+          height: 95px
+          a
+            display: block
+            overflow: hidden
+            text-indent: -1000px
+            height: 64px
+            margin: 31px 10px 0 10px
+            +sprite-background("top_menu.png")
+            &.menu_lend
+              width: 75px
+              +sprite-row(1)
+            &.menu_borrow
+              width: 110px
+              +sprite-row(2)
+            &.menu_investments
+              width: 195px
+              +sprite-row(3)
+            &.menu_community
+              width: 140px
+              +sprite-row(4)
+  #my_menu
+    margin: 5px 0 15px
+    height: 25px
+    font-size: 14px
+    .my_menu_left
+      margin: 4px 0
+      line-height: 17px
+      height: 17px
+      +float-left
+      ul
+        +inline-block-list-container
+        > li
+          +inline-block-list-item
+          border-left: 1px solid #8a8a8a
+          padding: 0 15px
+          &.first
+            border: 0
+            color: #222
+          a
+            color: #22c1c8
+            font-weight: bold
+            text-decoration: none
+    .my_menu_right
+      +float-right
+  #sidebar
+    +float-left
+    width: 350px
+    margin: 0 15px 0 0
+    h3
+      font-size: 20px
+      font-weight: bold
+    .table
+      border-top: 1px solid #dedede
+      border-bottom: 1px solid #dedede
+      margin: 15px 0
+      .table_row
+        border-top: 1px solid #dedede
+        height: 40px
+        line-height: 40px
+        &.first
+          border: 0
+        .left
+          color: #000
+          +float-left
+          border-right: 1px solid #dedede
+          width: 165px
+        .right
+          +float-left
+          color: #6cc822
+          padding: 0 0 0 15px
+          overflow: hidden
+          span.note
+            color: #000
+            font-size: 9px
+    .add_funds_button
+      width: 330px
+      height: 44px
+      display: block
+      background: image-url("add_funds_button.png") no-repeat
+      color: #fff
+      text-decoration: none
+      text-transform: uppercase
+      line-height: 44px
+      text-align: center
+      span
+        +text-shadow(rgba(black, .8) 0px 0px 5px)
+        padding: 0 25px 0 0
+        background: image-url("button_arrow.png") 100% 50% no-repeat
+        font-size: 16px
+    .widget
+      h4
+        font-size: 17px
+        line-height: 39px
+        font-weight: bold
+        background: image-url("widget_header_bg.png") repeat-x
+        color: #fff
+        padding: 0 10px
+      &#recent_loan_requests
+        a.loan_see_more
+          color: #2e2e2e
+          text-decoration: none
+          font-size: 10px
+          font-weight: bold
+          +float-right
+          padding: 8px 0
+        ul
+          list-style: none
+          margin: 0
+          > li
+            padding: 5px 10px
+            background: #f0f0f0
+            border-bottom: 1px solid #dedede
+            &.even
+              background: #f9f9f9
+            &.last
+              border: 0
+            .loan_header
+              font-size: 13px
+              font-weight: bold
+              border-bottom: 1px dotted #b7b7b7
+              padding: 5px 0 10px
+              a
+                color: #2f8d92
+                text-decoration: none
+                +float-left
+              span
+                color: #46910a
+                +float-right
+            .loan_body
+              padding: 5px 0
+              p
+                padding: 0 0 5px
+                color: #474747
+                font-size: 10px
+                font-weight: bold
+                line-height: 14px
+              a.loan_more_info
+                color: #ff4800
+                font-size: 9px
+                font-weight: bold
+                text-decoration: none
+                +float-right
+            .loan_footer
+              border-top: 1px dotted #b7b7b7
+              font-size: 9px
+              font-weight: bold
+              color: #444
+              padding: 5px 0 0
+  #content
+    +float-left
+    width: $base-width - 365px
+    .white_box
+      padding: 10px 15px
+    #content_menu
+      ul
+        +inline-block-list-container
+        border-bottom: 1px solid #dedede
+        > li
+          +inline-block-list-item
+          padding: 0 13px
+          border-right: 1px solid #dedede
+          &.first
+            padding: 0 13px 0 0
+          a
+            font-size: 10px
+            line-height: 27px
+            color: #000
+            text-decoration: none
+            padding: 0 13px 0 0
+            background: image-url("content_menu_arrows.png") 100% -7px no-repeat
+            &.active
+              background-position: 100% -35px
+    #content_wrapper
+      #update_status
+        .update_status_box
+          background: #f2ffff
+          padding: 10px 0
+          margin: 0 0 1px
+          img.status_avatar
+            +float-left
+            margin: 0 10px
+          textarea
+            +float-left
+            resize: none
+            border: 1px solid #ebebeb
+            background: #fbfbfb
+            padding: 8px 10px
+            +border-radius(7px)
+            font-size: 12px
+            height: 60px
+            width: 415px
+          button
+            margin: 45px 10px 0 10px
+            background: image-url("black_button.png") 0 -30px no-repeat
+            padding: 0 0 0 15px
+            height: 30px
+            position: relative
+            +float-left
+            span.button_inner
+              display: block
+              +float-left
+              padding: 0 15px 0 0
+              background: image-url("black_button.png") 100% 0 no-repeat
+              span
+                color: #fff
+                font-size: 15px
+                font-weight: bold
+                line-height: 30px
+                +text-shadow(rgba(black, .8) 0px 0px 5px)
+                padding: 0 10px 0 0
+                background: image-url("black_button_arrow.png") 100% 50% no-repeat
+      #statuses
+        border-top: 1px solid #dedede
+        ul
+          list-style: none
+          margin: 0
+          li
+            border-bottom: 1px solid #dedede
+            margin: 10px 0
+            &.saved
+              .status_name a
+                color: #f28300 !important
+              .status_star a
+                background-position: 0 -16px !important
+            .status_picture
+              +float-left
+              width: 85px
+              margin: 0 10px 0 0
+              img
+                padding: 4px
+                border: 1px solid #dedede
+            .status_content
+              +float-left
+              width: 510px
+              .status_name
+                a
+                  color: #0f7c81
+                  font-weight: bold
+                  text-decoration: none
+              .status_body
+                p
+                  color: #3d3d3d
+                  font-size: 10px
+                  line-height: 13px
+            .status_meta
+              border-top: 1px solid #f1f1f1
+              height: 22px
+              .status_star
+                +float-left
+                a
+                  display: block
+                  +float-left
+                  width: 16px
+                  height: 16px
+                  margin: 2px 0 3px
+                  overflow: hidden
+                  text-indent: -1000px
+                  background: image-url("status_stars.png")
+                span
+                  +float-left
+                  color: #80cf3f
+                  line-height: 22px
+                  font-size: 10px
+                  margin: 0 0 0 5px
+              .status_date
+                +float-right
+                font-size: 9px
+                font-weight: bold
+                color: #222
+                line-height: 22px
+#footer
+  background: #dfdfdf
+  border-top: 1px solid #cecece
+  .footer_border
+    border-top: 1px solid #f2f2f2
+    #footer_wrapper
+      margin: 5px 0 0
+      width: 1000px
+      margin-left: auto
+      margin-right: auto
+  ul
+    +inline-block-list-container
+    > li
+      +inline-block-list-item
+      a
+        color: #6e6e6e
+        font-size: 11px
+        font-weight: bold
+        text-decoration: none
+        background: image-url("bottom_menu_bullet.png") 0 50% no-repeat
+        padding: 0 0 0 10px
+        margin: 0 15px 0 0  

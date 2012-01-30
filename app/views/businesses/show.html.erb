@@ -1,0 +1,23 @@
+<h1><%= @business.name %></h1>
+<p id="notice"><%= notice %></p>
+<p><%= @business.description %></p>
+
+<% if !@loans.blank? %>
+  <ul>
+      <% for item in @loans %>
+        <li>
+             <strong>
+				 <% if item.description.blank? %>
+					No description.
+				 <% else %>
+				 	<%= item.description %>
+				 <% end %>
+            </strong>
+            <%= link_to 'Show', item %>
+
+        </li>
+      <% end %>
+  </ul>
+<% else %>
+  No loans associated with this business.
+<% end %>

@@ -1,2 +1,0 @@
-class BusinessController < ApplicationController
-end

@@ -2,18 +2,19 @@
   %h3 Account Overview
   .table
     .table_row.first
-      .left Current Balance
-      .right $11,562.11
+      .left Available Balance
+      .right $1,490
       .clear
     .table_row
-      .left Money On Loan
-      .right
-        $2,000
-        %span.note (Funding 4 companies)
+      .left Balance on Loan
+      .right $1,210
       .clear
+    .table_row
+      .left Balance in Reserve
+      .right $300
     .table_row.last
-      .left Reserved Funds
-      .right $437.89
+      .left Total Balance
+      .right $3,000
       .clear
   = link_to '#', :class => 'add_funds_button' do
     %span Add Funds To Your Account

@@ -8,6 +8,7 @@
 body
   background: image-url("header_bg.png") repeat-x #f3f3f3
   font-family: $font-family !important
+  color: $font-color !important
   
 #layout
   width: $base-width
@@ -73,7 +74,7 @@ body
           padding: 0 15px
           &.first
             border: 0
-            color: #222
+            color: #000
           a
             color: #22c1c8
             font-weight: bold
@@ -82,7 +83,7 @@ body
       +float-right
   #sidebar
     +float-left
-    width: 350px
+    width: $left-column-width
     margin: 0 15px 0 0
     h3
       font-size: 20px
@@ -95,23 +96,22 @@ body
         border-top: 1px solid #dedede
         height: 40px
         line-height: 40px
+        font-size: 16px
+        font-weight: bold
         &.first
           border: 0
         .left
           color: #000
           +float-left
           border-right: 1px solid #dedede
-          width: 165px
+          width: ($left-column-width - 20px) / 2
         .right
           +float-left
           color: #6cc822
           padding: 0 0 0 15px
           overflow: hidden
-          span.note
-            color: #000
-            font-size: 9px
     .add_funds_button
-      width: 330px
+      width: $left-column-width - 20px
       height: 44px
       display: block
       background: image-url("add_funds_button.png") no-repeat
@@ -133,14 +133,21 @@ body
         background: image-url("widget_header_bg.png") repeat-x
         color: #fff
         padding: 0 10px
-      &#recent_loan_requests
-        a.loan_see_more
-          color: #2e2e2e
-          text-decoration: none
-          font-size: 10px
-          font-weight: bold
-          +float-right
-          padding: 8px 0
+      &.grid
+        a
+          &.loan_see_more
+            color: #2e2e2e
+            text-decoration: none
+            font-size: 10px
+            font-weight: bold
+            +float-right
+            padding: 8px 0
+          &.loan_more_info
+            color: #ff4800
+            font-size: 9px
+            font-weight: bold
+            text-decoration: none
+            +float-right
         ul
           list-style: none
           margin: 0
@@ -172,12 +179,6 @@ body
                 font-size: 10px
                 font-weight: bold
                 line-height: 14px
-              a.loan_more_info
-                color: #ff4800
-                font-size: 9px
-                font-weight: bold
-                text-decoration: none
-                +float-right
             .loan_footer
               border-top: 1px dotted #b7b7b7
               font-size: 9px
@@ -186,7 +187,7 @@ body
               padding: 5px 0 0
   #content
     +float-left
-    width: $base-width - 365px
+    width: $right-column-width
     .white_box
       padding: 10px 15px
     #content_menu
@@ -226,7 +227,7 @@ body
             +border-radius(7px)
             font-size: 12px
             height: 60px
-            width: 415px
+            width: $right-column-width - 220px
           button
             margin: 45px 10px 0 10px
             background: image-url("black_button.png") 0 -30px no-repeat
@@ -269,7 +270,7 @@ body
                 border: 1px solid #dedede
             .status_content
               +float-left
-              width: 510px
+              width: $right-column-width - 125px
               .status_name
                 a
                   color: #0f7c81
@@ -277,7 +278,7 @@ body
                   text-decoration: none
               .status_body
                 p
-                  color: #3d3d3d
+                  color: #333
                   font-size: 10px
                   line-height: 13px
             .status_meta
@@ -312,10 +313,8 @@ body
   .footer_border
     border-top: 1px solid #f2f2f2
     #footer_wrapper
-      margin: 5px 0 0
-      width: 1000px
-      margin-left: auto
-      margin-right: auto
+      margin: 5px auto 0 auto
+      width: $base-width
   ul
     +inline-block-list-container
     > li

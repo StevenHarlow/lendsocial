@@ -1,5 +1,5 @@
 .white_box
-  .widget#recent_loan_requests
+  .widget.grid#recent_loan_requests
     %h4 Recent Loan Requests
     %ul
       %li.odd.first
@@ -34,6 +34,22 @@
         .loan_footer Posted 2 Hours Ago
     = link_to 'See more loan requests', '#', :class => 'loan_see_more'
     .clear
-  .widget#my_groups
-    %h4 My Groups
-    %p Some groups info
+  .widget.grid#my_deal_book
+    %h4 My Deal Book
+    %ul
+      %li.odd.first
+        .loan_header
+          = link_to "Fairchild Wedding Photography, LLC", "#"
+          .clear
+        .loan_body
+          %p 50% a wedding photo/video package with FWP
+          = link_to "More Info >>>", "#", :class => 'loan_more_info', :remote => true
+          .clear
+      %li.even.last
+        .loan_header
+          = link_to "Earl Bruce Hardware", "#"
+          .clear
+        .loan_body
+          %p Your photo on the Earl Bruce Hardware Heroes wall
+          = link_to "More Info >>>", "#", :class => 'loan_more_info', :remote => true
+          .clear

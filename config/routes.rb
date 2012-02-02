@@ -14,7 +14,9 @@ LendSocial::Application.routes.draw do
     match 'loans/publish' => 'loans#publish', :as => :publish
   	match 'loans/unpublish' => 'loans#unpublish', :as => :unpublish
 
-    resources :loans, :businesses
+    resources :loans
+
+    resources :businesses
 
 
   # The priority is based upon order of creation:

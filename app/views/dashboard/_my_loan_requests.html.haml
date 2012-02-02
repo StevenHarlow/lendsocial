@@ -1,0 +1,15 @@
+.white_box
+  .widget.grid#my_loan_requests
+    %h4 My Loan Requests
+    %ul
+      %li.odd.first.last
+        .loan_header
+          = link_to "Fairchild Wedding Photography, LLC", "#"
+          .clear
+        .loan_body
+          %p Request Stage: Waiting for supporting documents
+          = link_to "More Info >>>", "#", :class => 'loan_more_info', :remote => true
+          .clear
+        .loan_footer
+          %span.loan_amount Loan Amount: $1500
+          .clear

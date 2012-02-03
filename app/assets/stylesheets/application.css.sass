@@ -12,6 +12,7 @@ body
   
 #layout
   width: $base-width
+  padding: 0 15px
   margin-left: auto
   margin-right: auto
   .white_box
@@ -310,10 +311,13 @@ body
 #footer
   background: #dfdfdf
   border-top: 1px solid #cecece
+  width: 100%
+  min-width: $base-width + 30px
   .footer_border
     border-top: 1px solid #f2f2f2
     #footer_wrapper
       margin: 5px auto 0 auto
+      padding: 0 15px
       width: $base-width
   ul
     +inline-block-list-container
@@ -326,4 +330,4 @@ body
         text-decoration: none
         background: image-url("bottom_menu_bullet.png") 0 50% no-repeat
         padding: 0 0 0 10px
-        margin: 0 15px 0 0  
+        margin: 0 15px 0 0

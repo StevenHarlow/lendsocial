@@ -11,6 +11,6 @@ class CreateMessages < ActiveRecord::Migration
     end
     add_index :messages, :author_id
     add_index :messages, :posted_to_id
-    add_index :messages, :comment_on_id
+    add_index :messages, :related_message_id
   end
 end

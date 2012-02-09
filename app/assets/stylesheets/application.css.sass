@@ -225,13 +225,15 @@ body
           margin: 0 0 1px
           form
             margin: 0
+            .alert
+              display: none
+              margin: 0 10px 18px
           img.status_avatar
             +float-left
             margin: 0 10px
           textarea
             +float-left
             resize: none
-            border: 1px solid #ebebeb
             background: #fbfbfb
             padding: 8px 10px
             +border-radius(7px)
@@ -276,6 +278,7 @@ body
                   font-weight: bold
                   text-decoration: none
               .status_body
+                overflow: hidden
                 p
                   color: #333
                   font-size: 10px

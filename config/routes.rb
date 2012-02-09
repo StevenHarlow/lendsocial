@@ -8,9 +8,19 @@ LendSocial::Application.routes.draw do
         get :unfollow, :to => 'followings#destroy'
       end
     end
+    
+    resources :users do
+      resources :messages
+    end
 
-    resources :users,  :user_sessions, :followings
-    resources :dashboard, :only => [:index]
+    resources :user_sessions, :followings
+    
+    resources :dashboard, :only => [:index] do
+      collection do
+        get 'update_status(/:page)', :action => :update_status
+        get 'archived_statuses(/:page)', :action => :archived_statuses
+      end
+    end
     
     match 'login' => 'user_sessions#new', :as => :login
     match 'logout' => 'user_sessions#destroy', :as => :logout

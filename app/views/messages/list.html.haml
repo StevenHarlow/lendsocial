@@ -1,0 +1,4 @@
+= paginate @messages, :remote => true
+%ul.messages_list
+  = render :partial => 'messages/message', :collection => @messages
+= paginate @messages, :remote => true

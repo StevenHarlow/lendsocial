@@ -2,20 +2,18 @@ class LoansController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
 
   def index
-  	@loans = Loan.find( :all, :conditions => { :published_date => Date.today-1..Date.today+1 } )
-  		
+    @loans = Loan.find( :all, :conditions => { :published_date => Date.today-1..Date.today+1 } )
+
   	respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @loans }
-    end 
+    end
   end
-  
-  
+
   def publish
-  
-  	@loan = Loan.find( params[:loan][:id] )
+  	@loan = Loan.find(params[:loan][:id])
   	@loan.published_date = Date.today
-  	
+
   	respond_to do |format|
       if @loan.save
         format.html { render :partial => "published", :locals => { :loan => @loan } }
@@ -27,46 +25,39 @@ class LoansController < ApplicationController
     end
   end
 
-  
    def unpublish
-  
-  	@loan = Loan.find( params[:loan][:id] )
-  	@loan.published_date = nil
-  	
-  	respond_to do |format|
-      if @loan.save
-        format.html { render :partial => "not_published", :locals => { :loan => @loan } }
-        format.json { render json: @loan, status: :published, location: @loan }
-      else
-        format.html { render action: "published" }
-        format.json { render json: @loan.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
-  
+     @loan = Loan.find( params[:loan][:id] )
+     @loan.published_date = nil
+
+     respond_to do |format|
+       if @loan.save
+         format.html { render :partial => "not_published", :locals => { :loan => @loan } }
+         format.json { render json: @loan, status: :published, location: @loan }
+       else
+         format.html { render action: "published" }
+         format.json { render json: @loan.errors, status: :unprocessable_entity }
+       end
+     end
+   end
+
   def show
     @loan = Loan.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @loan }
     end
   end
-  
-  # GET /loans/apply
-  # GET /loans/apply.json
+
   def apply
     @loan = Loan.new
 
     respond_to do |format|
-      format.html # apply.html.erb
+      format.html
       format.json { render json: @loan }
     end
   end
 
-  # POST /loans
-  # POST /loans.json
   def create
     @loan = Loan.new(params[:loan])
     @loan.user_id = current_user.id
@@ -84,19 +75,15 @@ class LoansController < ApplicationController
     end
   end
 
-  # GET /loans/1/edit
   def edit
     @loan[:loan_purpose_description] = @loan.loan_purpose.description
     @loan[:funding_deadline] = @loan[:funding_deadline].to_date
   end
 
-  # PUT /loans/1
-  # PUT /loans/1.json
   def update
-	@loan.published_date = DateTime.current
-	@loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
+    @loan.published_date = DateTime.current
+    @loan[:funding_deadline] = Date.strptime(params[:datepicker], '%m/%d/%Y')
 
-	
     respond_to do |format|
       if @loan.update_attributes(params[:loan])
         format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
@@ -108,11 +95,12 @@ class LoansController < ApplicationController
     end
   end
  	
-  protected 
-	  def authorize
-		 @loan = Loan.find(params[:id])
-		 if @loan.user.id != current_user.id
-		 	redirect_to @loan, notice: 'Permission denied'
-		 end
-	  end
+  protected
+
+  def authorize
+    @loan = Loan.find(params[:id])
+    if @loan.user.id != current_user.id
+      redirect_to @loan, notice: 'Permission denied'
+    end
+  end
 end

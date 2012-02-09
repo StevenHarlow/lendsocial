@@ -1,0 +1,22 @@
+- if message.respond_to?(:saved) && message.try(:saved)
+  %li.saved
+- else
+  %li
+    .status_picture
+      = link_to image_tag("dummy_status_picture_big.png"), url_for(message.author)
+    .status_content
+      .status_name
+        = link_to message.author.email, url_for(message.author)
+      .status_body
+        = message.text
+    .clear
+    .status_meta
+      .status_star
+        - if message.respond_to?(:saved) && message.try(:saved)
+          = link_to 'Saved', '#'
+          %span Saved
+        - else
+          = link_to 'Not saved', '#'
+      .status_date
+        = "Posted #{time_ago_in_words(message.created_at)} ago"
+      .clear

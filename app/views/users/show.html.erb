@@ -5,16 +5,5 @@
   <%= @user.email %>
 </p>
 
-<% if !@user.profiles.blank? %>
-  <% for profile in @user.profiles %>
-    
-    <p><%= link_to "Show Profile (" + profile.name + ")", :controller => "profiles", :action => "show", :id => profile.id %></p>
-  <% end %>
-<% else %>
-  
-<% end %>
-
-
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

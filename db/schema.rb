@@ -11,19 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207215123) do
+ActiveRecord::Schema.define(:version => 20120209174824) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "followings", :force => true do |t|
-    t.integer  "profile_id"
-    t.integer  "follower_id"
-    t.boolean  "blocked"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,24 +67,6 @@ ActiveRecord::Schema.define(:version => 20120207215123) do
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
   add_index "messages", ["posted_to_id"], :name => "index_messages_on_posted_to_id"
   add_index "messages", ["related_message_id"], :name => "index_messages_on_related_message_id"
-
-  create_table "profile_activities", :force => true do |t|
-    t.integer  "profile_id"
-    t.integer  "actor_id"
-    t.string   "name"
-    t.string   "detail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "profiles", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "public"
-    t.integer  "owner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "user_businesses", :force => true do |t|
     t.integer  "user_id"

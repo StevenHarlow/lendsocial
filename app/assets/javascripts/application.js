@@ -24,3 +24,23 @@ $('[placeholder]').parents('form').submit(function() {
     }
   });
 });
+
+$.validator.prototype.showLabel = function(element, message) {
+	var el = this.errorsFor(element);
+	if (el.length) {
+		el.removeClass(this.settings.validClass).addClass(this.settings.errorClass);
+    el.html(message);
+	} else {
+		el  = $("<" + this.settings.errorElement + "/>").html(message || "");
+		if (this.settings.wrapper) {
+		  el = el.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
+		}
+		if (!this.labelContainer.append(el).length)
+		  this.settings.errorPlacement ? this.settings.errorPlacement(el, $(element)) : el.insertAfter(element);
+	}
+	if (!message && this.settings.success) {
+	  el.text('');
+	  typeof this.settings.success == "string" ? el.addClass(this.settings.success) : this.settings.success(el);
+	}
+	this.toShow = this.toShow.add(el);
+};

@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   end
 
 	def create
+	  params[:message][:author_id] ||= current_user.id
 	 	@message = Message.new(params[:message])
 
 	 	respond_to do |format|
@@ -15,6 +16,8 @@ class MessagesController < ApplicationController
  	        else
  	          redirect_to root_path
           end
+        else
+          render json: @message.errors, status: :unprocessable_entity
         end
       end
 	  end

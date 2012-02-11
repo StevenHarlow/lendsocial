@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210152219) do
+ActiveRecord::Schema.define(:version => 20120210211519) do
+
+  create_table "business_followings", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "business_followings", ["followed_id"], :name => "index_business_followings_on_followed_id"
+  add_index "business_followings", ["follower_id"], :name => "index_business_followings_on_follower_id"
 
   create_table "business_industries", :force => true do |t|
     t.string   "name"
@@ -88,6 +98,16 @@ ActiveRecord::Schema.define(:version => 20120210152219) do
 
   add_index "user_businesses", ["business_id"], :name => "index_user_businesses_on_business_id"
   add_index "user_businesses", ["user_id"], :name => "index_user_businesses_on_user_id"
+
+  create_table "user_followings", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_followings", ["followed_id"], :name => "index_user_followings_on_followed_id"
+  add_index "user_followings", ["follower_id"], :name => "index_user_followings_on_follower_id"
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"

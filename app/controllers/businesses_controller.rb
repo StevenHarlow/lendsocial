@@ -1,16 +1,14 @@
 class BusinessesController < ApplicationController
+  
+  before_filter :find_business, :only => [:show, :follow, :unfollow, :comments]
 	
 	def show
-		@business = Business.find(params[:id])
-		
-		@loans = Loan.find_all_by_business_id( @business.id )
-
+	  @post = @business.postings.build(message_type_id: 2, author_id: current_user.id)
+	  logger.debug @post.inspect
 		respond_to do |format|
-		  format.html # show.html.erb
-		  format.json { render json: @business }
+		  format.html
 		end
 	end
-	
 	
 	def new
 		@business = Business.new
@@ -23,8 +21,7 @@ class BusinessesController < ApplicationController
 	
 	def create
 	 	@business = Business.new(params[:business])
-     	@business.users << current_user 
-   
+    @business.users << current_user 
 
 		respond_to do |format|
 		  if @business.save
@@ -37,6 +34,21 @@ class BusinessesController < ApplicationController
 		end
 	end
 	
+	def follow
+	  current_user.follow(@business)
+	  render partial: 'widgets/follow'
+  end
+  
+  def unfollow
+    current_user.unfollow(@business)
+    render partial: 'widgets/follow'
+  end
+  
+  def comments
+    @messages = Message.postings.for_business(@business).page(params[:page] || 1)
+    respond_to_xhr
+  end
+	
 	def edit
 	
 	end
@@ -45,4 +57,21 @@ class BusinessesController < ApplicationController
 	def update
 	
 	end
+	
+	private
+	
+	def find_business
+	  @business = Business.find(params[:id])
+  end
+  
+  def respond_to_xhr
+    if request.xhr?
+      respond_to do |format|
+        format.html {render template: 'messages/list', layout: false}
+      end
+    else
+      redirect_to url_for(@business)
+    end
+  end
+
 end

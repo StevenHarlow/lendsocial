@@ -1,0 +1,13 @@
+.white_block
+  .loan_header
+    .business_name= @business.name
+    .loan_amount= "Loan amount: #{number_to_currency loan.amount_requested}"
+    .clear
+  .loan_body
+    .loan_description
+      %p= loan.description
+    .loan_stats
+      %p.funded= "#{loan.funded}%"
+    .clear
+  .loan_footer
+    %p= "Posted #{time_ago_in_words(loan.created_at)} ago"

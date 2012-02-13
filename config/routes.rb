@@ -24,6 +24,12 @@ LendSocial::Application.routes.draw do
       end
     end
 
-    resources :businesses
+    resources :businesses do
+      resources :messages
+      member do
+        get :follow, :unfollow
+        get 'comments(/:page)', :action => :comments
+      end
+    end
 
 end

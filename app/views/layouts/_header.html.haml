@@ -12,17 +12,18 @@
       %li
         = link_to 'Community', '#', :class => 'menu_community'
   .clear
-#my_menu
-  .my_menu_left
-    %ul
-      %li.first
-        Hello,
-        %strong Steven Harlow
-      %li
-        = link_to 'My Panel', '#'
-      %li
-        = link_to 'My Profile', '#'
-      %li
-        = link_to 'My Companies', '#'
-  .my_menu_right
-  .clear
+- if current_user
+  #my_menu
+    .my_menu_left
+      %ul
+        %li.first
+          Hello,
+          %strong= current_user.name
+        %li
+          = link_to 'My Panel', '#'
+        %li
+          = link_to 'My Profile', '#'
+        %li
+          = link_to 'My Companies', '#'
+    .my_menu_right
+    .clear

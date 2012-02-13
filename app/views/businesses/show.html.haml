@@ -1,0 +1,56 @@
+.white_box#business_show
+  %h2= @business.name
+  #business_follow
+    = render :partial => 'widgets/follow'
+  .clear
+  .business_info
+    %ul
+      %li.first
+        Owner:
+        = link_to @business.owner.name, url_for(@business.owner)
+      %li
+        Address:
+        = @business.address
+      %li
+        Phone:
+        = @business.phone
+      %li.last
+        Industry:
+        = @business.industry.name
+  - if @business.loans.present?
+    = render :partial => 'loan', :collection => @business.loans
+  .business_description
+#sidebar.inner.business_show
+  = render :partial => 'widgets/business_followers', :locals => {:followers => @business.latest_followers(3)}
+#content.inner.business_show
+  .white_box
+    #content_menu
+      %ul.tabs
+        %li.first
+          = link_to 'Comments', '#comments', :data => {:toggle => 'tab'}
+        %li
+          = link_to 'Supporters', '#supporters'
+        %li
+          = link_to 'Updates', '#updates'
+        %li.last
+          = link_to 'Media', '#media'
+    #content_wrapper.tab-content
+      #comments.tab-pane
+        .post_box
+          = form_for [@business, @post], :remote => true, :html => {:data => {:id => @business.id}} do |f|
+            .alert
+              %a.close ×
+              .message
+            = image_tag 'dummy_status_picture.png', :class => :status_avatar
+            .control-group
+              = f.text_area :text, :placeholder => 'Type your message...'
+            = f.hidden_field :message_type_id
+            = f.hidden_field :posted_to_id
+            = f.hidden_field :posted_to_type
+            = f.hidden_field :author_id
+            = button_tag :class => 'btn btn-black' do
+              Submit
+              %i.icon-chevron-right.icon-white
+            .clear
+        .content
+.clear

@@ -1,0 +1,11 @@
+.white_box
+  .widget.grid#business_followers
+    %h4 Lenders Following Business
+    %ul
+      - followers.each do |follower|
+        %li{:class => list_classes(follower, followers)}
+          = image_tag 'dummy_status_picture.png', :class => :follower_avatar
+          .follower_description
+            %p= follower.name
+            %p= follower.address
+          .clear

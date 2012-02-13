@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
   end
   
   def update_status
-    @messages = Message.statuses.for_user(current_user).page(params[:page] || 1)
+    @messages = Message.statuses.page(params[:page] || 1)
     respond_to_xhr
   end
   

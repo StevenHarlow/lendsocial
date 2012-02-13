@@ -1,8 +1,8 @@
-#sidebar
+#sidebar.dashboard_index
   = render :partial => 'dashboard/my_loan_requests' # if current_user.requester or something
   = render :partial => 'dashboard/account'
   = render :partial => 'dashboard/widgets'
-#content
+#content.dashboard_index
   .white_box
     #content_menu
       %ul.tabs
@@ -14,12 +14,12 @@
       #inbox.tab-pane
         .content
       #update_status.tab-pane
-        .update_status_box
+        .post_box
           = form_for [current_user, @status_message], :remote => true do |f|
             .alert
               %a.close ×
               .message
-            = image_tag 'dummy_status_picture.png', :class => 'status_avatar'
+            = image_tag 'dummy_status_picture.png', :class => :status_avatar
             .control-group
               = f.text_area :text, :placeholder => 'Type your message...'
             = f.hidden_field :message_type_id

@@ -11,7 +11,9 @@ class Message < ActiveRecord::Base
   default_scope order("created_at DESC")
 
   scope :statuses, where("message_type_id = ?", 1)
-  scope :for_user, lambda {|user| where("author_id = ?", user.id)}
+  scope :postings, where("message_type_id = ?", 2)
+  scope :for_user, lambda {|user| where("posted_to_id = ? AND posted_to_type = ?", user.id, "User")}
+  scope :for_business, lambda {|business| where("posted_to_id = ? AND posted_to_type = ?", business.id, "Business")}
   
   paginates_per 10
 end

@@ -6,7 +6,7 @@
       = link_to image_tag("dummy_status_picture_big.png"), url_for(message.author)
     .status_content
       .status_name
-        = link_to message.author.email, url_for(message.author)
+        = link_to message.author.name, url_for(message.author)
       .status_body
         = message.text
     .clear

@@ -1,11 +1,8 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
 $(function(){
-  $('.tabs a[data-toggle="tab"]').on('show', function(e) {
-    var id = $(e.target).attr('href').substr(1);
-    $.get('/dashboard/' + id, function(data) {
-      $('#' + id + ' .content').html(data);
+  $('.dashboard_index .tabs a[data-toggle="tab"]').on('show', function(e) {
+    var action = $(e.target).attr('href').substr(1);
+    $.get('/dashboard/' + action, function(data) {
+      $('#' + action + ' .content').html(data);
     });
   });
   
@@ -28,7 +25,7 @@ $(function(){
     onkeyup: false
   });
   
-  $('.tabs a:first').tab('show');
+  $('.dashboard_index .tabs a:first').tab('show');
   
   $('.alert a.close').click(function(e) {
     e.preventDefault();
@@ -46,11 +43,11 @@ $(function(){
       $(this).find('button, textarea').attr('disabled', null).end();
       closeErrors($(this));
     })
-    .on('ajax:success', '#new_message', function(event, xhr, status) {
+    .on('ajax:success', '.dashboard_index #new_message', function(event, xhr, status) {
       $('#message_text').val(null);
       $('#update_status > .content').html(xhr);
     })
-    .on('ajax:error', '#new_message', function(event, xhr, status) {
+    .on('ajax:error', '.dashboard_index #new_message', function(event, xhr, status) {
       console.log(xhr.responseText);
   });
 });

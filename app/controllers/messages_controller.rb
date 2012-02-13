@@ -11,7 +11,15 @@ class MessagesController < ApplicationController
 	 	  format.html do
 	 	    if @message.save
 	 	      if request.xhr?
-	 	        @messages = Message.statuses.for_user(current_user).page(1)
+	 	        @messages = case params[:message][:posted_to_type]
+ 	          when "User"
+  	 	        Message.postings.for_user(current_user).page(1)
+	 	        when "Business"
+	 	          business = Business.find(params[:message][:posted_to_id])
+	 	          Message.postings.for_business(business).page(1)
+ 	          else
+ 	            Message.statuses.page(1) # temp solution
+            end
 	 	        render template: 'messages/list', layout: false
  	        else
  	          redirect_to root_path

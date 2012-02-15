@@ -18,7 +18,8 @@
         Industry:
         = @business.industry.name
   - if @business.loans.present?
-    = render :partial => 'loan', :collection => @business.loans
+    %ul.loans_list
+      = render :partial => 'loans/loan', :collection => @business.loans
   .business_description
 #sidebar.inner.business_show
   = render :partial => 'widgets/business_followers', :locals => {:followers => @business.latest_followers(3)}

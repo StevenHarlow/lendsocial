@@ -1,0 +1,32 @@
+%li.white_block
+  .loan_pictures
+    = image_tag 'dummy_loan_picture_big.png'
+  .loan_description
+    .business_info
+      = link_to url_for(loan.business) do
+        %h4.business_name= loan.business.name
+      .business_industry= loan.business.industry.name
+    %p.loan_info= loan.description
+    = link_to 'Click Here for more information', loan_path(loan), :class => :loan_more
+    .clear
+  .loan_details
+    %table
+      %tr.loan_amount
+        %th{:colspan => 3} Loan Amount
+      %tr
+        %td{:colspan => 3}= number_to_currency loan.amount_requested
+      %tr
+        %th.loan_table_loaned Loaned
+        %th.loan_table_funded Funded
+        %th.loan_table_lenders Lenders
+      %tr
+        %td= number_to_currency(loan.total_committed || 0)
+        %td= "#{loan.funded}%"
+        %td 6
+      %tr
+        %th{:colspan => 2} Funding deadline
+        %td.loan_lend_button{:rowspan => 2}= link_to 'Lend', '#', :class => 'btn btn-success'
+      %tr
+        %td{:colspan => 2}= (loan.funding_deadline || Time.now + 1.month).strftime('%m/%d/%Y')
+    .clear
+  .clear

@@ -1,5 +1,7 @@
+@import "base"
+
 #datepicker
-  background-image: url("/assets/common-ui/date-picker-icon.png")
+  background-image: image-url("common-ui/date-picker-icon.png")
   background-repeat: no-repeat
   background-position: 98% 50%
   width: 223px
@@ -35,7 +37,7 @@ ul.loan_process
       margin: 18px 0px 0px 18px
       width: 228px
       height: 103px
-      background-image: url("/assets/loan-apply/submit.png")
+      background-image: image-url("loan-apply/submit.png")
       background-repeat: no-repeat
       background-color: transparent
       border: none
@@ -64,7 +66,7 @@ ul.loan_process
       line-height: 29px      
       
     select
-      background-image: url("/assets/loan-apply/select_arrow.png")
+      background-image: image-url("loan-apply/select_arrow.png")
       -webkit-appearance: button
       width: 234px
       height: 39px
@@ -100,41 +102,41 @@ ul.loan_process
         background-color: #22c1c8
       
       &.step_1
-        background-image: url("/assets/loan-apply/pencil.png")
+        background-image: image-url("loan-apply/pencil.png")
         background-repeat: no-repeat
         background-position: 35px 31px
         margin-left: 0
 
         &.active
-          background-image: url("/assets/loan-apply/pencil_active.png")
+          background-image: image-url("loan-apply/pencil_active.png")
       
       &.step_2
-        background-image: url("/assets/loan-apply/mobile.png")
+        background-image: image-url("loan-apply/mobile.png")
         background-repeat: no-repeat
         background-position: 54px 44px
     
         .blue
-          background-image: url("/assets/loan-apply/encircled_arrow_blue.png")
+          background-image: image-url("loan-apply/encircled_arrow_blue.png")
         
         &.active
-          background-image: url("/assets/loan-apply/mobile_active.png")
+          background-image: image-url("loan-apply/mobile_active.png")
           
       &.step_3
-        background-image: url("/assets/loan-apply/check.png")
+        background-image: image-url("loan-apply/check.png")
         background-repeat: no-repeat
         background-position: 54px 40px
     
         .orange
-          background-image: url("/assets/loan-apply/encircled_arrow_orange.png")
+          background-image: image-url("loan-apply/encircled_arrow_orange.png")
       
       &.step_4
-        background-image: url("/assets/loan-apply/cash.png")
+        background-image: image-url("loan-apply/cash.png")
         background-repeat: no-repeat
         background-position: 38px 43px
         margin-right: 0
     
         .green
-          background-image: url("/assets/loan-apply/encircled_arrow_green.png")
+          background-image: image-url("loan-apply/encircled_arrow_green.png")
           
       p
         position: absolute
@@ -162,16 +164,74 @@ ul.loan_process
         top: 82px
         left: -33px
         display: block
-        background-image: url("/assets/loan-apply/encircled_arrow_green.png")
+        background-image: image-url("loan-apply/encircled_arrow_green.png")
         background-repeat: no-repeat
         width: 52px
         height: 52px
-    
-    
-    
-    
-    
-    
-    
-    
-    
+.loans_list
+  list-style: none
+  margin: 0
+  li
+    border: 1px solid #dedede
+    margin: 0 0 15px
+    .loan_pictures
+      padding: 10px
+      +float-left
+      width: 260px
+      img
+        padding: 5px
+        border: 1px solid #dedede
+    .loan_description
+      padding: 10px 15px 10px 0
+      +float-left
+      width: 440px
+      .business_info
+        border-bottom: 1px dotted #c4c4c4
+        .business_name
+          font-size: 16px
+        .business_industry
+          color: #02959a
+          font-weight: bold
+          text-transform: uppercase
+          font-size: 10px
+      .loan_info
+        padding: 10px 0 0
+        color: #737373
+        font-weight: bold
+      .loan_more
+        color: #222
+        +float-right
+        font-weight: bold
+        font-size: 10px
+    .loan_details
+      table
+        width: 293px
+        tr
+          &.loan_amount td, th
+            border-top: 0 !important
+          td, th
+            border: 1px solid #dedede
+            border-right: 0 !important
+            &.loan_table_loaned
+              width: 50%
+            &.loan_table_funded, &.loan_table_lenders
+              width: 25%
+          th
+            color: #222
+            font-size: 10px
+            text-align: left
+            padding: 0 7px
+            height: 22px
+          td
+            height: 40px
+            font-size: 25px
+            font-weight: bold
+            padding: 0 10px
+            &.loan_lend_button
+              text-align: center
+              .btn
+                margin: 10px
+                font-weight: bold
+                font-size: 16px
+                height: 25px
+                line-height: 25px

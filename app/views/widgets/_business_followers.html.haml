@@ -6,6 +6,8 @@
         %li{:class => list_classes(follower, followers)}
           = image_tag 'dummy_status_picture.png', :class => :follower_avatar
           .follower_description
-            %p= follower.name
-            %p= follower.address
+            = link_to follower.name, url_for(follower), :class => :follower_name
+            %p.follower_address= follower.address
           .clear
+    = link_to "See more lenders following...", followers_business_path(@business), :class => 'more follower_more_link'
+    .clear

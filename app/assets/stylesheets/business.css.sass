@@ -1,0 +1,20 @@
+@import "base"
+
+#business_show
+  h2
+    +float-left
+    width: $base-width - 120px
+  #business_follow
+    +float-right
+  .business_info
+    ul
+      +inline-block-list-container
+      margin: 5px 0 15px
+      > li
+        +inline-block-list-item
+        padding: 0 13px
+        border-right: 1px solid #dedede
+        &.first
+          padding: 0 13px 0 0
+        &.last
+          border: 0

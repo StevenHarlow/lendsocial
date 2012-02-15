@@ -142,7 +142,7 @@ body
         padding: 0 10px
       &.grid
         a
-          &.loan_see_more
+          &.more
             color: #2e2e2e
             text-decoration: none
             font-size: 10px
@@ -194,8 +194,17 @@ body
               padding: 5px 0 0
             .follower_avatar
               +float-left
+              padding: 2px
+              border: 1px solid #dedede
+              background: #fff
+              margin: 0 10px 0 0
             .follower_description
               +float-left
+              .follower_name
+                color: #0f7c81
+                font-weight: bold
+              .follower_address
+                color: #000
   #content
     +float-left
     width: $right-column-width
@@ -335,21 +344,3 @@ body
         background: image-url("layouts/bottom_menu_bullet.png") 0 50% no-repeat
         padding: 0 0 0 10px
         margin: 0 15px 0 0
-#business_show
-  h2
-    +float-left
-    width: $base-width - 120px
-  #business_follow
-    +float-right
-  .business_info
-    ul
-      +inline-block-list-container
-      margin: 5px 0 15px
-      > li
-        +inline-block-list-item
-        padding: 0 13px
-        border-right: 1px solid #dedede
-        &.first
-          padding: 0 13px 0 0
-        &.last
-          border: 0

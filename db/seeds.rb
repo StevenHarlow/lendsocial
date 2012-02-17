@@ -16,12 +16,4 @@ if LoanPurpose.count.zero?
     { description: 'Other' }
     ])
   end
-    
-
-if MessageType.count.zero?
-  MessageType.create([
-    { description: 'Status' },
-    { description: 'Post' }
-    ])
-end
 

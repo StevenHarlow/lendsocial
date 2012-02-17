@@ -9,12 +9,11 @@ $(function(){
   $('#new_message').validate({
     debug: true,
     rules: {
-      "message[text]": {required: true, minlength: 8, maxlength: 255}
+      "message[text]": {required: true, maxlength: 2000}
     },
     messages: {
       "message[text]": {
         "required": "Message text can't be blank",
-        "minlength": "Message text is too short (minimum is {0} characters)",
         "maxlength": "Message text is too long (maxumum is {0} characters)"
       }
     },

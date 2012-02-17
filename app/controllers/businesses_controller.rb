@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
   before_filter :find_business, :only => [:show, :follow, :unfollow, :comments]
 	
 	def show
-	  @post = @business.postings.build(message_type_id: 2, author_id: current_user.id)
+	  @post = @business.build(author_id: current_user.id)
 	  logger.debug @post.inspect
 		respond_to do |format|
 		  format.html
@@ -45,7 +45,7 @@ class BusinessesController < ApplicationController
   end
   
   def comments
-    @messages = Message.postings.for_business(@business).page(params[:page] || 1)
+    @messages = Message.for_business(@business).page(params[:page] || 1)
     respond_to_xhr
   end
 	

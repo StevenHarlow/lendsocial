@@ -13,10 +13,10 @@ class MessagesController < ApplicationController
 	 	      if request.xhr?
 	 	        @messages = case params[:message][:posted_to_type]
  	          when "User"
-  	 	        Message.postings.for_user(current_user).page(1)
+  	 	        Message.for_user(current_user).page(1)
 	 	        when "Business"
 	 	          business = Business.find(params[:message][:posted_to_id])
-	 	          Message.postings.for_business(business).page(1)
+	 	          Message.for_business(business).page(1)
  	          else
  	            Message.statuses.page(1) # temp solution
             end

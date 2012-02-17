@@ -1,4 +1,4 @@
-= paginate @messages, :remote => true
+= paginate @messages, :remote => true, :params => @kaminari_params
 %ul.messages_list
   = render :partial => 'messages/message', :collection => @messages
-= paginate @messages, :remote => true
+= paginate @messages, :remote => true, :params => @kaminari_params

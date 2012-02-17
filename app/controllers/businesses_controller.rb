@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
   before_filter :find_business, :only => [:show, :follow, :unfollow, :latest_followers, :comments]
 	
 	def show
-	  @post = @business.build(author_id: current_user.id)
+	  @post = @business.postings.build(author_id: current_user.id)
 		respond_to do |format|
 		  format.html
 		end

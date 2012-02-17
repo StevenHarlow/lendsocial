@@ -12,6 +12,7 @@ class Message < ActiveRecord::Base
 
   scope :for_user, lambda {|user| where("posted_to_id = ? AND posted_to_type = ?", user.id, "User")}
   scope :for_business, lambda {|business| where("posted_to_id = ? AND posted_to_type = ?", business.id, "Business")}
+  scope :with_comments, includes("comments_on")
   
   paginates_per 10
 end

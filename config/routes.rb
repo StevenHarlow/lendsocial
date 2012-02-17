@@ -6,6 +6,12 @@ LendSocial::Application.routes.draw do
     match 'logout' => 'user_sessions#destroy', :as => :logout
 
     resources :users do
+      resources :messages do
+        resources :mesages
+      end
+    end
+
+    resources :messages do
       resources :messages
     end
 
@@ -27,7 +33,7 @@ LendSocial::Application.routes.draw do
     resources :businesses do
       resources :messages
       member do
-        get :follow, :unfollow
+        get :follow, :unfollow, :latest_followers
         get 'comments(/:page)', :action => :comments, :as => :comments
         get 'followers(/:page)', :action => :followers, :as => :followers
       end

@@ -238,6 +238,18 @@ body
         position: relative
         margin: 47px 10px 0 10px
         +float-left
+    .status_comments
+      padding: 0 0 0 95px
+      border-top: 1px solid #f1f1f1
+      display: none
+      .comment_box
+        @extend .post_box
+        textarea
+          width: $right-column-width - 270px
+          margin: 0 0 0 10px
+          height: 30px
+        button.btn-black
+          margin: 17px 10px 0 10px
     #content_menu
       ul
         +inline-block-list-container

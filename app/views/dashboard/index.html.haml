@@ -16,9 +16,7 @@
       #update_status.tab-pane
         .post_box
           = form_for [current_user, @status_message], :remote => true do |f|
-            .alert
-              %a.close ×
-              .message
+            = form_alerts
             = image_tag 'dummy_status_picture.png', :class => :status_avatar
             .control-group
               = f.text_area :text, :placeholder => 'Type your message...'

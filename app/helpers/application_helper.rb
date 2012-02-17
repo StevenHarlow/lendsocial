@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationHelper
   def list_classes(object, collection)
     classes = []
@@ -16,5 +18,11 @@ module ApplicationHelper
   def number_to_currency(number, options = {})
     options[:strip_insignificant_zeros] ||= true
     super(number, options)
+  end
+  
+  def form_alerts
+    content_tag :div, :class => :alert do
+      content_tag(:a, '×', :class => :close) + content_tag(:div, nil, :class => :message)
+    end
   end
 end

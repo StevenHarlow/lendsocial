@@ -1,10 +1,8 @@
 class BusinessesController < ApplicationController
-  
-  before_filter :find_business, :only => [:show, :follow, :unfollow, :comments]
+  before_filter :find_business, :only => [:show, :follow, :unfollow, :latest_followers, :comments]
 	
 	def show
 	  @post = @business.build(author_id: current_user.id)
-	  logger.debug @post.inspect
 		respond_to do |format|
 		  format.html
 		end
@@ -44,8 +42,20 @@ class BusinessesController < ApplicationController
     render partial: 'widgets/follow'
   end
   
+  def latest_followers
+    if request.xhr?
+      render :partial => 'widgets/business_followers', :locals => {:followers => @business.latest_followers(3)}
+    else
+      redirect_to url_for(@business)
+    end
+  end
+  
   def comments
+<<<<<<< HEAD
     @messages = Message.for_business(@business).page(params[:page] || 1)
+=======
+    @messages = Message.postings.for_business(@business).with_comments.page(params[:page] || 1)
+>>>>>>> sxua
     respond_to_xhr
   end
 	

@@ -21,6 +21,10 @@ $(function(){
       $(this).removeClass('btn-disabled');
       if (status != 'error' || xhr.responseText != '') {
         $(this).parent().html(xhr.responseText);
+        var id = $(this).attr('data-id');
+        $.get('/businesses/' + id + '/latest_followers', function(data) {
+          $('#business_followers').html(data);
+        });
       }
   });
 });

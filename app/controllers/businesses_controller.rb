@@ -51,11 +51,7 @@ class BusinessesController < ApplicationController
   end
   
   def comments
-<<<<<<< HEAD
-    @messages = Message.for_business(@business).page(params[:page] || 1)
-=======
-    @messages = Message.postings.for_business(@business).with_comments.page(params[:page] || 1)
->>>>>>> sxua
+    @messages = Message.for_business(@business).with_comments.page(params[:page] || 1)
     respond_to_xhr
   end
 	

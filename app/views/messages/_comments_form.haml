@@ -1,0 +1,15 @@
+.comment_box
+  - comment = message.comments_on.build(:author_id => current_user.id)
+  = form_for [message, comment], :as => "comment_#{message.id}", :remote => true do |f|
+    = form_alerts
+    .control-group
+      = f.text_area :text, :placeholder => 'Type your message...'
+    = f.hidden_field :message_type_id
+    = f.hidden_field :posted_to_id
+    = f.hidden_field :posted_to_type
+    = f.hidden_field :related_message_id
+    = f.hidden_field :author_id
+    = button_tag :class => 'btn btn-black' do
+      Submit
+      %i.icon-chevron-right.icon-white
+    .clear

@@ -19,4 +19,10 @@
           = link_to 'Not saved', '#'
       .status_date
         = "Posted #{time_ago_in_words(message.created_at)} ago"
+        = "-"
+        = link_to_function pluralize(message.comments_on.count, 'comment'), "toggleComments(#{message.id})"
       .clear
+    .status_comments{id: "comments_#{message.id}"}
+      .comments_list
+        = render partial: 'messages/comments_list', locals: {:message => message}
+      = render partial: 'messages/comments_form', locals: {:message => message}

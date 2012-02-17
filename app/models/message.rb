@@ -12,6 +12,7 @@ class Message < ActiveRecord::Base
 
   scope :statuses, where("message_type_id = ?", 1)
   scope :postings, where("message_type_id = ?", 2)
+  scope :with_comments, includes("comments_on")
   scope :for_user, lambda {|user| where("posted_to_id = ? AND posted_to_type = ?", user.id, "User")}
   scope :for_business, lambda {|business| where("posted_to_id = ? AND posted_to_type = ?", business.id, "Business")}
   

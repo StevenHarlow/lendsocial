@@ -1,0 +1,3 @@
+- if message.comments_on.any?
+  %ul
+    = render :partial => 'messages/comment', :collection => message.comments_on

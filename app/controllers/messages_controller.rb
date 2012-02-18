@@ -18,11 +18,11 @@ class MessagesController < ApplicationController
  	          else
   	 	        @messages = case @message_params[:posted_to_type]
    	          when "User"
-    	 	        Message.postings.for_user(current_user).with_comments.page(1)
+    	 	        Message.for_user(current_user).with_comments.page(1)
   	 	        when "Business"
   	 	          business = Business.find(@message_params[:posted_to_id])
   	 	          @kaminari_params = {:controller => 'businesses', :action => 'comments', :id => business.id}
-  	 	          Message.postings.for_business(business).with_comments.page(1)
+  	 	          Message.for_business(business).with_comments.page(1)
    	          else
    	            @kaminari_params = {:controller => 'dashboard', :action => 'update_status'}
    	            Message.statuses.with_comments.page(1) # temp solution

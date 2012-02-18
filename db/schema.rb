@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210211519) do
+ActiveRecord::Schema.define(:version => 20120218214508) do
 
   create_table "business_followings", :force => true do |t|
     t.integer  "follower_id"
@@ -67,24 +67,19 @@ ActiveRecord::Schema.define(:version => 20120210211519) do
   add_index "loans", ["loan_purpose_id"], :name => "index_loans_on_loan_purpose_id"
   add_index "loans", ["user_id"], :name => "index_loans_on_user_id"
 
-  create_table "message_types", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "messages", :force => true do |t|
-    t.integer  "message_type_id"
     t.integer  "author_id"
+    t.integer  "by_business_id"
     t.integer  "posted_to_id"
     t.string   "posted_to_type"
     t.integer  "related_message_id"
-    t.string   "text"
+    t.text     "text",               :limit => 2000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
+  add_index "messages", ["by_business_id"], :name => "index_messages_on_by_business_id"
   add_index "messages", ["posted_to_id"], :name => "index_messages_on_posted_to_id"
   add_index "messages", ["related_message_id"], :name => "index_messages_on_related_message_id"
 

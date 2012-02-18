@@ -23,9 +23,9 @@ class MessagesController < ApplicationController
   	 	          business = Business.find(@message_params[:posted_to_id])
   	 	          @kaminari_params = {:controller => 'businesses', :action => 'comments', :id => business.id}
   	 	          Message.for_business(business).with_comments.page(1)
-   	          else
-   	            @kaminari_params = {:controller => 'dashboard', :action => 'update_status'}
-   	            Message.statuses.with_comments.page(1) # temp solution
+              #else
+   	            #@kaminari_params = {:controller => 'dashboard', :action => 'update_status'}
+   	            #Message.statuses.with_comments.page(1) # temp solution
               end
   	 	        render template: 'messages/list', layout: false
 	 	        end

@@ -3,11 +3,11 @@ class DashboardController < ApplicationController
   
   def index
     @recent_loans = Loan.recent(3).published
-    @status_message = current_user.messages.build(message_type_id: 1)
+    @status_message = current_user.messages.build(author_id: current_user.id, posted_to_id: current_user.id, posted_to_type: "User")
   end
   
   def update_status
-    @messages = Message.statuses.page(params[:page] || 1)
+    @messages = current_user.messages.page(params[:page] || 1)
     respond_to_xhr
   end
   

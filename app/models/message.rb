@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   has_many :comments_on, :class_name => "Message", :foreign_key => "related_message_id"
   
   validates_presence_of :text
-  validates_length_of :text, :in => 8..255
+  validates_length_of :text, :in => 1..2000
   
   default_scope order("created_at DESC")
 

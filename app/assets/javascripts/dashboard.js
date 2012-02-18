@@ -9,7 +9,7 @@ $(function(){
   $('#new_message').validate({
     debug: true,
     rules: {
-      "message[text]": {required: true, minlength: 8, maxlength: 255}
+      "message[text]": {required: true, minlength: 1, maxlength: 2000}
     },
     messages: {
       "message[text]": {

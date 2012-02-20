@@ -2,12 +2,7 @@ class LoansController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
 
   def index
-    @loans = Loan.find( :all, :conditions => { :published_date => Date.today-1..Date.today+1 } )
-
-  	respond_to do |format|
-      format.html
-      format.json { render json: @loans }
-    end
+    @loans = Loan.page(params[:page] || 1)
   end
 
   def publish

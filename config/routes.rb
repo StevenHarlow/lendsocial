@@ -26,6 +26,7 @@ LendSocial::Application.routes.draw do
     
     resources :loans do
       collection do
+        get '/page-:page', :action => :index
         get :apply, :publish, :unpublish
       end
     end

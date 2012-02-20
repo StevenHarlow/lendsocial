@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
-  before_filter :find_business, :only => [:show, :follow, :unfollow, :latest_followers, :comments]
+  before_filter :require_user
+  before_filter :find_business, :except => [:new, :create]
 	
 	def show
 	  @post = @business.postings.build(author_id: current_user.id)
@@ -42,11 +43,16 @@ class BusinessesController < ApplicationController
     render partial: 'widgets/follow'
   end
   
+  def followers
+    @followers = @business.latest_followers.page(params[:page] || 1)
+    redirect_to followers_business_path(:page => 1) if @followers.empty?
+  end
+  
   def latest_followers
     if request.xhr?
       render :partial => 'widgets/business_followers', :locals => {:followers => @business.latest_followers(3)}
     else
-      redirect_to url_for(@business)
+      redirect_to followers_business_path
     end
   end
   

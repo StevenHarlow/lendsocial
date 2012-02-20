@@ -17,10 +17,12 @@
         .post_box
           = form_for [current_user, @status_message], :remote => true do |f|
             = form_alerts
-            = image_tag 'dummy_status_picture.png', :class => :status_avatar
+            = image_tag 'http://placehold.it/35x35', :class => 'status_avatar thumbnail'
             .control-group
               = f.text_area :text, :placeholder => 'Type your message...'
             = f.hidden_field :author_id
+            = f.hidden_field :posted_to_id
+            = f.hidden_field :posted_to_type
             = button_tag :class => 'btn btn-black' do
               Submit
               %i.icon-chevron-right.icon-white

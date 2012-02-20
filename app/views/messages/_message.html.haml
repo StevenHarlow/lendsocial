@@ -3,7 +3,7 @@
 - else
   %li
     .status_picture
-      = link_to image_tag("dummy_status_picture_big.png"), url_for(message.author)
+      = link_to image_tag('http://placehold.it/80x80', :class => :thumbnail), url_for(message.author)
     .status_content
       .status_name
         = link_to message.author.name, url_for(message.author)

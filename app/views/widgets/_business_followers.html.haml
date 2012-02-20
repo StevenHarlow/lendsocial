@@ -4,7 +4,7 @@
     %ul
       - followers.each do |follower|
         %li{:class => list_classes(follower, followers)}
-          = image_tag 'dummy_status_picture.png', :class => :follower_avatar
+          = link_to image_tag('http://placehold.it/35x35', :class => :thumbnail), url_for(follower), :class => :follower_avatar
           .follower_description
             = link_to follower.name, url_for(follower), :class => :follower_name
             %p.follower_address= follower.address

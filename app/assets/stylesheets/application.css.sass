@@ -192,19 +192,6 @@ body
               font-weight: bold
               color: #444
               padding: 5px 0 0
-            .follower_avatar
-              +float-left
-              padding: 2px
-              border: 1px solid #dedede
-              background: #fff
-              margin: 0 10px 0 0
-            .follower_description
-              +float-left
-              .follower_name
-                color: #0f7c81
-                font-weight: bold
-              .follower_address
-                color: #000
   #content
     +float-left
     width: $right-column-width
@@ -219,9 +206,10 @@ body
         .alert
           display: none
           margin: 0 10px 18px
-      img.status_avatar
+      .status_avatar
         +float-left
         margin: 0 10px
+        background: #fff
       textarea
         +float-left
         resize: none
@@ -230,9 +218,9 @@ body
         +border-radius(7px)
         font-size: 12px
         height: 60px
-        width: $right-column-width - 220px
+        width: $right-column-width - 230px
       button.btn-black
-        width: 90px
+        width: 93px
         height: 30px
         line-height: 20px
         position: relative
@@ -273,8 +261,6 @@ body
     #content_wrapper
       .content
         border-top: 1px solid #dedede
-        .messages_list
-          border-top: 1px solid #dedede
         ul
           list-style: none
           margin: 0
@@ -288,14 +274,10 @@ body
                 background-position: 0 -16px !important
             .status_picture
               +float-left
-              width: 85px
-              margin: 0 10px 0 0
-              img
-                padding: 4px
-                border: 1px solid #dedede
+              margin: 0 10px 10px 0
             .status_content
               +float-left
-              width: $right-column-width - 125px
+              width: $right-column-width - 130px
               .status_name
                 a
                   color: #0f7c81
@@ -356,3 +338,18 @@ body
         background: image-url("layouts/bottom_menu_bullet.png") 0 50% no-repeat
         padding: 0 0 0 10px
         margin: 0 15px 0 0
+
+.follower_avatar
+  +float-left
+  margin: 0 10px 10px 0
+  img
+    background: #fff
+.follower_description
+  +float-left
+  .follower_name
+    color: #0f7c81
+    font-weight: bold
+  .follower_address
+    color: #000
+.followers_list ul
+  list-style: none

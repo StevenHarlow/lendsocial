@@ -1,8 +1,7 @@
 class UserSessionsController < ApplicationController
 
-  # GET /user_sessions/new
-  # GET /user_sessions/new.xml
   def new
+    return redirect_to dashboard_index_path if current_user
     @user_session = UserSession.new
 
     respond_to do |format|
@@ -11,9 +10,6 @@ class UserSessionsController < ApplicationController
     end
   end
   
-
-  # POST /user_sessions
-  # POST /user_sessions.xml
   def create
     @user_session = UserSession.new(params[:user_session])
 
@@ -28,8 +24,6 @@ class UserSessionsController < ApplicationController
     end
   end
 
-  # DELETE /user_sessions/1
-  # DELETE /user_sessions/1.xml
   def destroy
     @user_session = UserSession.find
     @user_session.destroy

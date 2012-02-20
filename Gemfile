@@ -15,6 +15,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'heroku'
+  gem 'seed-fu', '~> 2.1.0'
 end
 
 group :assets do

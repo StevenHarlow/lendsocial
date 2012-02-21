@@ -12,7 +12,6 @@ class ChangeMessages < ActiveRecord::Migration
     change_table :messages do |t|
       t.references :message_type
       t.remove_references :by_business
-      #t.remove_index :by_business_id
       t.change(:text, :string)
     end
   end

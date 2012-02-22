@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221065313) do
+ActiveRecord::Schema.define(:version => 20120222061138) do
 
   create_table "business_connections", :force => true do |t|
     t.integer  "follower_id"
@@ -126,6 +126,14 @@ ActiveRecord::Schema.define(:version => 20120221065313) do
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.text     "about"
   end
 
 end

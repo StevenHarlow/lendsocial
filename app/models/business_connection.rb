@@ -1,4 +1,4 @@
 class BusinessConnection < ActiveRecord::Base
-  belongs_to :follower
-  belongs_to :followed
+  belongs_to :follower, class_name: 'Business'
+  belongs_to :followed, class_name: 'Business'
 end

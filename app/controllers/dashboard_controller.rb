@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   
   def index
     @recent_loans = Loan.recent(3).published
-    @status_message = current_user.messages.build(author_id: current_user.id, posted_to_id: current_user.id, posted_to_type: "User")
+    @status_message = current_user.messages.build(author_id: current_user.id, posted_to_id: current_user.id, posted_to_type: 'User')
   end
   
   def update_status

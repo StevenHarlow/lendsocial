@@ -5,8 +5,8 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user_session }
+      format.html
+      format.xml  { render xml: @user_session }
     end
   end
   
@@ -15,11 +15,11 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(:users, :notice => 'Login Successful') }
-        format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
+        format.html { redirect_to(:users, notice: 'Login Successful') }
+        format.xml  { render xml: @user_session, status: :created, location: @user_session }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.xml  { render xml: @user_session.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -29,7 +29,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to(:login, :notice => 'Goodbye!') }
+      format.html { redirect_to(:login, notice: 'Goodbye!') }
       format.xml  { head :ok }
     end
   end

@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_filter :authorize, :only => [:edit, :update]
+  before_filter :authorize, only: [:edit, :update]
 
   def index
     @loans = Loan.page(params[:page] || 1)
@@ -11,10 +11,10 @@ class LoansController < ApplicationController
 
   	respond_to do |format|
       if @loan.save
-        format.html { render :partial => "published", :locals => { :loan => @loan } }
+        format.html { render partial: 'published', locals: { loan: @loan } }
         format.json { render json: @loan, status: :published, location: @loan }
       else
-        format.html { render action: "published" }
+        format.html { render action: 'published' }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end
@@ -26,10 +26,10 @@ class LoansController < ApplicationController
 
      respond_to do |format|
        if @loan.save
-         format.html { render :partial => "not_published", :locals => { :loan => @loan } }
+         format.html { render partial: 'not_published', locals: {loan: @loan} }
          format.json { render json: @loan, status: :published, location: @loan }
        else
-         format.html { render action: "published" }
+         format.html { render action: 'published' }
          format.json { render json: @loan.errors, status: :unprocessable_entity }
        end
      end
@@ -64,7 +64,7 @@ class LoansController < ApplicationController
         format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
         format.json { render json: @loan, status: :created, location: @loan }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end

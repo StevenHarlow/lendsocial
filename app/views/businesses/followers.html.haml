@@ -6,7 +6,7 @@
       - @followers.each do |follower|
         %li
           .follower_avatar
-            = link_to image_tag('http://placehold.it/80x80', :class => :thumbnail), url_for(follower)
+            = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(follower)
           .follower_name
             = link_to follower.name, url_for(follower)
           .follower_info

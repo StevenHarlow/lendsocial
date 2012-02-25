@@ -21,8 +21,8 @@ module ApplicationHelper
   end
   
   def form_alerts
-    content_tag :div, :class => :alert do
-      content_tag(:a, '×', :class => :close) + content_tag(:div, nil, :class => :message)
+    content_tag :div, class: 'alert' do
+      content_tag(:a, '×', class: 'close') + content_tag(:div, nil, class: 'message')
     end
   end
 end

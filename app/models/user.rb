@@ -2,40 +2,40 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   has_many :user_businesses
-  has_many :businesses, :through => :user_businesses
-  has_many :messages, :foreign_key => :author_id
-  has_many :postings, :class_name => "Message", :as => :posted_to
-  has_many :follower_associations, :class_name => "UserFollowing", :foreign_key => :followed_id
-  has_many :followers, :through => :follower_associations, :source => :follower, :dependent => :destroy
-  has_many :followed_user_associations, :class_name => "UserFollowing", :foreign_key => :follower_id
-  has_many :followed_users, :through => :followed_user_associations, :source => :followed, :dependent => :destroy
-  has_many :followed_business_associations, :class_name => "BusinessFollowing", :foreign_key => :follower_id
-  has_many :followed_businesses, :through => :followed_business_associations, :source => :followed, :dependent => :destroy
+  has_many :businesses, through: :user_businesses
+  has_many :messages, foreign_key: 'author_id'
+  has_many :postings, class_name: 'Message', as: 'posted_to'
+  has_many :follower_associations, class_name: 'UserFollowing', foreign_key: 'followed_id'
+  has_many :followers, through: :follower_associations, source: 'follower', dependent: :destroy
+  has_many :followed_user_associations, class_name: 'UserFollowing', foreign_key: 'follower_id'
+  has_many :followed_users, through: :followed_user_associations, source: 'followed', dependent: :destroy
+  has_many :business_followings, foreign_key: 'followed_id'
+  has_many :followed_businesses, through: :business_followings, source: 'followed', dependent: :destroy
   
   def name
-    self.email # temp solution
+    "#{self.first_name} #{self.last_name}".strip
   end
   
-  def address
-    "Berkeley, CA"
+  def full_address
+    "#{self.address}, #{self.city}, #{self.state} #{self.zipcode}".strip
   end
   
   def follow object
-    return false if object.class == User && self.id == object.id
+    return false if object == self
     klass = "#{object.class.name}Following".constantize
-    klass.create(:follower_id => self.id, :followed_id => object.id)
+    klass.create(follower_id: self.id, followed_id: object.id)
   end
   
   def unfollow object
-    return false if object.class == User && self.id == object.id
+    return false if object == self
     klass = "#{object.class.name}Following".constantize
-    klass.where(:follower_id => self.id).delete_all
+    klass.where(follower_id: self.id, followed_id: object.id).delete_all
   end
   
   def is_following? object
-    return false if object.class == User && self.id == object.id
+    return false if object == self
     klass = "#{object.class.name}Following".constantize
-    klass.where(:follower_id => self.id).any?
+    klass.where(follower_id: self.id, followed_id: object.id).any?
   end
   
 end

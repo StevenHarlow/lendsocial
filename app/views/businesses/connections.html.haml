@@ -1,0 +1,15 @@
+.white_box
+  %h2= "Connections of #{@business.name}"
+  .connections_list
+    = paginate @connections
+    %ul
+      - @connections.each do |connection|
+        %li
+          .business_avatar
+            = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(connection)
+          .business_name
+            = link_to connection.name, url_for(connection)
+          .business_info
+            = connection.address
+          .clear
+    = paginate @connections

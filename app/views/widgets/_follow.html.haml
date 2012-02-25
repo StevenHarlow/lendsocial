@@ -1,8 +1,8 @@
 - if current_user.is_following? @business
-  = link_to unfollow_business_path(@business), :remote => true, :class => 'btn btn-danger', :data => {:id => @business.id} do
+  = link_to unfollow_business_path(@business), remote: true, class: 'btn btn-danger', data: {id: @business.id} do
     %i.icon-remove.icon-white
     Unfollow
 - else
-  = link_to follow_business_path(@business), :remote => true, :class => 'btn btn-success', :data => {:id => @business.id} do
+  = link_to follow_business_path(@business), remote: true, class: 'btn btn-success', data: {id: @business.id} do
     %i.icon-eye-open.icon-white
     Follow

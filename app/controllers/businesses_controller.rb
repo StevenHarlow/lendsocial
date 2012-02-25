@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_filter :require_user
-  before_filter :find_business, :except => [:new, :create]
+  before_filter :find_business, except: [:new, :create]
 	
 	def show
 	  @post = @business.postings.build(author_id: current_user.id)
@@ -45,14 +45,39 @@ class BusinessesController < ApplicationController
   
   def followers
     @followers = @business.latest_followers.page(params[:page] || 1)
-    redirect_to followers_business_path(:page => 1) if @followers.empty?
+    redirect_to followers_business_path(page: 1) if @followers.empty?
   end
   
   def latest_followers
     if request.xhr?
-      render :partial => 'widgets/business_followers', :locals => {:followers => @business.latest_followers(3)}
+      render partial: 'widgets/business_followers', locals: {followers: @business.latest_followers(3)}
     else
       redirect_to followers_business_path
+    end
+  end
+  
+  def connect
+    object = Business.find(params[:business])
+    response = object.present? ? @business.request(object, params[:message]) : nil
+    respond_to do |format|
+      if response
+        format.json { render json: true, status: :created }
+      else
+        format.json { render json: false, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def connections
+    @connections = @business.latest_connections.page(params[:page] || 1)
+    redirect_to connections_business_path(page: 1) if @connections.empty?
+  end
+  
+  def latest_connections
+    if request.xhr?
+      render partial: 'widgets/business_connections', locals: {connections: @business.latest_connections(3)}
+    else
+      redirect_to connections_business_path
     end
   end
   

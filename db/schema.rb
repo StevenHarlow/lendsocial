@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224003848) do
+ActiveRecord::Schema.define(:version => 20120225025831) do
 
   create_table "business_connections", :force => true do |t|
     t.integer  "follower_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120224003848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.datetime "response_at"
+    t.text     "message"
   end
 
   add_index "business_connections", ["followed_id"], :name => "index_business_connections_on_followed_id"

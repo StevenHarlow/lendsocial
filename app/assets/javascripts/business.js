@@ -10,6 +10,17 @@ $(function(){
   $('.business_show .tabs a:first').tab('show');
   
   $(this)
+    .on('click', '#business_connect_button', function(event) {
+      event.preventDefault();
+      $('#request_modal').modal('show');
+    })
+    .on('click', '#business_send_request', function(event) {
+      event.preventDefault();
+      var form = $(this).parents('.modal').find('form');
+      $.post(form.attr('action'), form.serialize(), function(response) {
+        $('#request_modal').modal('hide');
+      });
+    })
     .on('ajax:success', '.business_show #new_message', function(event, xhr, status) {
       $('#message_text').val(null);
       $('#comments > .content').html(xhr);

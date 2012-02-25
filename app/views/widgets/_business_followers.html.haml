@@ -3,11 +3,12 @@
     %h4 Lenders Following Business
     %ul
       - followers.each do |follower|
-        %li{:class => list_classes(follower, followers)}
-          = link_to image_tag('http://placehold.it/35x35', :class => :thumbnail), url_for(follower), :class => :follower_avatar
+        %li{class: list_classes(follower, followers)}
+          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(follower), class: 'follower_avatar'
           .follower_description
-            = link_to follower.name, url_for(follower), :class => :follower_name
+            = link_to follower.name, url_for(follower), class: 'follower_name'
             %p.follower_address= follower.address
           .clear
-    = link_to "See more lenders following...", followers_business_path(@business), :class => 'more follower_more_link'
+    - if followers.size > 3
+      = link_to "See more lenders following...", followers_business_path(@business), class: 'more follower_more_link'
     .clear

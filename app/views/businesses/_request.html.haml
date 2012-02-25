@@ -1,0 +1,11 @@
+#request_modal.modal{style: 'display: none;'}
+  .modal-header
+    %a.close{data: {dismiss: 'modal'}} ×
+    %h3= "Request for #{@business.name}"
+  .modal-body
+    = form_tag request_business_path(business, @business) do
+      = label_tag :message
+      = text_area_tag :message
+  .modal-footer
+    = link_to 'Send request', '#', class: 'btn btn-primary', id: 'business_send_request'
+    %a.btn{data: {dismiss: 'modal'}} Close

@@ -14,11 +14,15 @@ $(function(){
       event.preventDefault();
       $('#request_modal').modal('show');
     })
+    .on('ajax:complete', '#cancel_business_connection', function(event, xhr, status) {
+      $('#business_connect').html(xhr.responseText);
+    })
     .on('click', '#business_send_request', function(event) {
       event.preventDefault();
       var form = $(this).parents('.modal').find('form');
       $.post(form.attr('action'), form.serialize(), function(response) {
         $('#request_modal').modal('hide');
+        $('#business_connect').html(response);
       });
     })
     .on('ajax:success', '.business_show #new_message', function(event, xhr, status) {

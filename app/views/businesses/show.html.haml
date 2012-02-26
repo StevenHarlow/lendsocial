@@ -4,7 +4,7 @@
     - if @business.owner != current_user
       - if current_user.businesses.any?
         #business_connect
-          = render partial: 'widgets/connect'
+          = render partial: 'widgets/connect', locals: {business: @business}
       #business_follow
         = render partial: 'widgets/follow'
   .clear

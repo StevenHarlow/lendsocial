@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
     klass.where(follower_id: self.id, followed_id: object.id).any?
   end
   
+  def business_notifications
+    BusinessConnection.includes(:followed).where("follower_id = ? AND (status = 'requested' OR (status = 'accepted' AND initiator_id = ?))", self.id, self.id).order('status DESC, created_at DESC')
+  end
+  
 end

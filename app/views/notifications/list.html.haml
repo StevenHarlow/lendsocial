@@ -1,0 +1,4 @@
+= paginate @notifications, remote: true, params: @kaminari_params
+%ul.notifications_list
+  = render partial: 'notifications/notification', collection: @notifications
+= paginate @notifications, remote: true, params: @kaminari_params

@@ -1,14 +1,14 @@
-- business = current_user.businesses.first
-- if business.connected_to? @business
-  = link_to request_business_path(@business, :remove), remote: true, class: 'btn btn-danger', data: {id: @business.id, self: business.id} do
+- user_business = current_user.businesses.first
+- if user_business.connected_to? business
+  = link_to cancel_business_path(user_business, business), remote: true, id: 'cancel_business_connection', class: 'btn btn-danger' do
     %i.icon-remove.icon-white
     Disconnect
-- elsif business.requested_to? @business
-  = link_to '#', class: 'btn disabled' do
+- elsif user_business.requested_to? business
+  = button_tag type: 'button', class: 'btn', disabled: 'disabled' do
     %i.icon-eye-close
     Business connection pending
 - else
-  = render partial: 'businesses/request', locals: {business: business}
-  = link_to '#connect', id: 'business_connect_button', class: 'btn btn-success', data: {id: @business.id, self: business.id} do
+  = render partial: 'businesses/request', locals: {business: user_business}
+  = link_to '#connect', id: 'business_connect_button', class: 'btn btn-success' do
     %i.icon-eye-open.icon-white
     Connect as business

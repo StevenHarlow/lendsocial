@@ -4,11 +4,11 @@
     %ul
       - connections.each do |connection|
         %li{class: list_classes(connection, connections)}
-          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(connection), class: 'business_avatar'
-          .business_description
-            = link_to connection.name, url_for(connection), class: 'business_name'
-            %p.business_address= connection.address
+          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(connection), class: 'follower_avatar'
+          .follower_description
+            = link_to connection.name, url_for(connection), class: 'follower_name'
+            %p.follower_address= connection.address
           .clear
     - if connections.size > 3
-      = link_to "See more...", connections_business_path(@business), class: 'more business_more_link'
+      = link_to "See more...", connections_business_path(@business), class: 'more follower_more_link'
     .clear

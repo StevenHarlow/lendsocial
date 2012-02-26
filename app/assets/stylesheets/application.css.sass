@@ -260,13 +260,13 @@ body
               background-position: 100% -35px
     #content_wrapper
       .content
-        border-top: 1px solid #dedede
         ul
           list-style: none
           margin: 0
+          border-top: 1px solid #dedede
           li
             border-bottom: 1px solid #dedede
-            margin: 10px 0
+            padding: 10px 0
             &.saved
               .status_name a
                 color: #f28300 !important
@@ -274,11 +274,12 @@ body
                 background-position: 0 -16px !important
             .status_picture
               +float-left
-              margin: 0 10px 10px 0
+              margin: 5px 10px 10px 5px
             .status_content
               +float-left
-              width: $right-column-width - 130px
+              width: $right-column-width - 140px
               .status_name
+                margin: 5px 0 0
                 a
                   color: #0f7c81
                   font-weight: bold
@@ -294,6 +295,7 @@ body
               height: 22px
               .status_star
                 +float-left
+                margin: 0 0 0 5px
                 a
                   display: block
                   +float-left
@@ -315,6 +317,7 @@ body
                 font-weight: bold
                 color: #222
                 line-height: 22px
+                margin: 0 5px 0 0
 #footer
   background: #dfdfdf
   border-top: 1px solid #cecece

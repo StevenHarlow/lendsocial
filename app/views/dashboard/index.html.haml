@@ -1,33 +1,37 @@
 #sidebar.dashboard_index
-  = render :partial => 'dashboard/my_loan_requests' # if current_user.requester or something
-  = render :partial => 'dashboard/account'
-  = render :partial => 'dashboard/widgets'
+  = render partial: 'dashboard/my_loan_requests'
+  = render partial: 'dashboard/account'
+  = render partial: 'dashboard/widgets'
 #content.dashboard_index
   .white_box
     #content_menu
       %ul.tabs
         %li.first
-          = link_to 'Update Status', '#update_status', :data => {:toggle => 'tab'}
+          = link_to 'Update Status', '#update_status', data: {toggle: 'tab'}
+        %li
+          = link_to 'Archived Statuses', '#archived_statuses', data: {toggle: 'tab'}
         %li.last
-          = link_to 'Archived Statuses', '#archived_statuses', :data => {:toggle => 'tab'}
+          = link_to dashboard_notifications, '#notifications', id: 'notifications_link', data: {toggle: 'tab'}
     #content_wrapper.tab-content
       #inbox.tab-pane
         .content
       #update_status.tab-pane
         .post_box
-          = form_for [current_user, @status_message], :remote => true do |f|
+          = form_for [current_user, @status_message], remote: true do |f|
             = form_alerts
-            = image_tag 'http://placehold.it/35x35', :class => 'status_avatar thumbnail'
+            = image_tag 'http://placehold.it/35x35', class: 'status_avatar thumbnail'
             .control-group
-              = f.text_area :text, :placeholder => 'Type your message...'
+              = f.text_area :text, placeholder: 'Type your message...'
             = f.hidden_field :author_id
             = f.hidden_field :posted_to_id
             = f.hidden_field :posted_to_type
-            = button_tag :class => 'btn btn-black' do
+            = button_tag class: 'btn btn-black' do
               Submit
               %i.icon-chevron-right.icon-white
             .clear
         .content
       #archived_statuses.tab-pane
+        .content
+      #notifications.tab-pane
         .content
 .clear

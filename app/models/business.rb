@@ -13,7 +13,6 @@ class Business < ActiveRecord::Base
   has_many :requested_connections, through: :business_connections, source: 'followed', conditions: "business_connections.status = 'requested'", order: 'business_connections.created_at'
   has_many :pending_connections, through: :business_connections, source: 'followed', conditions: "business_connections.status = 'pending'", order: 'business_connections.created_at'
 
-
   def latest_followers(limit = nil)
     User.where('business_followings.followed_id = ?', self.id).joins(:business_followings).order('business_followings.created_at DESC').limit(limit)
   end
@@ -29,14 +28,14 @@ class Business < ActiveRecord::Base
   def request object, message
     return false if self == object || self.requested_to?(object)
     transaction do
-      BusinessConnection.create(follower_id: self.id, followed_id: object.id, status: 'pending')
-      BusinessConnection.create(follower_id: object.id, followed_id: self.id, status: 'requested', message: message)
+      BusinessConnection.create(follower_id: self.id, followed_id: object.id, status: 'pending', initiator_id: self.id)
+      BusinessConnection.create(follower_id: object.id, followed_id: self.id, status: 'requested', initiator_id: self.id, message: message)
     end
   end
   
   def response object, status
     return false if self == object
-    return false unless [:accepted, :rejected, :deleted].include?(status)
+    return false unless [:accepted, :ignored, :cancelled].include?(status)
     transaction do
       time, status = Time.now, status.to_s
       BusinessConnection.where(follower_id: self.id, followed_id: object.id).update_all(status: status, response_at: time)

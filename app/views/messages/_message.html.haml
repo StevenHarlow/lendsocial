@@ -1,28 +1,26 @@
-- if message.respond_to?(:saved) && message.try(:saved)
-  %li.saved
-- else
-  %li
-    .status_picture
-      = link_to image_tag('http://placehold.it/80x80', :class => :thumbnail), url_for(message.author)
-    .status_content
-      .status_name
-        = link_to message.author.name, url_for(message.author)
-      .status_body
-        = message.text
+- klass = message.respond_to?(:saved) && message.try(:saved) ? 'saved' : nil
+%li{class: klass}
+  .status_picture
+    = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(message.author)
+  .status_content
+    .status_name
+      = link_to message.author.name, url_for(message.author)
+    .status_body
+      = message.text
+  .clear
+  .status_meta
+    .status_star
+      - if message.respond_to?(:saved) && message.try(:saved)
+        = link_to 'Saved', '#'
+        %span Saved
+      - else
+        = link_to 'Not saved', '#'
+    .status_date
+      = "Posted #{time_ago_in_words(message.created_at)} ago"
+      = "-"
+      = link_to_function pluralize(message.comments_on.count, 'comment'), "toggleComments(#{message.id})"
     .clear
-    .status_meta
-      .status_star
-        - if message.respond_to?(:saved) && message.try(:saved)
-          = link_to 'Saved', '#'
-          %span Saved
-        - else
-          = link_to 'Not saved', '#'
-      .status_date
-        = "Posted #{time_ago_in_words(message.created_at)} ago"
-        = "-"
-        = link_to_function pluralize(message.comments_on.count, 'comment'), "toggleComments(#{message.id})"
-      .clear
-    .status_comments{id: "comments_#{message.id}"}
-      .comments_list
-        = render partial: 'messages/comments_list', locals: {:message => message}
-      = render partial: 'messages/comments_form', locals: {:message => message}
+  .status_comments{id: "comments_#{message.id}"}
+    .comments_list
+      = render partial: 'messages/comments_list', locals: {:message => message}
+    = render partial: 'messages/comments_form', locals: {:message => message}

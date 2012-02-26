@@ -3,6 +3,11 @@ $(function(){
     var action = $(e.target).attr('href').substr(1);
     $.get('/dashboard/' + action, function(data) {
       $('#' + action + ' .content').html(data);
+      if (action == 'notifications') {
+        $.get('/dashboard/notifications_update', function(event, xhr, status) {
+          updateNotificationsCounter();
+        });
+      }
     });
   });
   
@@ -32,6 +37,10 @@ $(function(){
   });
 
   $(this)
+    .on('ajax:success', '.notifications_list a[data-remote]', function(event, xhr, status) {
+      $('#notifications .content').html(xhr);
+      updateNotificationsCounter();
+    })
     .on('ajax:complete', '.pagination a[data-remote]', function(event, xhr, status) {
       $(this).parents('.content').html(xhr.responseText);
     })
@@ -50,6 +59,12 @@ $(function(){
       console.log(xhr.responseText);
   });
 });
+
+updateNotificationsCounter = function() {
+  $.get('/dashboard/notifications_counter', function(data) {
+    $('#notifications_link').html(data);
+  });
+};
 
 showError = function(error, element) {
   element.parent().addClass('error').end()

@@ -1,3 +1,39 @@
-// Place all the styles related to the Dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+@import "base"
+
+.notifications_list
+  border: 0 !important
+  li
+    &.notification_new
+      background: #ffe
+    .notification_picture
+      +float-left
+      margin: 5px 10px 10px 5px
+      img
+        background: #fff
+    .notification_content
+      +float-left
+      width: $right-column-width - 265px
+      .notification_name
+        margin: 5px 0 0
+        a
+          color: #0f7c81
+          font-weight: bold
+          text-decoration: none
+      .notification_body
+        overflow: hidden
+        margin: 10px 0 0
+    .notification_buttons
+      +float-right
+      margin: 5px 0 0
+      .accept_reject
+        width: 125px
+    .notification_meta
+      border-top: 1px solid #f1f1f1
+      height: 22px
+      .notification_date
+        +float-right
+        font-size: 9px
+        font-weight: bold
+        color: #222
+        line-height: 22px
+        margin: 0 5px 0 0

@@ -1,6 +1,7 @@
 class BusinessesController < ApplicationController
   before_filter :require_user
   before_filter :find_business, except: [:new, :create]
+  before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
 	
 	def show
 	  @post = @business.postings.build(author_id: current_user.id)
@@ -57,15 +58,15 @@ class BusinessesController < ApplicationController
   end
   
   def connect
-    object = Business.find(params[:business])
-    response = object.present? ? @business.request(object, params[:message]) : nil
-    respond_to do |format|
-      if response
-        format.json { render json: true, status: :created }
-      else
-        format.json { render json: false, status: :unprocessable_entity }
-      end
-    end
+    return false unless @object.present?
+    @business.request(@object, params[:message])
+    connect_button_to_xhr
+  end
+  
+  def cancel_request
+    return false unless @object.present?
+    @business.response(@object, :cancelled)
+    connect_button_to_xhr
   end
   
   def connections
@@ -79,6 +80,18 @@ class BusinessesController < ApplicationController
     else
       redirect_to connections_business_path
     end
+  end
+  
+  def accept_response
+    return false unless @object.present?
+    @business.response(@object, :accepted)
+    notifications_to_xhr
+  end
+  
+  def ignore_response
+    return false unless @object.present?
+    @business.response(@object, :ignored)
+    notifications_to_xhr
   end
   
   def comments
@@ -101,6 +114,10 @@ class BusinessesController < ApplicationController
 	  @business = Business.find(params[:id])
   end
   
+  def find_object
+    @object = Business.find(params[:business])
+  end
+  
   def respond_to_xhr
     if request.xhr?
       respond_to do |format|
@@ -108,6 +125,23 @@ class BusinessesController < ApplicationController
       end
     else
       redirect_to url_for(@business)
+    end
+  end
+  
+  def notifications_to_xhr
+    if request.xhr?
+      @notifications = current_user.business_notifications.page(1)
+      render template: 'notifications/list', layout: false
+    else
+      redirect_to dashboard_index_path
+    end
+  end
+  
+  def connect_button_to_xhr
+    if request.xhr?
+      render partial: 'widgets/connect', locals: {business: @object}
+    else
+      redirect_to connects_business_path
     end
   end
 

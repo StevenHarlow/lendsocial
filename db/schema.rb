@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.integer  "initiator_id"
     t.datetime "response_at"
+    t.datetime "viewed_at"
     t.text     "message"
   end
 

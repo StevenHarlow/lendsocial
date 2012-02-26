@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  include DashboardHelper
   before_filter :require_user
   
   def index
@@ -37,7 +38,7 @@ class DashboardController < ApplicationController
   
   def notifications_counter
     if request.xhr?
-      render partial: 'notifications'
+      render inline: dashboard_notifications
     else
       redirect_to dashboard_index_path
     end

@@ -1,0 +1,55 @@
+.white_box#user_show
+  %h2= @user.name
+  - unless @user == current_user
+    #user_follow
+      = render partial: 'widgets/user_follow'
+  .clear
+  .user_info
+    %ul
+      %li.first
+        = @user.full_address
+      %li.last
+        Member since:
+        = @user.created_at.strftime("%B, %Y")
+  .user_description
+    = image_tag 'http://placehold.it/120x120', class: 'business_image thumbnail'
+    %p= @user.about
+    .clear
+#sidebar.inner.user_show
+  #user_business_followings
+    = render partial: 'widgets/user_business_followings', locals: {businesses: @user.latest_business_followings(3)}
+  #user_followings
+    = render partial: 'widgets/user_followings', locals: {followings: @user.latest_followings(3)}
+  #user_followers
+    = render partial: 'widgets/user_followers', locals: {followers: @user.latest_followers(3)}
+#content.inner.user_show
+  .white_box
+    #content_menu
+      %ul.tabs
+        %li.first
+          = link_to 'Comments', '#comments', data: {toggle: 'tab'}
+        %li
+          = link_to 'Photos', '#photos'
+        %li
+          = link_to 'Recent Amazing Purchases', '#recent_amazing_purchases'
+        %li
+          = link_to 'Discounts I have', '#discounts_i_have'
+        %li.last
+          = link_to 'Events Attending', '#events_attending'
+    #content_wrapper.tab-content
+      #comments.tab-pane
+        .post_box
+          = form_for [@user, @post], remote: true, html: {data: {id: @user.id}} do |f|
+            = form_alerts
+            = image_tag 'http://placehold.it/35x35', class: 'status_avatar thumbnail'
+            .control-group
+              = f.text_area :text, placeholder: 'Type your message...'
+            = f.hidden_field :posted_to_id
+            = f.hidden_field :posted_to_type
+            = f.hidden_field :author_id
+            = button_tag class: 'btn btn-black' do
+              Submit
+              %i.icon-chevron-right.icon-white
+            .clear
+        .content
+.clear

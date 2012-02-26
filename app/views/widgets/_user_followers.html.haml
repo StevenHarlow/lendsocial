@@ -1,6 +1,6 @@
 .white_box
   .widget.grid
-    %h4 Lenders Following Business
+    %h4= "Lenders Following #{@user.first_name}"
     %ul
       - followers.each do |follower|
         %li{class: list_classes(follower, followers)}
@@ -10,5 +10,5 @@
             %p.widget_address= follower.address
           .clear
     - if followers.size > 3
-      = link_to "See more lenders following...", followers_business_path(@business), class: 'widget_more_link'
+      = link_to "See more lender's following...", followers_user_path(@user), class: 'widget_more_link'
     .clear

@@ -1,0 +1,15 @@
+.white_box
+  %h2= "Businesses followed by #{@user.name}"
+  .page_list
+    = paginate @business_followings
+    %ul
+      - @business_followings.each do |business|
+        %li
+          .list_picture
+            = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(business)
+          .list_name
+            = link_to business.name, url_for(business)
+          .list_address
+            = business.address
+          .clear
+    = paginate @business_followings

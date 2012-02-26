@@ -1,14 +1,14 @@
 .white_box
-  .widget.grid#business_connections
+  .widget.grid
     %h4 Business Connections
     %ul
       - connections.each do |connection|
         %li{class: list_classes(connection, connections)}
-          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(connection), class: 'follower_avatar'
-          .follower_description
-            = link_to connection.name, url_for(connection), class: 'follower_name'
-            %p.follower_address= connection.address
+          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(connection), class: 'widget_picture'
+          .widget_description
+            = link_to connection.name, url_for(connection), class: 'widget_name'
+            %p.widget_address= connection.address
           .clear
     - if connections.size > 3
-      = link_to "See more...", connections_business_path(@business), class: 'more follower_more_link'
+      = link_to "See more...", connections_business_path(@business), class: 'widget_more_link'
     .clear

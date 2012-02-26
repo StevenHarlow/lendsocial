@@ -1,44 +1,21 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
+  before_filter :find_user, except: [:index, :new, :create]
+
   def index
     @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    @post = @user.postings.build(author_id: current_user.id)
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
   end
 
-  # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -53,11 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -69,10 +42,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -80,4 +50,57 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def comments
+    @messages = Message.for_user(@user).with_comments.page(params[:page] || 1)
+    respond_to_xhr 'messages/list'
+  end
+  
+  def follow
+	  current_user.follow(@user)
+	  render partial: 'widgets/user_follow'
+  end
+  
+  def unfollow
+    current_user.unfollow(@user)
+    render partial: 'widgets/user_follow'
+  end
+  
+  def followers
+    @followers = @user.latest_followers.page(params[:page] || 1)
+    redirect_to followers_user_path(page: 1) if @followers.empty?
+  end
+  
+  def followings
+    @followings = @user.latest_followings.page(params[:page] || 1)
+    redirect_to followings_user_path(page: 1) if @followings.empty?
+  end
+  
+  def business_followings
+    @business_followings = @user.latest_business_followings.page(params[:page] || 1)
+    redirect_to business_followings_user_path(page: 1) if @business_followings.empty?
+  end
+  
+  def latest_followers
+    if request.xhr?
+      render partial: 'widgets/user_followers', locals: {followers: @user.latest_followers(3)}
+    else
+      redirect_to followers_user_path
+    end
+  end
+  
+  private
+  
+  def find_user
+    @user = User.find(params[:id])
+  end
+  
+  def respond_to_xhr template
+    if request.xhr?
+      render template: template, layout: false
+    else
+      redirect_to url_for(@user)
+    end
+  end
+  
 end

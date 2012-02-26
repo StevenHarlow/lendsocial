@@ -1,0 +1,14 @@
+.white_box
+  .widget.grid
+    %h4= "Lenders #{@user.first_name}'s Following"
+    %ul
+      - followings.each do |followed|
+        %li{class: list_classes(followed, followings)}
+          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(followed), class: 'widget_picture'
+          .widget_description
+            = link_to followed.name, url_for(followed), class: 'widget_name'
+            %p.widget_address= followed.address
+          .clear
+    - if followings.size > 3
+      = link_to "See more lender's following...", followings_user_path(@user), class: 'widget_more_link'
+    .clear

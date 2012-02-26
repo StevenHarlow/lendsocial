@@ -18,7 +18,9 @@ class MessagesController < ApplicationController
  	          else
   	 	        @messages = case @message_params[:posted_to_type]
    	          when "User"
-    	 	        Message.for_user(current_user).with_comments.page(1)
+   	            user = User.find(@message_params[:posted_to_id])
+   	            @kaminari_params = {controller: 'users', action: 'comments', id: user.id}
+    	 	        Message.for_user(user).with_comments.page(1)
   	 	        when "Business"
   	 	          business = Business.find(@message_params[:posted_to_id])
   	 	          @kaminari_params = {controller: 'businesses', action: 'comments', id: business.id}

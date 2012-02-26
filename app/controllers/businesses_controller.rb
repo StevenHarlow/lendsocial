@@ -5,18 +5,10 @@ class BusinessesController < ApplicationController
 	
 	def show
 	  @post = @business.postings.build(author_id: current_user.id)
-		respond_to do |format|
-		  format.html
-		end
 	end
 	
 	def new
 		@business = Business.new
-
-		respond_to do |format|
-		  format.html # apply.html.erb
-		  format.json { render json: @business }
-		end
 	end
 	
 	def create

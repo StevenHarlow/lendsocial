@@ -1,0 +1,15 @@
+.white_box
+  %h2= "Lenders #{@user.name}'s Following"
+  .page_list
+    = paginate @followings
+    %ul
+      - @followings.each do |followed|
+        %li
+          .list_picture
+            = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(followed)
+          .list_name
+            = link_to followed.name, url_for(followed)
+          .list_address
+            = followed.address
+          .clear
+    = paginate @followings

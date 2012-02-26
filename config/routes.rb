@@ -9,6 +9,13 @@ LendSocial::Application.routes.draw do
       resources :messages do
         resources :mesages
       end
+      member do
+        get :follow, :unfollow, :latest_followers
+        get '/comments(/:page)', action: :comments, as: :comments
+        get '/business_followings(/:page)', action: :business_followings, as: :business_followings
+        get '/followings(/:page)', action: :followings, as: :followings
+        get '/followers(/:page)', action: :followers, as: :followers
+      end
     end
 
     resources :messages do

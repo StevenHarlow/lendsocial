@@ -1,0 +1,14 @@
+.white_box
+  .widget.grid
+    %h4= "Businesses #{@user.first_name}'s Following"
+    %ul
+      - businesses.each do |business|
+        %li{class: list_classes(business, businesses)}
+          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(business), class: 'widget_picture'
+          .widget_description
+            = link_to business.name, url_for(business), class: 'widget_name'
+            %p.widget_address= business.address
+          .clear
+    - if businesses.size > 3
+      = link_to "See more business relationships...", business_followings_user_path(@user), class: 'widget_more_link'
+    .clear

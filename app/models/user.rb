@@ -38,6 +38,18 @@ class User < ActiveRecord::Base
     klass.where(follower_id: self.id, followed_id: object.id).any?
   end
   
+  def latest_business_followings(limit = nil)
+    Business.where('business_followings.follower_id = ?', self.id).joins(:business_followings).order('business_followings.created_at DESC').limit(limit)
+  end
+  
+  def latest_followings(limit = nil)
+    User.where('user_followings.follower_id = ?', self.id).joins(:followed_users).order('user_followings.created_at DESC').limit(limit)
+  end
+  
+  def latest_followers(limit = nil)
+    User.where('user_followings.followed_id = ?', self.id).joins(:followers).order('user_followings.created_at DESC').limit(limit)
+  end
+  
   def business_notifications
     BusinessConnection.includes(:followed).where("follower_id = ? AND (status = 'requested' OR (status = 'accepted' AND initiator_id = ?))", self.id, self.id).order('status DESC, created_at DESC')
   end

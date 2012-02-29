@@ -7,6 +7,7 @@ gem 'jquery-rails', '~> 1.0.19'
 gem 'twitter_bootstrap_form_for'
 gem 'authlogic'
 gem 'kaminari'
+gem 'seed-fu', '~> 2.1.0'
 
 group :production do
   gem 'pg'
@@ -15,7 +16,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'heroku'
-  gem 'seed-fu', '~> 2.1.0'
 end
 
 group :assets do

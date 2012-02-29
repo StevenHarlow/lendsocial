@@ -4,7 +4,7 @@ class ChangeMessages < ActiveRecord::Migration
       t.remove_references :message_type
       t.references :by_business
       t.index :by_business_id
-      t.change(:text, :text, :limit => 2000)
+      t.change(:text, :text)
     end
   end
 

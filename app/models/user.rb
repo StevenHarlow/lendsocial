@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follower_associations, source: 'follower', dependent: :destroy
   has_many :followed_user_associations, class_name: 'UserFollowing', foreign_key: 'follower_id'
   has_many :followed_users, through: :followed_user_associations, source: 'followed', dependent: :destroy
-  has_many :business_followings, foreign_key: 'followed_id'
+  has_many :business_followings, foreign_key: 'follower_id'
   has_many :followed_businesses, through: :business_followings, source: 'followed', dependent: :destroy
   
   def name

@@ -27,13 +27,15 @@ class BusinessesController < ApplicationController
 	end
 	
 	def follow
+	  return false if current_user.is_following?(@business)
 	  current_user.follow(@business)
-	  render partial: 'widgets/follow'
+	  render partial: 'widgets/business_follow'
   end
   
   def unfollow
+    return false unless current_user.is_following?(@business)
     current_user.unfollow(@business)
-    render partial: 'widgets/follow'
+    render partial: 'widgets/business_follow'
   end
   
   def followers

@@ -9,6 +9,6 @@
             = link_to business.name, url_for(business), class: 'widget_name'
             %p.widget_address= business.address
           .clear
-    - if businesses.size > 3
+    - if @user.businesses.count > 3
       = link_to "See more business relationships...", business_followings_user_path(@user), class: 'widget_more_link'
     .clear

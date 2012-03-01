@@ -15,4 +15,8 @@ class Message < ActiveRecord::Base
   scope :with_comments, includes('comments_on')
   
   paginates_per 10
+  
+  def writer
+    self.author || self.by_business
+  end
 end

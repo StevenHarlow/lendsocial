@@ -9,6 +9,6 @@
             = link_to follower.name, url_for(follower), class: 'widget_name'
             %p.widget_address= follower.address
           .clear
-    - if followers.size > 3
+    - if @business.latest_followers.count > 3
       = link_to "See more lenders following...", followers_business_path(@business), class: 'widget_more_link'
     .clear

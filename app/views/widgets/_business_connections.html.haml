@@ -9,6 +9,6 @@
             = link_to connection.name, url_for(connection), class: 'widget_name'
             %p.widget_address= connection.address
           .clear
-    - if connections.size > 3
+    - if @business.latest_connections.count > 3
       = link_to "See more...", connections_business_path(@business), class: 'widget_more_link'
     .clear

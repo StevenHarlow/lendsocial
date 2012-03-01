@@ -7,7 +7,6 @@ class Loan < ActiveRecord::Base
   scope :published, where("published_date IS NOT NULL")
   
   def funded
-    total_committed = self.total_committed.is_a?(BigDecimal) ? self.total_committed : BigDecimal(self.total_committed.to_s)
-    (total_committed / self.amount_requested * 100).to_i
+    (self.total_committed.to_s.to_d / self.amount_requested.to_s.to_d * 100).to_i
   end
 end

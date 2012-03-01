@@ -1,10 +1,10 @@
 - klass = message.respond_to?(:saved) && message.try(:saved) ? 'saved' : nil
 %li{class: klass}
   .status_picture
-    = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(message.author)
+    = link_to image_tag('http://placehold.it/80x80', class: 'thumbnail'), url_for(message.writer)
   .status_content
     .status_name
-      = link_to message.author.name, url_for(message.author)
+      = link_to message.writer.name, url_for(message.writer)
     .status_body
       = message.text
   .clear

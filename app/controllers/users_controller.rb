@@ -50,37 +50,37 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
-  
+
   def comments
     @messages = Message.for_user(@user).with_comments.page(params[:page] || 1)
     respond_to_xhr 'messages/list'
   end
-  
+
   def follow
-	  current_user.follow(@user)
-	  render partial: 'widgets/user_follow'
+    current_user.follow(@user)
+    render partial: 'widgets/user_follow'
   end
-  
+
   def unfollow
     current_user.unfollow(@user)
     render partial: 'widgets/user_follow'
   end
-  
+
   def followers
     @followers = @user.latest_followers.page(params[:page] || 1)
     redirect_to followers_user_path(page: 1) if @followers.empty?
   end
-  
+
   def followings
     @followings = @user.latest_followings.page(params[:page] || 1)
     redirect_to followings_user_path(page: 1) if @followings.empty?
   end
-  
+
   def business_followings
     @business_followings = @user.latest_business_followings.page(params[:page] || 1)
     redirect_to business_followings_user_path(page: 1) if @business_followings.empty?
   end
-  
+
   def latest_followers
     if request.xhr?
       render partial: 'widgets/user_followers', locals: {followers: @user.latest_followers(3)}
@@ -88,13 +88,13 @@ class UsersController < ApplicationController
       redirect_to followers_user_path
     end
   end
-  
+
   private
-  
+
   def find_user
     @user = User.find(params[:id])
   end
-  
+
   def respond_to_xhr template
     if request.xhr?
       render template: template, layout: false
@@ -102,5 +102,5 @@ class UsersController < ApplicationController
       redirect_to url_for(@user)
     end
   end
-  
+
 end

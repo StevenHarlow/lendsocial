@@ -6,10 +6,10 @@ class LoansController < ApplicationController
   end
 
   def publish
-  	@loan = Loan.find(params[:loan][:id])
-  	@loan.published_date = Date.today
+    @loan = Loan.find(params[:loan][:id])
+    @loan.published_date = Date.today
 
-  	respond_to do |format|
+    respond_to do |format|
       if @loan.save
         format.html { render partial: 'published', locals: { loan: @loan } }
         format.json { render json: @loan, status: :published, location: @loan }
@@ -89,7 +89,7 @@ class LoansController < ApplicationController
       end
     end
   end
- 	
+
   protected
 
   def authorize

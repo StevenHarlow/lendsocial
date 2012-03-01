@@ -2,47 +2,47 @@ class BusinessesController < ApplicationController
   before_filter :require_user
   before_filter :find_business, except: [:new, :create]
   before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
-	
-	def show
-	  @post = @business.postings.build(author_id: current_user.id)
-	end
-	
-	def new
-		@business = Business.new
-	end
-	
-	def create
-	 	@business = Business.new(params[:business])
-    @business.users << current_user 
 
-		respond_to do |format|
-		  if @business.save
-			format.html { redirect_to @business, notice: 'Business was successfully created.' }
-			format.json { render json: @business, status: :created, location: @business }
-		  else
-			format.html { render action: "new" }
-			format.json { render json: @business.errors, status: :unprocessable_entity }
-		  end
-		end
-	end
-	
-	def follow
-	  return false if current_user.is_following?(@business)
-	  current_user.follow(@business)
-	  render partial: 'widgets/business_follow'
+  def show
+    @post = @business.postings.build(author_id: current_user.id)
   end
-  
+
+  def new
+    @business = Business.new
+  end
+
+  def create
+    @business = Business.new(params[:business])
+    @business.users << current_user
+
+    respond_to do |format|
+      if @business.save
+      format.html { redirect_to @business, notice: 'Business was successfully created.' }
+      format.json { render json: @business, status: :created, location: @business }
+      else
+      format.html { render action: "new" }
+      format.json { render json: @business.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def follow
+    return false if current_user.is_following?(@business)
+    current_user.follow(@business)
+    render partial: 'widgets/business_follow'
+  end
+
   def unfollow
     return false unless current_user.is_following?(@business)
     current_user.unfollow(@business)
     render partial: 'widgets/business_follow'
   end
-  
+
   def followers
     @followers = @business.latest_followers.page(params[:page] || 1)
     redirect_to followers_business_path(page: 1) if @followers.empty?
   end
-  
+
   def latest_followers
     if request.xhr?
       render partial: 'widgets/business_followers', locals: {followers: @business.latest_followers(3)}
@@ -50,24 +50,24 @@ class BusinessesController < ApplicationController
       redirect_to followers_business_path
     end
   end
-  
+
   def connect
     return false unless @object.present?
     @business.request(@object, params[:message])
     connect_button_to_xhr
   end
-  
+
   def cancel_request
     return false unless @object.present?
     @business.response(@object, :cancelled)
     connect_button_to_xhr
   end
-  
+
   def connections
     @connections = @business.latest_connections.page(params[:page] || 1)
     redirect_to connections_business_path(page: 1) if @connections.empty?
   end
-  
+
   def latest_connections
     if request.xhr?
       render partial: 'widgets/business_connections', locals: {connections: @business.latest_connections(3)}
@@ -75,43 +75,43 @@ class BusinessesController < ApplicationController
       redirect_to connections_business_path
     end
   end
-  
+
   def accept_response
     return false unless @object.present?
     @business.response(@object, :accepted)
     notifications_to_xhr
   end
-  
+
   def ignore_response
     return false unless @object.present?
     @business.response(@object, :ignored)
     notifications_to_xhr
   end
-  
+
   def comments
     @messages = Message.for_business(@business).with_comments.page(params[:page] || 1)
     respond_to_xhr
   end
-	
-	def edit
-	
-	end
-	
-	
-	def update
-	
-	end
-	
-	private
-	
-	def find_business
-	  @business = Business.find(params[:id])
+
+  def edit
+
   end
-  
+
+
+  def update
+
+  end
+
+  private
+
+  def find_business
+    @business = Business.find(params[:id])
+  end
+
   def find_object
     @object = Business.find(params[:business])
   end
-  
+
   def respond_to_xhr
     if request.xhr?
       respond_to do |format|
@@ -121,7 +121,7 @@ class BusinessesController < ApplicationController
       redirect_to url_for(@business)
     end
   end
-  
+
   def notifications_to_xhr
     if request.xhr?
       @notifications = current_user.business_notifications.page(1)
@@ -130,7 +130,7 @@ class BusinessesController < ApplicationController
       redirect_to dashboard_index_path
     end
   end
-  
+
   def connect_button_to_xhr
     if request.xhr?
       render partial: 'widgets/connect', locals: {business: @object}

@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-  	<%= f.label :business_id, "Business:" %><br />
+    <%= f.label :business_id, "Business:" %><br />
     <%= select("loan", "business_id", current_user.businesses.collect {|b| [ b.name, b.id ] } ) %>
   </div>
   <div class="field">

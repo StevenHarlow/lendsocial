@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description",          :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
     t.integer  "posted_to_id"
     t.string   "posted_to_type"
     t.integer  "related_message_id"
-    t.text     "text",               :limit => 2000
+    t.text     "text",               :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "by_business_id"

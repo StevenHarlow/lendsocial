@@ -4,6 +4,6 @@ class ModifyUsernameToEmail < ActiveRecord::Migration
   end
 
   def down
-  	add_column :users, :username
+  	add_column :users, :username, :string
   end
 end

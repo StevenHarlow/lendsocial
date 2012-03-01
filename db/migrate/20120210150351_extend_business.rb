@@ -4,6 +4,7 @@ class ExtendBusiness < ActiveRecord::Migration
       t.string :address
       t.string :phone
       t.references :business_industry
+      t.change :description, :text
     end
   end
 
@@ -12,6 +13,7 @@ class ExtendBusiness < ActiveRecord::Migration
       t.remove :address
       t.remove :phone
       t.remove_references :business_industry
+      t.change :description, :string
     end
   end
 end

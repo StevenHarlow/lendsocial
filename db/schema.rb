@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
-    t.text     "description",          :limit => 255
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
@@ -84,13 +84,13 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id"
+    t.integer  "by_business_id"
     t.integer  "posted_to_id"
     t.string   "posted_to_type"
     t.integer  "related_message_id"
-    t.text     "text",               :limit => 255
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "by_business_id"
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"

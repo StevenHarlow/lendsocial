@@ -3,11 +3,7 @@ class UserSessionsController < ApplicationController
   def new
     return redirect_to dashboard_index_path if current_user
     @user_session = UserSession.new
-
-    respond_to do |format|
-      format.html
-      format.xml  { render xml: @user_session }
-    end
+    @user = User.new
   end
   
   def create
@@ -15,11 +11,9 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(:users, notice: 'Login Successful') }
-        format.xml  { render xml: @user_session, status: :created, location: @user_session }
+        redirect_to dashboard_index_path, notice: 'Login Successfull'
       else
-        format.html { render action: 'new' }
-        format.xml  { render xml: @user_session.errors, status: :unprocessable_entity }
+        redirect_to root_path
       end
     end
   end

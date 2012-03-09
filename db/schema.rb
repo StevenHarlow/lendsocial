@@ -38,21 +38,17 @@ ActiveRecord::Schema.define(:version => 20120309191645) do
   add_index "business_followings", ["followed_id"], :name => "index_business_followings_on_followed_id"
   add_index "business_followings", ["follower_id"], :name => "index_business_followings_on_follower_id"
 
-  create_table "business_industries", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "businesses", :force => true do |t|
     t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.datetime "business_started"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address"
-    t.string   "phone"
-    t.integer  "business_industry_id"
   end
 
   create_table "loan_purposes", :force => true do |t|
@@ -70,9 +66,9 @@ ActiveRecord::Schema.define(:version => 20120309191645) do
     t.integer  "loan_purpose_id"
     t.datetime "funded_date"
     t.decimal  "total_committed"
-    t.string   "description"
-    t.string   "benefits"
-    t.string   "thank_you_message"
+    t.text     "description"
+    t.text     "benefits"
+    t.text     "thank_you_message"
     t.datetime "published_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,13 +80,13 @@ ActiveRecord::Schema.define(:version => 20120309191645) do
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id"
+    t.integer  "by_business_id"
     t.integer  "posted_to_id"
     t.string   "posted_to_type"
     t.integer  "related_message_id"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "by_business_id"
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"

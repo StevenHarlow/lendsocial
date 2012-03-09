@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225025831) do
+ActiveRecord::Schema.define(:version => 20120309172834) do
 
   create_table "business_connections", :force => true do |t|
     t.integer  "follower_id"
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
     t.integer  "loan_purpose_id"
     t.datetime "funded_date"
     t.decimal  "total_committed"
-    t.string   "description"
-    t.string   "benefits"
-    t.string   "thank_you_message"
+    t.text     "description"
+    t.text     "benefits"
+    t.text     "thank_you_message"
     t.datetime "published_date"
     t.datetime "created_at"
     t.datetime "updated_at"

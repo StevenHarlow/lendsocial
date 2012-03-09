@@ -9,12 +9,9 @@ gem 'authlogic'
 gem 'kaminari'
 gem 'seed-fu', '~> 2.1.0'
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'heroku'
 end
 

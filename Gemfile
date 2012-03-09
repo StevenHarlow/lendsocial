@@ -8,13 +8,13 @@ gem 'twitter_bootstrap_form_for'
 gem 'authlogic'
 gem 'kaminari'
 gem 'seed-fu', '~> 2.1.0'
+gem 'pg'
+gem 'us_states_select'
+gem 'carrierwave'
+gem 'mini_magick'
+# gem 'carrierwave_direct'
 
-group :production do
-  gem 'pg'
-end
-
-group :development, :test do
-  gem 'sqlite3'
+group :development do
   gem 'heroku'
 end
 

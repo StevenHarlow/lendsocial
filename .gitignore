@@ -5,4 +5,5 @@ tmp/
 .sass-cache/
 .DS_Store
 .redcar
-
+public/uploads/
+.rbenv-*

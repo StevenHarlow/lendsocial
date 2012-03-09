@@ -4,8 +4,11 @@
   h2
     +float-left
     width: $base-width - 120px
-    #user_follow
+    #user_follow, #user_edit_profile, #user_save_changes
       +float-left
+  &.owner
+    h2
+      width: $base-width - 125px
   .user_info
     ul
       +inline-block-list-container
@@ -26,3 +29,36 @@
       padding: 5px
       border: 1px solid #dedede
       margin: 0 10px 0 0
+
+#user_edit
+  @extend #user_show
+  .h2
+    +float-left
+    width: $base-width - 165px
+    margin: 0 10px 0 0
+    font-weight: bold
+  .user_description
+    textarea
+      +float-left
+      resize: none
+      width: $base-width - 195px
+      height: 120px
+.columns
+  width: $base-width - 20px
+  .column
+    width: 50%
+    +float-left
+    label
+      margin: 5px 0
+      font-weight: bold
+    input, select
+      margin: 0 20px 0 0
+  .small-columns
+    width: ($base-width - 20px) / 2
+    .column
+      width: auto
+      +float-left
+#user_about
+  width: ($base-width - 150px) / 2
+  resize: none
+  height: 150px

@@ -1,6 +1,11 @@
-.white_box#user_show
+.white_box#user_show{class: "#{'owner' if @user == current_user}"}
   %h2= @user.name
-  - unless @user == current_user
+  - if @user == current_user
+    #user_edit_profile
+      = link_to edit_user_path(current_user), class: 'btn btn-info' do
+        %i.icon-edit.icon-white
+        Edit Profile
+  - else
     #user_follow
       = render partial: 'widgets/user_follow'
   .clear
@@ -12,7 +17,7 @@
         Member since:
         = @user.created_at.strftime("%B, %Y")
   .user_description
-    = image_tag 'http://placehold.it/120x120', class: 'business_image thumbnail'
+    = image_tag @user.user_picture_url(:thumb), class: 'user_image thumbnail'
     %p= @user.about
     .clear
 #sidebar.inner.user_show
@@ -41,7 +46,7 @@
         .post_box
           = form_for [@user, @post], remote: true, html: {data: {id: @user.id}} do |f|
             = form_alerts
-            = image_tag 'http://placehold.it/35x35', class: 'status_avatar thumbnail'
+            = image_tag @user.user_picture_url(:tiny), class: 'status_avatar thumbnail'
             .control-group
               = f.text_area :text, placeholder: 'Type your message...'
             = f.hidden_field :posted_to_id

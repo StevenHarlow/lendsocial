@@ -1,3 +1,5 @@
+require 'file_size_validator'
+
 class User < ActiveRecord::Base
   acts_as_authentic
   
@@ -11,6 +13,12 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :followed_user_associations, source: 'followed', dependent: :destroy
   has_many :business_followings, foreign_key: 'follower_id'
   has_many :followed_businesses, through: :business_followings, source: 'followed', dependent: :destroy
+  
+  mount_uploader :user_picture, UserPictureUploader
+  
+  validates_presence_of :first_name, :last_name, :email
+  validates :user_picture, {file_size: {maximum: 0.5.megabytes.to_i}}
+  
   
   def name
     "#{self.first_name} #{self.last_name}".strip

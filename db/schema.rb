@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225025831) do
+ActiveRecord::Schema.define(:version => 20120309191645) do
 
   create_table "business_connections", :force => true do |t|
     t.integer  "follower_id"
@@ -84,13 +84,13 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id"
-    t.integer  "by_business_id"
     t.integer  "posted_to_id"
     t.string   "posted_to_type"
     t.integer  "related_message_id"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "by_business_id"
   end
 
   add_index "messages", ["author_id"], :name => "index_messages_on_author_id"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20120225025831) do
     t.string   "zipcode"
     t.string   "phone"
     t.text     "about"
+    t.string   "user_picture"
   end
 
 end

@@ -1,0 +1,47 @@
+.white_box#user_edit
+  %h2= "#{@user.name}'s profile editing"
+  .columns
+    = form_for @user do |f|
+      .column
+        .small-columns
+          .column
+            = f.label :first_name
+            = f.text_field :first_name
+          .column
+            = f.label :last_name
+            = f.text_field :last_name
+          .clear
+        .small-columns
+          .column
+            = f.label :address
+            = f.text_field :address
+          .column
+            = f.label :city
+            = f.text_field :city
+          .clear
+        .small-columns
+          .column
+            = f.label :state
+            = f.us_state_select :state, {}, {}, {class: 'span2'}
+          .column
+            = f.label :zipcode
+            = f.text_field :zipcode, maxlength: 5, class: 'span1'
+          .column
+            = f.label :phone
+            = f.text_field :phone
+          .clear
+        = f.label :about
+        = f.text_area :about
+      .column
+        = f.label :email
+        = f.text_field :email, disabled: true
+        = f.label :password
+        = f.password_field :password
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+        = f.label :user_picture
+        = image_tag(@user.user_picture_url(:thumb), class: 'thumbnail') if @user.user_picture?
+        = f.file_field :user_picture
+        = f.hidden_field :user_picture_cache
+      .clear
+      = f.submit 'Update info', class: 'btn btn-info'

@@ -3,7 +3,6 @@ class Business < ActiveRecord::Base
   has_many :users, through: :user_businesses
   has_many :postings, class_name: 'Message', as: 'posted_to'
   has_many :loans
-  belongs_to :industry, class_name: 'BusinessIndustry', foreign_key: 'business_industry_id'
   
   has_many :business_followings, foreign_key: 'followed_id'
   has_many :followers, through: :business_followings, dependent: :destroy

@@ -16,12 +16,9 @@
       %li
         Address:
         = @business.address
-      %li
+      %li.last
         Phone:
         = @business.phone
-      %li.last
-        Industry:
-        = @business.industry.name
   - if @business.loans.present?
     %ul.loans_list
       = render partial: 'loans/loan', collection: @business.loans

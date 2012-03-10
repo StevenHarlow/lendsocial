@@ -1,6 +1,6 @@
 .white_box
   .widget.grid
-    %h4= "Lenders #{@user.first_name}'s Following"
+    %h4= "Lenders #{@user.first_name} is Following"
     %ul
       - followings.each do |followed|
         %li{class: list_classes(followed, followings)}

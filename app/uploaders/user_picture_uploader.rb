@@ -16,6 +16,15 @@ class UserPictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   
+  def default_url
+    case version_name
+    when :tiny
+      "http://placehold.it/35x35.png"
+    when :thumb
+      "http://placehold.it/120x120.png"
+    end
+  end
+  
   process :convert => 'png'
 
   # def default_url
@@ -23,7 +32,7 @@ class UserPictureUploader < CarrierWave::Uploader::Base
   # end
   
   version :tiny do
-    process :resize_to_fill => [35, 35] 
+    process :resize_to_fill => [35, 35]
   end
   
   version :thumb do

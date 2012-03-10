@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :find_user, except: [:index, :new, :create]
+  before_filter :current_user_is_allowed_to, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -93,6 +94,11 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+  
+  def current_user_is_allowed_to
+    path = params[:id].blank? ? root_path : user_path(params[:id])
+    redirect_to path unless defined?(current_user) && current_user == @user
   end
 
   def respond_to_xhr template

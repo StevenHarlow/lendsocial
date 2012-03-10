@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        redirect_to dashboard_index_path, notice: 'Login Successfull'
+        redirect_to dashboard_index_path, notice: 'Login Successful'
       else
         redirect_to root_path
       end

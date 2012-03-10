@@ -43,15 +43,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :ok }
-    end
-  end
-
   def comments
     @messages = Message.for_user(@user).with_comments.page(params[:page] || 1)
     respond_to_xhr 'messages/list'

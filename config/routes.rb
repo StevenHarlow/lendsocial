@@ -5,7 +5,7 @@ LendSocial::Application.routes.draw do
     match '/login' => 'user_sessions#new', as: :login
     match '/logout' => 'user_sessions#destroy', as: :logout
 
-    resources :users do
+    resources :users, :except => :destroy do
       resources :messages do
         resources :mesages
       end
@@ -34,14 +34,14 @@ LendSocial::Application.routes.draw do
       end
     end
     
-    resources :loans do
+    resources :loans, :except => :destroy do
       collection do
         get '/page-:page', action: :index
         get :apply, :publish, :unpublish
       end
     end
 
-    resources :businesses do
+    resources :businesses, :except => :destroy do
       resources :messages
       member do
         get :follow, :unfollow, :latest_followers

@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'carrierwave/processing/mini_magick'
 
-class UserPictureUploader < CarrierWave::Uploader::Base
+class BusinessPictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   
   storage :file
@@ -23,7 +23,9 @@ class UserPictureUploader < CarrierWave::Uploader::Base
     when :message
       "http://placehold.it/80x80.png"
     when :thumb
-      "http://placehold.it/120x120.png"
+      "http://placehold.it/120x80.png"
+    when :loan
+      "http://placehold.it/240x160.png"
     end
   end
   
@@ -38,7 +40,11 @@ class UserPictureUploader < CarrierWave::Uploader::Base
   end
   
   version :thumb do
-    process :resize_to_fill => [120, 120]
+    process :resize_to_fill => [120, 80]
+  end
+  
+  version :loan do
+    process :resize_to_fill => [240, 160]
   end
 
   def extension_white_list

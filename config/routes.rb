@@ -1,6 +1,6 @@
 LendSocial::Application.routes.draw do
 
-    root to: 'user_sessions#new'
+    root to: 'user_sessions#index'
     
     match '/login' => 'user_sessions#new', as: :login
     match '/logout' => 'user_sessions#destroy', as: :logout

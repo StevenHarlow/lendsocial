@@ -6,9 +6,7 @@ LendSocial::Application.routes.draw do
     match '/logout' => 'user_sessions#destroy', as: :logout
 
     resources :users, :except => :destroy do
-      resources :messages do
-        resources :mesages
-      end
+      resources :messages
       member do
         get :follow, :unfollow, :latest_followers
         get '/comments(/:page)', action: :comments, as: :comments

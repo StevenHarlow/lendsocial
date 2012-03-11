@@ -19,4 +19,13 @@ class Message < ActiveRecord::Base
   def writer
     self.author || self.by_business
   end
+  
+  def writer_picture
+    return case writer.class.to_s
+    when "User"
+      self.writer.user_picture_url(:message)
+    when "Business"
+      self.writer.business_picture_url(:message)
+    end
+  end
 end

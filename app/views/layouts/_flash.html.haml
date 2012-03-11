@@ -1,0 +1,14 @@
+#flash_message
+  - unless flash[:notice].blank?
+    .alert.alert-info
+      %a.close{data: {dismiss: 'alert'}} ×
+      = flash[:notice]
+  - unless flash[:error].blank?
+    .alert.alert-error
+      %a.close{data: {dismiss: 'alert'}} ×
+      = flash[:error]
+  - unless flash[:alert].blank?
+    .alert
+      %a.close{data: {dismiss: 'alert'}} ×
+      = flash[:alert]
+.clear

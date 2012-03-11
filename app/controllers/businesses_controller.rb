@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :require_user
+  before_filter :authenticate_user!, except: [:show, :followers, :latest_followers, :connections, :latest_connections, :comments]
   before_filter :find_business, except: [:new, :create]
   before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
 

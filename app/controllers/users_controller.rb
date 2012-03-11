@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :follow, :unfollow]
   before_filter :find_user, except: [:index, :new, :create]
   before_filter :current_user_is_allowed_to, only: [:edit, :update, :destroy]
 
@@ -22,23 +23,27 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
+        format.html do
+          redirect_to @user, notice: 'User was successfully created.'
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html do
+          render action: "new"
+        end
       end
     end
   end
 
   def update
     respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :ok }
+      if @user.update_without_password(params[:user])
+        format.html do
+          redirect_to @user, notice: 'User was successfully updated.'
+        end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html do
+          render action: "edit"
+        end
       end
     end
   end
@@ -89,7 +94,7 @@ class UsersController < ApplicationController
   
   def current_user_is_allowed_to
     path = params[:id].blank? ? root_path : user_path(params[:id])
-    redirect_to path unless defined?(current_user) && current_user == @user
+    redirect_to path unless user_signed_in? && current_user == @user
   end
 
   def respond_to_xhr template

@@ -11,6 +11,8 @@ class Business < ActiveRecord::Base
   has_many :connections, through: :business_connections, source: 'followed', conditions: "business_connections.status = 'accepted'"
   has_many :requested_connections, through: :business_connections, source: 'followed', conditions: "business_connections.status = 'requested'", order: 'business_connections.created_at'
   has_many :pending_connections, through: :business_connections, source: 'followed', conditions: "business_connections.status = 'pending'", order: 'business_connections.created_at'
+  
+  mount_uploader :business_picture, BusinessPictureUploader
 
   def latest_followers(limit = nil)
     User.where('business_followings.followed_id = ?', self.id).joins(:business_followings).order('business_followings.created_at DESC').limit(limit)

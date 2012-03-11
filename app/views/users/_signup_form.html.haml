@@ -1,7 +1,8 @@
-= form_for @user do |f|
+= form_for @user, url: user_registration_path do |f|
   - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+    .alert.alert-block
+      %a.close{data: {dismiss: 'alert'}} ×
+      %h4.alert-heading= I18n.t 'errors.messages.not_saved', count: @user.errors.count, resource: 'user'
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg

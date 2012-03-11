@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_filter :authorize, only: [:edit, :update]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
     @loans = Loan.page(params[:page] || 1)
@@ -87,15 +87,6 @@ class LoansController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  protected
-
-  def authorize
-    @loan = Loan.find(params[:id])
-    if @loan.user.id != current_user.id
-      redirect_to @loan, notice: 'Permission denied'
     end
   end
 end

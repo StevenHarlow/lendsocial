@@ -58,6 +58,11 @@ body
             &.menu_community
               width: 140px
               +sprite-row(4)
+  #flash_message
+    +float-left
+    margin: 20px 0 0
+    width: 100%
+    position: relative
   #my_menu
     margin: 5px 0 15px
     height: 25px
@@ -319,6 +324,7 @@ body
                 line-height: 22px
                 margin: 0 5px 0 0
   #index_page
+    margin: 10px 0 15px
     .left
       +float-left
       width: 750px
@@ -332,6 +338,11 @@ body
       form
         input[type=text], input[type=password]
           width: 265px
+        &#new_user
+          .field_with_errors
+            input, select, textarea
+              color: #b94a48
+              border-color: #b94a48
 #footer
   background: #dfdfdf
   border-top: 1px solid #cecece

@@ -1,5 +1,12 @@
 .white_box#user_edit
   %h2= "#{@user.name}'s profile editing"
+  - if @user.errors.any?
+    .alert.alert-block
+      %a.close{data: {dismiss: 'alert'}} ×
+      %h4.alert-heading= I18n.t 'errors.messages.not_saved', count: @user.errors.count, resource: 'user'
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
   .columns
     = form_for @user do |f|
       .column

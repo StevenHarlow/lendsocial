@@ -12,7 +12,8 @@
       %li
         = link_to 'Community', '#', :class => 'menu_community'
   .clear
-- if current_user
+= render partial: 'layouts/flash', locals: {flash: flash} unless flash.blank?
+- if user_signed_in?
   #my_menu
     .my_menu_left
       %ul

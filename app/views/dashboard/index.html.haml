@@ -18,7 +18,7 @@
         .post_box
           = form_for [current_user, @status_message], remote: true do |f|
             = form_alerts
-            = image_tag 'http://placehold.it/35x35', class: 'status_avatar thumbnail'
+            = image_tag current_user.user_picture_url(:tiny), class: 'status_avatar thumbnail'
             .control-group
               = f.text_area :text, placeholder: 'Type your message...'
             = f.hidden_field :author_id

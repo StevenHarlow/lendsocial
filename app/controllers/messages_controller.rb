@@ -1,11 +1,12 @@
 class MessagesController < ApplicationController
-  before_filter :build_message, only: [:create]
+  before_filter :authenticate_user!
 
   def new
     @message = Message.new
   end
 
   def create
+    build_message
     @message_params[:author_id] ||= current_user.id
 
     respond_to do |format|

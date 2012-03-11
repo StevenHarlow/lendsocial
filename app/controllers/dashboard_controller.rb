@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   include DashboardHelper
-  before_filter :require_user
+  before_filter :authenticate_user!
   
   def index
     @recent_loans = Loan.recent(3).published

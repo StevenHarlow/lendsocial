@@ -1,7 +1,6 @@
-require 'file_size_validator'
-
 class User < ActiveRecord::Base
-  acts_as_authentic
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :city, :state, :zipcode, :phone, :about, :user_picture_cache
   
   has_many :user_businesses
   has_many :businesses, through: :user_businesses
@@ -16,9 +15,8 @@ class User < ActiveRecord::Base
   
   mount_uploader :user_picture, UserPictureUploader
   
-  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :first_name, :last_name, :zipcode
   validates :user_picture, {file_size: {maximum: 0.5.megabytes.to_i}}
-  
   
   def name
     "#{self.first_name} #{self.last_name}".strip
@@ -61,5 +59,4 @@ class User < ActiveRecord::Base
   def business_notifications
     BusinessConnection.includes(:followed).where("follower_id = ? AND (status = 'requested' OR (status = 'accepted' AND initiator_id = ?))", self.id, self.id).order('status DESC, created_at DESC')
   end
-  
 end

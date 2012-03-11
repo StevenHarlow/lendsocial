@@ -24,7 +24,7 @@
       = render partial: 'loans/loan', collection: @business.loans
   .business_description
     - if @business.loans.empty?
-      = image_tag 'http://placehold.it/120x80', class: 'business_image thumbnail'
+      = image_tag @business.business_picture_url(:thumb), class: 'business_image thumbnail'
     %p= @business.description
     .clear
 #sidebar.inner.business_show
@@ -49,7 +49,7 @@
         .post_box
           = form_for [@business, @post], remote: true, html: {data: {id: @business.id}} do |f|
             = form_alerts
-            = image_tag 'http://placehold.it/35x35', class: 'status_avatar thumbnail'
+            = image_tag current_user.user_picture_url(:tiny), class: 'status_avatar thumbnail'
             .control-group
               = f.text_area :text, placeholder: 'Type your message...'
             = f.hidden_field :posted_to_id

@@ -13,9 +13,7 @@ LendSocial::Application.routes.draw do
   root to: 'welcome#index'
 
   resources :users, :except => :destroy do
-    resources :messages do
-      resources :mesages
-    end
+    resources :messages
     member do
       get :follow, :unfollow, :latest_followers
       get '/comments(/:page)', action: :comments, as: :comments

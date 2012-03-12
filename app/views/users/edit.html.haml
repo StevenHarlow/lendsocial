@@ -20,9 +20,6 @@
           .clear
         .small-columns
           .column
-            = f.label :address
-            = f.text_field :address
-          .column
             = f.label :city
             = f.text_field :city
           .clear
@@ -31,11 +28,8 @@
             = f.label :state
             = f.us_state_select :state, {}, {}, {class: 'span2'}
           .column
-            = f.label :zipcode
+            = f.label :zipcode, 'ZIP Code'
             = f.text_field :zipcode, maxlength: 5, class: 'span1'
-          .column
-            = f.label :phone
-            = f.text_field :phone
           .clear
         = f.label :about
         = f.text_area :about

@@ -6,10 +6,15 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  = f.text_field :first_name, placeholder: 'First Name'
-  = f.text_field :last_name, placeholder: 'Last Name'
   = f.text_field :email, placeholder: 'Email'
   = f.password_field :password, placeholder: 'Password'
   = f.password_field :password_confirmation, placeholder: 'Confirm Password'
-  = f.text_field :zipcode, placeholder: 'Zipcode'
+  = f.text_field :first_name, placeholder: 'First Name'
+  = f.text_field :last_name, placeholder: 'Last Name'
+  = f.text_field :zipcode, placeholder: 'ZIP Code'
   = f.submit 'Sign up', class: 'btn'
+  %i
+    %p Please note: due to a configuration oversight, login information (including your password) is currently not being send securely between your browser and our site.
+    %p We will notify all registered users as soon as this issue is addressed (expected by Monday, March 12).
+    %p We recommend that you set a temporary password for now, and change it on your Edit Profile page at that time.
+    %p Thanks, </br> The LendSocial team

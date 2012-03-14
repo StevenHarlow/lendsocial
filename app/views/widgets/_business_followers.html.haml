@@ -4,7 +4,7 @@
     %ul
       - followers.each do |follower|
         %li{class: list_classes(follower, followers)}
-          = link_to image_tag('http://placehold.it/35x35', class: 'thumbnail'), url_for(follower), class: 'widget_picture'
+          = link_to image_tag('35x35', class: 'thumbnail'), url_for(follower), class: 'widget_picture'
           .widget_description
             = link_to follower.name, url_for(follower), class: 'widget_name'
             %p.widget_address= follower.address

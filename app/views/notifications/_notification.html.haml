@@ -1,7 +1,7 @@
 - klass = notification.viewed_at.nil? ? 'notification_new' : nil
 %li{class: klass}
   .notification_picture
-    = link_to image_tag('http://placehold.it/80x80', :class => :thumbnail), url_for(notification.followed)
+    = link_to image_tag('80x80', :class => :thumbnail), url_for(notification.followed)
   .notification_content
     .notification_name
       = link_to notification.followed.name, url_for(notification.followed)

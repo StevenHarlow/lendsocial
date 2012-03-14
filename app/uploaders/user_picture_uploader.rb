@@ -19,11 +19,11 @@ class UserPictureUploader < CarrierWave::Uploader::Base
   def default_url
     case version_name
     when :tiny
-      "http://placehold.it/35x35.png"
+      "35x35.png"
     when :message
-      "http://placehold.it/80x80.png"
+      "80x80.png"
     when :thumb
-      "http://placehold.it/120x120.png"
+      "120x120.png"
     end
   end
   

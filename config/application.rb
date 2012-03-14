@@ -46,5 +46,6 @@ module LendSocial
     config.assets.version = '1.0'
     # config.sass.preferred_syntax = :sass
     config.generators.stylesheet_engine = :sass
+    config.force_ssl = true
   end
 end

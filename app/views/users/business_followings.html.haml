@@ -6,7 +6,7 @@
       - @business_followings.each do |business|
         %li
           .list_picture
-            = link_to image_tag('80x80', class: 'thumbnail'), url_for(business)
+            = link_to image_tag('80x80.png', class: 'thumbnail'), url_for(business)
           .list_name
             = link_to business.name, url_for(business)
           .list_address

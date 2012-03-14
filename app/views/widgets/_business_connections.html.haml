@@ -4,7 +4,7 @@
     %ul
       - connections.each do |connection|
         %li{class: list_classes(connection, connections)}
-          = link_to image_tag('35x35', class: 'thumbnail'), url_for(connection), class: 'widget_picture'
+          = link_to image_tag('35x35.png', class: 'thumbnail'), url_for(connection), class: 'widget_picture'
           .widget_description
             = link_to connection.name, url_for(connection), class: 'widget_name'
             %p.widget_address= connection.address

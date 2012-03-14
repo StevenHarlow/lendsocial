@@ -6,7 +6,7 @@
       - @followers.each do |follower|
         %li
           .list_picture
-            = link_to image_tag('80x80', class: 'thumbnail'), url_for(follower)
+            = link_to image_tag('80x80.png', class: 'thumbnail'), url_for(follower)
           .list_name
             = link_to follower.name, url_for(follower)
           .list_address

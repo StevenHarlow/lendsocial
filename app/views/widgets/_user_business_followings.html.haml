@@ -4,7 +4,7 @@
     %ul
       - businesses.each do |business|
         %li{class: list_classes(business, businesses)}
-          = link_to image_tag('35x35', class: 'thumbnail'), url_for(business), class: 'widget_picture'
+          = link_to image_tag('35x35.png', class: 'thumbnail'), url_for(business), class: 'widget_picture'
           .widget_description
             = link_to business.name, url_for(business), class: 'widget_name'
             %p.widget_address= business.address

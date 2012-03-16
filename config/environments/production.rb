@@ -57,4 +57,9 @@ LendSocial::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # force all traffic (including cookies) over SSL
+  # should automatically redirect requests to https://
+  # but not currently working with current dev config using Webrick
+  # config.force_ssl = true
 end

@@ -21,7 +21,7 @@
       %tr
         %td= number_to_currency(loan.total_committed || 0)
         %td= "#{loan.funded}%"
-        %td 6
+        %td 0
       %tr
         %th{:colspan => 2} Funding deadline
         %td.loan_lend_button{:rowspan => 2}= link_to 'Lend', '#', :class => 'btn btn-success'

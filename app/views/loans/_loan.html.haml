@@ -6,7 +6,8 @@
       = link_to url_for(loan.business) do
         %h4.business_name= loan.business.name
     %p.loan_info= loan.description
-    = link_to 'Click Here for more information', loan_path(loan), :class => :loan_more
+    %h4 Benefits to Lenders:
+    %p.loan_info= loan.benefits
     .clear
   .loan_details
     %table

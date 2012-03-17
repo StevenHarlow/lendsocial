@@ -10,7 +10,7 @@
             .clear
           .loan_body
             %p= truncate(loan.description)
-            = link_to 'More Info >>>', user_path(loan.user), :class => 'loan_more_info'
+            = link_to 'More Info >>>', business_path(loan.business), :class => 'loan_more_info'
             .clear
           .loan_footer= "Posted #{time_ago_in_words(loan.published_date)} ago"
     = link_to 'See more loan requests', loans_path, :class => 'more loan_see_more'

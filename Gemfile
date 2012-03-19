@@ -17,6 +17,7 @@ gem 'mini_magick'
 
 group :development do
   gem 'heroku'
+  gem 'ruby-debug19'
 end
 
 group :assets do

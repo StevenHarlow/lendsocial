@@ -1,7 +1,12 @@
 .white_box#business_show
   %h2= @business.name
   #business_buttons
-    - if @business.owner != current_user
+    - if @business.owner == current_user
+      #business_edit_profile
+        = link_to edit_business_path(@business), class: 'btn btn-info' do
+          %i.icon-edit.icon-white
+          Edit Business
+    - else
       - if current_user.businesses.any?
         #business_connect
           = render partial: 'widgets/connect', locals: {business: @business}

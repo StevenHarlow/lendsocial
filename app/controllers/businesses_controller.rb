@@ -2,6 +2,7 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :followers, :latest_followers, :connections, :latest_connections, :comments]
   before_filter :find_business, except: [:new, :create]
   before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
+  before_filter :current_user_is_allowed_to, only: [:edit, :update, :destroy]
 
   def show
     @post = @business.postings.build(author_id: current_user.id)
@@ -99,7 +100,17 @@ class BusinessesController < ApplicationController
 
 
   def update
-
+    respond_to do |format|
+      if @business.update_attributes(params[:business])
+        format.html do
+          redirect_to @business, notice: 'Business was successfully updated.'
+        end
+      else
+        format.html do
+          render action: "edit"
+        end
+      end
+    end
   end
 
   private
@@ -129,6 +140,11 @@ class BusinessesController < ApplicationController
     else
       redirect_to dashboard_index_path
     end
+  end
+  
+  def current_user_is_allowed_to
+    path = params[:id].blank? ? root_path : business_path(params[:id])
+    redirect_to path unless user_signed_in? && current_user == @business.owner
   end
 
   def connect_button_to_xhr

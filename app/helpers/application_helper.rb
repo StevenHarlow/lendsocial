@@ -20,6 +20,16 @@ module ApplicationHelper
     super(number, options)
   end
   
+  def form_block_alerts resource
+    if resource.errors.any?
+      content_tag :div, class: 'alert alert-block' do
+        content_tag(:a, '×', class: 'close', 'data-dismiss' => 'alert') +
+        content_tag(:h4, I18n.t('errors.messages.not_saved', count: resource.errors.count, resource: resource.class.name.downcase), class: 'alert-heading') +
+        content_tag(:ul, resource.errors.full_messages.map {|msg| content_tag(:li, msg)}.join("\n").html_safe)
+      end
+    end
+  end
+  
   def form_alerts
     content_tag :div, class: 'alert' do
       content_tag(:a, '×', class: 'close') + content_tag(:div, nil, class: 'message')

@@ -89,7 +89,7 @@ class BusinessesController < ApplicationController
   end
 
   def comments
-    @messages = Message.for_business(@business).with_comments.page(params[:page] || 1)
+    @messages = Message.for_business(@business).where(:related_message_id => nil).with_comments.page(params[:page] || 1)
     respond_to_xhr
   end
 

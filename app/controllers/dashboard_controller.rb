@@ -8,12 +8,12 @@ class DashboardController < ApplicationController
   end
   
   def update_status
-    @messages = current_user.messages.page(params[:page] || 1)
+    @messages = current_user.messages.where(:related_message_id => nil).page(params[:page] || 1)
     respond_to_xhr 'messages/list'
   end
   
   def archived_statuses
-    @messages = current_user.messages.page(params[:page] || 1)
+    @messages = current_user.messages.where(:related_message_id => nil).page(params[:page] || 1)
     respond_to_xhr 'messages/list'
   end
   

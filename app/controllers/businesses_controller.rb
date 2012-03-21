@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :followers, :latest_followers, :connections, :latest_connections, :comments]
-  before_filter :find_business, except: [:new, :create]
+  before_filter :find_business, except: [:new, :create, :user]
   before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
   before_filter :current_user_is_allowed_to, only: [:edit, :update, :destroy]
 
@@ -14,15 +14,13 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(params[:business])
-    @business.users << current_user
 
     respond_to do |format|
       if @business.save
-      format.html { redirect_to @business, notice: 'Business was successfully created.' }
-      format.json { render json: @business, status: :created, location: @business }
+        UserBusiness.create!(user: current_user, business: @business, role: 'Owner')
+        format.html { redirect_to @business, notice: 'Business was successfully created.' }
       else
-      format.html { render action: "new" }
-      format.json { render json: @business.errors, status: :unprocessable_entity }
+        format.html { render action: "new" }
       end
     end
   end
@@ -95,9 +93,7 @@ class BusinessesController < ApplicationController
   end
 
   def edit
-
   end
-
 
   def update
     respond_to do |format|
@@ -110,6 +106,19 @@ class BusinessesController < ApplicationController
           render action: "edit"
         end
       end
+    end
+  end
+  
+  def user
+    if current_user && current_user.id == params[:user].to_i
+      if current_user.businesses.any?
+        business = current_user.businesses.first
+        redirect_to business_path(business)
+      else
+        redirect_to new_business_path
+      end
+    else
+      redirect_to root_path
     end
   end
 

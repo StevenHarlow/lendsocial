@@ -25,7 +25,7 @@
         %li
           = link_to 'My Profile', user_path(current_user)
         %li
-          = link_to 'My Companies', '#'
+          = link_to 'My Companies', user_businesses_path(current_user)
     .my_menu_right
       %strong
         = link_to 'Sign Out', user_signout_path

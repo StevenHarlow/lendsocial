@@ -110,15 +110,11 @@ class BusinessesController < ApplicationController
   end
   
   def user
-    if current_user && current_user.id == params[:user].to_i
-      if current_user.businesses.any?
-        business = current_user.businesses.first
-        redirect_to business_path(business)
-      else
-        redirect_to new_business_path
-      end
+    if current_user.businesses.any?
+      business = current_user.businesses.first
+      redirect_to business_path(business)
     else
-      redirect_to root_path
+      redirect_to new_business_path
     end
   end
 

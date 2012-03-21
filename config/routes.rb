@@ -59,7 +59,7 @@ LendSocial::Application.routes.draw do
       get '/cancel/:business', action: :cancel_request, as: :cancel 
     end
     collection do
-      get '/user/:user', action: :user, as: :user
+      get '/user', action: :user, as: :user
     end
   end
 end

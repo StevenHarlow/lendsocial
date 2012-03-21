@@ -14,15 +14,13 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(params[:business])
-    @business.users << current_user
 
     respond_to do |format|
       if @business.save
-      format.html { redirect_to @business, notice: 'Business was successfully created.' }
-      format.json { render json: @business, status: :created, location: @business }
+        UserBusiness.create!(user: current_user, business: @business, role: 'Owner')
+        format.html { redirect_to @business, notice: 'Business was successfully created.' }
       else
-      format.html { render action: "new" }
-      format.json { render json: @business.errors, status: :unprocessable_entity }
+        format.html { render action: "new" }
       end
     end
   end
@@ -96,7 +94,6 @@ class BusinessesController < ApplicationController
 
   def edit
   end
-
 
   def update
     respond_to do |format|

@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :followers, :latest_followers, :connections, :latest_connections, :comments]
-  before_filter :find_business, except: [:new, :create]
+  before_filter :find_business, except: [:new, :create, :user]
   before_filter :find_object, only: [:connect, :accept_response, :ignore_response, :cancel_request]
   before_filter :current_user_is_allowed_to, only: [:edit, :update, :destroy]
 
@@ -95,7 +95,6 @@ class BusinessesController < ApplicationController
   end
 
   def edit
-
   end
 
 
@@ -110,6 +109,19 @@ class BusinessesController < ApplicationController
           render action: "edit"
         end
       end
+    end
+  end
+  
+  def user
+    if current_user && current_user.id == params[:user].to_i
+      if current_user.businesses.any?
+        business = current_user.businesses.first
+        redirect_to business_path(business)
+      else
+        redirect_to new_business_path
+      end
+    else
+      redirect_to root_path
     end
   end
 

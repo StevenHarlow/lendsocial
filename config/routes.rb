@@ -56,5 +56,8 @@ LendSocial::Application.routes.draw do
       get '/ignore/:business', action: :ignore_response, as: :ignore
       get '/cancel/:business', action: :cancel_request, as: :cancel 
     end
+    collection do
+      get '/user/:user', action: :user, as: :user
+    end
   end
 end

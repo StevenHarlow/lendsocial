@@ -27,6 +27,6 @@
         %th{:colspan => 2} Funding deadline
         %td.loan_lend_button{:rowspan => 2}= link_to 'Lend', '#', :class => 'btn btn-success'
       %tr
-        %td{:colspan => 2}= (loan.funding_deadline || Time.now + 1.month).strftime('%m/%d/%Y')
+        %td{:colspan => 2}= loan.funding_deadline.strftime('%m/%d/%Y')
     .clear
   .clear

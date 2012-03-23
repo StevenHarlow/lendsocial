@@ -8,9 +8,9 @@
       %li
         = link_to 'Borrow', page_path('borrower_instructions'), :class => 'menu_borrow'
       %li
-        = link_to 'My Investments', '#', :class => 'menu_investments'
+        = link_to 'My Investments', page_path('investments'), :class => 'menu_investments'
       %li
-        = link_to 'Community', '#', :class => 'menu_community'
+        = link_to 'Community', page_path('community'), :class => 'menu_community'
   .clear
 = render partial: 'layouts/flash', locals: {flash: flash} unless flash.blank?
 - if user_signed_in?

@@ -1,0 +1,8 @@
+.white_box
+  %h2 The LendSocial Community
+  %h3 Businesses
+  - @businesses.each do |business|
+    %p= link_to business.name, business
+  %h3 Users
+  - @users.each do |user|
+    %p= link_to "#{user.first_name} #{user.last_name}", user

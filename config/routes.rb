@@ -62,4 +62,7 @@ LendSocial::Application.routes.draw do
       get '/user', action: :user, as: :user
     end
   end
+
+  resources :community, only: [:index]
+
 end

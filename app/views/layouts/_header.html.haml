@@ -10,7 +10,7 @@
       %li
         = link_to 'My Investments', page_path('investments'), :class => 'menu_investments'
       %li
-        = link_to 'Community', page_path('community'), :class => 'menu_community'
+        = link_to 'Community', community_index_path, :class => 'menu_community'
   .clear
 = render partial: 'layouts/flash', locals: {flash: flash} unless flash.blank?
 - if user_signed_in?

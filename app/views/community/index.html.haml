@@ -2,7 +2,13 @@
   %h2 The LendSocial Community
   %h3 Businesses
   - @businesses.each do |business|
-    %p= link_to business.name, business
+    - if user_signed_in?
+      %p= link_to business.name, business
+    - else
+      %p= business.name
   %h3 Users
   - @users.each do |user|
-    %p= link_to "#{user.first_name} #{user.last_name}", user
+    - if user_signed_in?
+      %p= link_to "#{user.first_name} #{user.last_name}", user
+    - else
+      %p= "#{user.first_name} #{user.last_name}"

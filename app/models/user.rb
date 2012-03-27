@@ -49,11 +49,11 @@ class User < ActiveRecord::Base
   end
   
   def latest_followings(limit = nil)
-    User.where('user_followings.follower_id = ?', self.id).joins(:followed_users).order('user_followings.created_at DESC').limit(limit)
+    self.followed_users.order('user_followings.created_at DESC').limit(limit)
   end
   
   def latest_followers(limit = nil)
-    User.where('user_followings.followed_id = ?', self.id).joins(:followers).order('user_followings.created_at DESC').limit(limit)
+    self.followers.order('user_followings.created_at DESC').limit(limit)
   end
   
   def business_notifications

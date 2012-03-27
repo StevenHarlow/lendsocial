@@ -7,7 +7,7 @@
           = link_to image_tag('35x35.png', class: 'thumbnail'), url_for(followed), class: 'widget_picture'
           .widget_description
             = link_to followed.name, url_for(followed), class: 'widget_name'
-            %p.widget_address= followed.address
+            %p.widget_address= "#{followed.city}, #{followed.state}"
           .clear
     - if @user.followed_users.count > 3
       = link_to "See more lender's following...", followings_user_path(@user), class: 'widget_more_link'

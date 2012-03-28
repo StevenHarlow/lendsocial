@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 
 gem 'rails', '3.1.1'
 gem 'rack', '1.3.3'
@@ -9,11 +9,12 @@ gem 'devise'
 gem 'bcrypt-ruby'
 gem 'kaminari'
 gem 'seed-fu', '~> 2.1.0'
-gem 'pg'
+gem 'pg', '~> 0.13'
 gem 'us_states_select'
 gem 'carrierwave'
 gem 'mini_magick'
 # gem 'carrierwave_direct'
+gem 'acts-as-taggable-on', '~> 2.2.2'
 
 group :development do
   gem 'heroku'

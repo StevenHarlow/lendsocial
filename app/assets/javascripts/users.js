@@ -1,4 +1,9 @@
 $(function(){
+  $('#user_interest_list').tagsInput({
+    'height': '65px',
+    'width': '450px'
+  });
+  
   $('.user_show .tabs a[data-toggle="tab"]').on('show', function(e) {
     var id = $('#new_message').attr('data-id');
     var action = $(e.target).attr('href').substr(1);

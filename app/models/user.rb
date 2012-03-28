@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :city, :state, :zipcode, :phone, :about, :user_picture_cache
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :city, :state, :zipcode, :phone, :about, :user_picture_cache, :interest_list
   
   has_many :user_businesses
   has_many :businesses, through: :user_businesses
@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :followed_user_associations, source: 'followed', dependent: :destroy
   has_many :business_followings, foreign_key: 'follower_id'
   has_many :followed_businesses, through: :business_followings, source: 'followed', dependent: :destroy
+  
+  acts_as_taggable
+  acts_as_taggable_on :interests
   
   mount_uploader :user_picture, UserPictureUploader
   

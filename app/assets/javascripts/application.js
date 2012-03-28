@@ -1,5 +1,8 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.validate
+//= require jquery.tagsinput
+//= require bootstrap
 //= require_tree .
 
 $('[placeholder]').focus(function() {

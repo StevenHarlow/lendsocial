@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :city, :state, :zipcode, :phone, :about, :user_picture_cache, :interest_list
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name,
+    :address, :city, :state, :zipcode, :phone, :about, :user_picture, :user_picture_cache, :interest_list
   
   has_many :user_businesses
   has_many :businesses, through: :user_businesses

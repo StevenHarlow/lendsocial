@@ -3,14 +3,6 @@ require 'carrierwave/processing/mini_magick'
 
 class UserPictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  
-  storage :file
-  # storage :fog
-  
-  # Make Carrierwave work on Heroku
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
-  end
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"

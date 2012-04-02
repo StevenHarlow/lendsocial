@@ -36,8 +36,10 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation
         = f.label :user_picture
-        = image_tag @user.user_picture_url(:thumb), class: 'thumbnail'
-        = f.file_field :user_picture
         = f.hidden_field :user_picture_cache
+        = image_tag @user.user_picture_url(:thumb), class: 'thumbnail', id: 'thumbnail'
+        = f.file_field :user_picture,
+          :onchange => 'javascript:preview_file(this);javascript:$("#save_notice").html("Click \"Save changes\" to upload new photo");'
+        #save_notice
       .clear
-      = f.submit 'Update info', class: 'btn btn-info'
+      = f.submit 'Save changes', class: 'btn btn-info'

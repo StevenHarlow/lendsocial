@@ -48,7 +48,7 @@ $.validator.prototype.showLabel = function(element, message) {
   this.toShow = this.toShow.add(el);
 };
 
-function preview_file(input) {
+function preview_file(input, width, height) {
   // Check for HTML5 FileReader API support
   if (window.FileReader) {
     if (input.files && input.files[0]) {
@@ -56,8 +56,8 @@ function preview_file(input) {
       reader.onload = function (e) {
         $('#thumbnail')
           .attr('src', e.target.result)
-          .width(120)
-          .height(120);
+          .width(width)
+          .height(height);
       };
       reader.readAsDataURL(input.files[0]);
     }

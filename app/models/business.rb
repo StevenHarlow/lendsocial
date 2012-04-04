@@ -15,6 +15,7 @@ class Business < ActiveRecord::Base
   mount_uploader :business_picture, BusinessPictureUploader
   
   validates_presence_of :name, :address, :city, :state, :zipcode, :phone
+  validates :business_picture, {file_size: {maximum: 4.megabytes.to_i}}
 
   def latest_followers(limit = nil)
     User.where('business_followings.followed_id = ?', self.id).joins(:business_followings).order('business_followings.created_at DESC').limit(limit)

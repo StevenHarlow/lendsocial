@@ -27,9 +27,12 @@
       = f.text_area :description, class: 'span6'
     .column
       = f.label :business_picture
-      - if params[:action] == 'edit'
-        = image_tag @business.business_picture_url(:thumb), class: 'thumbnail'
-      = f.file_field :business_picture
       = f.hidden_field :business_picture_cache
+      - if params[:action] == 'edit'
+        = image_tag @business.business_picture_url(:thumb), class: 'thumbnail', id: 'thumbnail'
+        #save_notice
+      = f.file_field :business_picture,
+        :onchange => 'javascript:preview_file(this, 120, 80);javascript:$("#save_notice").html("Click \"Save changes\" to upload new photo");'
     .clear
-    = f.submit (params[:action] == 'edit' ? 'Update info' : 'Create Business'), class: 'btn btn-info'
+    = f.submit (params[:action] == 'edit' ? 'Save Changes' : 'Create Business'), class: 'btn btn-info'
+    

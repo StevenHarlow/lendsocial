@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   mount_uploader :user_picture, UserPictureUploader
   
   validates_presence_of :first_name, :last_name, :zipcode
-  validates :user_picture, {file_size: {maximum: 0.5.megabytes.to_i}}
+  validates :user_picture, {file_size: {maximum: 4.megabytes.to_i}}
   
   def name
     "#{self.first_name} #{self.last_name}".strip

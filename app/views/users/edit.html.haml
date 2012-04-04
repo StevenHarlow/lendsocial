@@ -38,8 +38,8 @@
         = f.label :user_picture
         = f.hidden_field :user_picture_cache
         = image_tag @user.user_picture_url(:thumb), class: 'thumbnail', id: 'thumbnail'
-        = f.file_field :user_picture,
-          :onchange => 'javascript:preview_file(this);javascript:$("#save_notice").html("Click \"Save changes\" to upload new photo");'
         #save_notice
+        = f.file_field :user_picture,
+          :onchange => 'javascript:preview_file(this, 120, 120);javascript:$("#save_notice").html("Click \"Save changes\" to upload new photo");'
       .clear
       = f.submit 'Save changes', class: 'btn btn-info'

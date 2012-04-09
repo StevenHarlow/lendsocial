@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310181344) do
+ActiveRecord::Schema.define(:version => 20120405214615) do
 
   create_table "business_connections", :force => true do |t|
     t.integer  "follower_id"
@@ -111,6 +111,20 @@ ActiveRecord::Schema.define(:version => 20120310181344) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "transactions", :force => true do |t|
+    t.string   "tx_type"
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.integer  "loan_id"
+    t.integer  "business_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["business_id", "tx_type"], :name => "index_transactions_on_business_id_and_tx_type"
+  add_index "transactions", ["loan_id", "tx_type"], :name => "index_transactions_on_loan_id_and_tx_type"
+  add_index "transactions", ["user_id", "tx_type"], :name => "index_transactions_on_user_id_and_tx_type"
 
   create_table "user_businesses", :force => true do |t|
     t.integer  "user_id"

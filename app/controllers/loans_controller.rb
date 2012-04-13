@@ -4,5 +4,4 @@ class LoansController < ApplicationController
   def index
     @loans = Loan.page(params[:page] || 1)
   end
-
 end

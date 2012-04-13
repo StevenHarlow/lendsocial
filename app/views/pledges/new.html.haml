@@ -1,0 +1,12 @@
+.white_box#business_create
+  %h2 Pledge Funds
+  .clear
+  = form_block_alerts @transaction
+  .columns
+    %ul.loans_list
+      = render partial: 'loans/loan', object: @loan
+    = form_for @transaction, :url => { :action => "create" } do |f|
+      = f.label :amount, "I'm pledging:"
+      = f.text_field :amount
+      = f.label :amount, "towards this loan request!"
+      = f.submit 'Pledge', class: 'btn btn-success'       

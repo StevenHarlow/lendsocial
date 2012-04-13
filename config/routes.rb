@@ -40,9 +40,13 @@ LendSocial::Application.routes.draw do
   end
   
   resources :loans, only: [:index] do
+    resources :pledges
     collection do
       get '/page-:page', action: :index
     end
+#    member do
+#      get :pledge
+#    end
   end
 
   resources :businesses, :except => :destroy do

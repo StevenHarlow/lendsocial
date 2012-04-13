@@ -25,7 +25,9 @@
         %td 0
       %tr
         %th{:colspan => 2} Funding deadline
-        %td.loan_lend_button{:rowspan => 2}= link_to 'Lend', page_path('lender_instructions'), :class => 'btn btn-success'
+        %td.loan_lend_button{:rowspan => 2}
+          - if params[:controller] != 'pledges'
+            = link_to 'Lend', new_loan_pledge_path(loan), :class => 'btn btn-success'
       %tr
         %td{:colspan => 2}= loan.funding_deadline.strftime('%m/%d/%Y')
     .clear

@@ -1,0 +1,20 @@
+.white_box
+  %h2 Lender Thanks
+  .clear
+  = form_block_alerts @transaction
+  .columns
+    %ul.loans_list
+      = render partial: 'loans/loan', object: @loan
+    %h3= "Your pledge of #{number_to_currency(@transaction.amount)} has been received."
+    %br
+    %h4
+      %em= "Message from #{@loan.business.name}:"
+      %blockquote= @loan.thank_you_message
+    %br
+    %h5     
+      = link_to "Browse more loans", loans_path
+      |
+      = link_to "View Business Profile for #{@loan.business.name}", url_for(@loan.business) 
+      |
+      = link_to "Return to My Dashboard", dashboard_index_path
+      

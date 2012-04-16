@@ -4,20 +4,43 @@ class PledgesController < ApplicationController
   def new
     @loan = Loan.find(params[:loan_id])
     @transaction = Transaction.new
+    @message = Message.new
   end
 
 
   def create
     @loan = Loan.find(params[:loan_id])
-    @transaction = Transaction.new(params[:transaction])
+    create_transaction
+    create_message
 
     respond_to do |format|
-      if true #@transaction.save
-        format.html { render :show, notice: 'Pledge was successfully created.' }
-      else
+      begin
+        ActiveRecord::Base.transaction do
+          @transaction.save!
+          @message.save! if @message.text != ''
+        end
+      rescue
         format.html { render action: "new" }
+      else
+        format.html { render :thanks, notice: 'Pledge was successfully created.' }
       end
     end
+  end
+
+  protected
+  
+  def create_transaction
+    @transaction = Transaction.new
+    @transaction.tx_type = :pledge
+    @transaction.amount = params[:transaction][:amount]
+    @transaction.user_id = current_user.id
+    @transaction.loan_id = @loan.id
+    @transaction.business_id = @loan.business.id
+  end
+
+  def create_message
+    @message = @loan.business.postings.build(author_id: current_user.id)
+    @message.text = params[:message][:text]
   end
   
 end

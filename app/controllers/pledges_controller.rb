@@ -11,12 +11,14 @@ class PledgesController < ApplicationController
   def create
     @loan = Loan.find(params[:loan_id])
     create_transaction
+    update_loan
     create_message
 
     respond_to do |format|
       begin
         ActiveRecord::Base.transaction do
           @transaction.save!
+          @loan.save!
           @message.save! if @message.text != ''
         end
       rescue
@@ -36,6 +38,11 @@ class PledgesController < ApplicationController
     @transaction.user_id = current_user.id
     @transaction.loan_id = @loan.id
     @transaction.business_id = @loan.business.id
+  end
+  
+  def update_loan
+    @loan.total_committed += BigDecimal.new(params[:transaction][:amount])
+    @loan.lender_count += 1
   end
 
   def create_message

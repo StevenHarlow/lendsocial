@@ -16,13 +16,13 @@
       %tr
         %td{:colspan => 3}= number_to_currency loan.amount_requested
       %tr
-        %th.loan_table_loaned Loaned
+        %th.loan_table_loaned Pledged
         %th.loan_table_funded Funded
         %th.loan_table_lenders Lenders
       %tr
-        %td= number_to_currency(loan.total_committed || 0)
+        %td= number_to_currency(loan.total_committed)
         %td= "#{loan.funded}%"
-        %td 0
+        %td= loan.lender_count
       %tr
         %th{:colspan => 2} Funding deadline
         %td.loan_lend_button{:rowspan => 2}

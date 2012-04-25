@@ -1,7 +1,6 @@
 .white_box
   %h2 Lender Thanks
   .clear
-  = form_block_alerts @transaction
   .columns
     %ul.loans_list
       = render partial: 'loans/loan', object: @loan
